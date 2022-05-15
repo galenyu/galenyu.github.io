@@ -17,12 +17,12 @@ minimal: false             # use a dark header
 
 navigation:                # accepts {file, title, url, icon, sidebaricon}
   - {file: "index.html"}
-  - {file: "README.md"}
+  - {file: "ABOUTME.md"}
 
 external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
   - {title: Mail, icon: envelope, url: "mailto:zqyu21@m.fudan.edu.cn"}
   - {title: Github, icon: github, url: "https://github.com/galenyu"}
-  - {title: Subscribe, icon: rss, url: "/feed.xml"}
+  - {title: Subscribe, icon: weixin, url: "/WXQRCode.jpg"}
 
 comments:
 #  disqus_shortname: ""    # see https://disqus.com/
