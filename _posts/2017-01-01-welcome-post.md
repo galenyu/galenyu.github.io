@@ -14,7 +14,7 @@ Here is a showcase of some of my work, and some reflections on those efforts.Gra
 
 ## Code
 
-Embed code by putting `{{ "{% highlight language " }}%}` `{{ "{% endhighlight " }}%}` blocks around it. Adding the parameter `linenos` will show source lines besides the code.
+I'll post some key code, but of course, please refer to my GitHub page for more detailed open source code. The example is shown below.
 
 {% highlight c %}
 
@@ -30,22 +30,26 @@ static void asyncEnabled(Dict* args, void* vAdmin, String* txid, struct Allocato
 
 ## Gists
 
-With the `jekyll-gist` plugin, which is preinstalled on Github Pages, you can embed gists simply by using the `gist` command:
+With the `jekyll-gist` plugin, which is preinstalled on Github Pages, I will embed the gists shown below:
 
 <script src="https://gist.github.com/5555251.js?file=gist.md"></script>
 
-## Images
+## Daily
+
+Some `daily` routines that are worth sharing are likewise posted, such as, travel, sports and various activities.
 
 Upload an image to the *assets* folder and embed it with `![title](/assets/name.jpg))`. Keep in mind that the path needs to be adjusted if Jekyll is run inside a subfolder.
 
 A wrapper `div` with the class `large` can be used to increase the width of an image or iframe.
 
+![daily](/assets/daily.jpg)
+
 ![Flower](https://user-images.githubusercontent.com/4943215/55412447-bcdb6c80-5567-11e9-8d12-b1e35fd5e50c.jpg)
 
-[Flower](https://unsplash.com/photos/iGrsa9rL11o) by Tj Holowaychuk
+[daily](/assets/daily.jpg) by The New York Times
 
-## Embedded content
+## Shared Videos
 
-You can also embed a lot of stuff, for example from YouTube, using the `embed.html` include.
+Some of the videos that I think involve interesting work and crazy ideas will also be shared here.
 
-{% include embed.html url="https://www.youtube.com/embed/_C0A5zX-iqM" %}
+{% include embed.html url="https://www.youtube.com/watch?v=rOXkutK8ANc" %}
