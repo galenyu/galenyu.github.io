@@ -46,4 +46,4 @@ Some `daily` routines that are worth sharing are likewise posted, such as, trave
 
 Some of the videos that I think involve interesting work and crazy ideas will also be shared here.
 
-{% include embed.html url="https://www.youtube.com/watch?v=rOXkutK8ANc" %}
+{% include embed.html url="https://www.bilibili.com/video/BV1Xb4y1Z7xC?spm_id_from=333.337.search-card.all.click" %}
