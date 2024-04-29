@@ -4,7 +4,7 @@ permalink: "/aboutme/"
 layout: page
 ---
 
-Growing up in Guangdong, China, I'm now a graduate at the Fudan University pursuing a master’s degree in Micro Nano Electronics Department. I didn't realize writing would become one of the most important part of my life until I began my journey in high school. Since then, I decided this was what I should be doing and haven't looked back since.
+I didn't realize writing would become one of the most important part of my life until I began my journey in high school. Since then, I decided this was what I should be doing and haven't looked back since.
 
 Committed to AI edge deployment, our lab and I hope to improve or even disrupt people's daily lives through technology, as well as build an AIoT world where everything is connected. My passion towards the software and the AI industry has made me want to head into internet or computer science upon my graduation.
 
