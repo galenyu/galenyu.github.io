@@ -19,8 +19,11 @@ Open http://localhost:4000. For a production build, run `bundle exec jekyll buil
 - `_posts/`: dated writing; `/writing/`: article index.
 - `iclr-2027-quantization.html`: Chinese submission survey with search, research direction filters, and source status.
 - `assets/data/iclr-2027-quantization.json`: auditable official-source snapshot.
+- `assets/data/iclr-2027-landscape.json`: reproducible direction and term counts for all 994 candidates, with official ID lists and snapshot hashes.
+- `assets/data/iclr-2027-landscape-notes.json`: snapshot-bound representatives, six trends, three shared lessons, and five research suggestions with evidence and experiment designs.
 - `assets/data/iclr-2027-official-exclusions.json`: exclusions reviewed against official abstracts, tied to the original export SHA256.
 - `scripts/sync_iclr2027.py`: public OpenReview synchronization, integrity checks, and validated export import.
+- `scripts/build_iclr2027_landscape.py`: builds candidate-level statistics without changing papers or reading progress.
 - `/tools/openreview-export/`: copyable official-browser export helper; runs on the normal OpenReview page and keeps account/session information out of exports.
 - `docs/iclr-2027-survey.md`: data scope, update instructions, and review workflow (also published on the site).
 
@@ -28,10 +31,14 @@ The survey uses only official OpenReview records. The October 9, 2026 browser ex
 
 The 90 MB raw export and downloaded PDF ZIPs stay local, outside Git and the generated site. Earlier preprint/mirror research files remain in the repository as an archive and are excluded from the site.
 
+The overall analysis counts nonexclusive direction tags and explicit mentions in official titles, abstracts, and keywords. Its “frontier saturation” labels describe candidate density only (high ≥200, medium 100–199, relatively low <100), not novelty saturation or acceptance odds. Trends and recommendations synthesize named official sources. The analysis is hidden when its bound source/index hashes or membership counts no longer match the current complete snapshot; the paper explorer remains usable.
+
 ```bash
 python3 scripts/sync_iclr2027.py
 python3 scripts/sync_iclr2027.py --input-json iclr-2027-official-active-submissions.json --scope-exclusions assets/data/iclr-2027-official-exclusions.json
 python3 -m unittest discover -s scripts -p 'test_sync_iclr2027.py' -v
+python3 scripts/build_iclr2027_landscape.py
+python3 -m unittest discover -s scripts -p 'test_build_iclr2027_landscape.py' -v
 node scripts/test_openreview_export.cjs
 ```
 

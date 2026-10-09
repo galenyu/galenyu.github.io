@@ -8,7 +8,7 @@ stylesheet: /assets/css/survey.css
 script: /assets/js/survey.js
 permalink: /iclr-2027-quantization/
 ---
-<div class="survey" data-survey-url="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}">
+<div class="survey" data-survey-url="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}" data-landscape-url="{{ '/assets/data/iclr-2027-landscape.json' | relative_url }}" data-landscape-notes-url="{{ '/assets/data/iclr-2027-landscape-notes.json' | relative_url }}">
   <section class="survey-hero" aria-labelledby="survey-title">
     <div class="survey-hero-copy">
       <span class="survey-eyebrow"><span class="survey-dot" aria-hidden="true"></span> OPEN RESEARCH · ICLR 2027</span>
@@ -40,10 +40,11 @@ permalink: /iclr-2027-quantization/
     <aside class="survey-toc" aria-label="页面目录">
       <span class="survey-small-label">本页导航</span>
       <a href="#overview"><span>01</span> 调研概览</a>
-      <a href="#observations"><span>02</span> 阶段性观察</a>
-      <a href="#taxonomy"><span>03</span> 研究方向</a>
-      <a href="#papers"><span>04</span> 论文与笔记</a>
-      <a href="#method"><span>05</span> 来源与方法</a>
+      <a href="#landscape"><span>02</span> 总结与选题</a>
+      <a href="#observations"><span>03</span> 代表论文观察</a>
+      <a href="#taxonomy"><span>04</span> 研究方向</a>
+      <a href="#papers"><span>05</span> 论文与笔记</a>
+      <a href="#method"><span>06</span> 来源与方法</a>
       <div class="survey-toc-note">投稿状态与稿件内容可能变化。阅读笔记以注明的数据快照为准。</div>
     </aside>
     <div class="survey-content">
@@ -58,6 +59,30 @@ permalink: /iclr-2027-quantization/
         <p class="survey-overview-note">所有记录均来自官网公开活跃投稿快照。候选数经过关键词初筛和摘要范围清理，仍可能误收或漏检，并非最终确认的量化论文数。摘要解读与官方全文阅读分别计数；投稿状态不代表录用。</p>
       </section>
 
+      <section id="landscape" class="survey-section" aria-labelledby="landscape-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">LANDSCAPE &amp; RESEARCH AGENDA</span><h2 id="landscape-heading">候选全景总结与研究建议</h2></div><a href="#papers" class="survey-text-link">回到论文索引 ↗</a></div>
+        <p class="survey-section-intro">从整份官方候选快照的方向标签与摘要词项统计出发，结合代表论文归纳研究趋势和选题思路。统计覆盖全部候选；方法和实验判断以逐篇注明的阅读依据为准。</p>
+        <div id="survey-landscape-status" class="survey-landscape-notice" role="status">正在核对总体分析与当前官方快照。</div>
+        <div id="survey-landscape-content" hidden>
+          <div class="survey-landscape-subheading"><span class="survey-small-label">01 / RESEARCH FRONTIERS</span><h3>方向总览</h3></div>
+          <p id="survey-landscape-scope" class="survey-section-intro"></p>
+          <div class="survey-landscape-table-wrap" role="region" aria-label="各方向候选论文数量与代表作" tabindex="0">
+            <table class="survey-landscape-table"><caption id="survey-landscape-caption">官方候选方向统计（允许多标签）</caption><thead><tr><th scope="col">方向</th><th scope="col">论文数</th><th scope="col">代表作</th><th scope="col">战线饱和度</th></tr></thead><tbody id="survey-landscape-directions"></tbody></table>
+          </div>
+          <p id="survey-landscape-counting" class="survey-overview-note"></p>
+          <p id="survey-landscape-density" class="survey-overview-note"></p>
+          <details class="survey-landscape-audit"><summary>查看统计口径与摘要词项计数</summary><p id="survey-landscape-rules"></p><div id="survey-landscape-signals" class="survey-landscape-signals"></div><a href="{{ '/assets/data/iclr-2027-landscape.json' | relative_url }}" target="_blank" rel="noopener noreferrer">下载逐方向、逐词项的官方 ID 清单与统计规则 ↗</a></details>
+          <div class="survey-landscape-subheading"><span class="survey-small-label">02 / TRENDS &amp; SHARED LESSONS</span><h3>关键趋势与共同认识</h3></div>
+          <p class="survey-section-intro">这里的“趋势”是本次投稿快照中反复出现的研究主题，未作跨年增长比较；“共同认识”是对所列代表作的综合判断，不是对全部作者意见的调查。</p>
+          <div id="survey-landscape-trends" class="survey-landscape-trends"></div>
+          <div class="survey-landscape-consensus"><h4>从代表作中归纳的共同认识</h4><ol id="survey-landscape-consensus"></ol></div>
+          <div class="survey-landscape-subheading"><span class="survey-small-label">03 / WHAT TO WORK ON</span><h3>总结性的研究方向建议</h3></div>
+          <p class="survey-section-intro">若从零开始选题，可先做固定预算下的轨迹校准或 KV 功能保真；具备对应条件后再深入原生内核、FP4 训练或 VLA 闭环。以下建议围绕可验证的问题缺口，候选数量少不等于创新空间大。</p>
+          <div id="survey-landscape-recommendations" class="survey-landscape-recommendations"></div>
+          <p class="survey-overview-note">证据和写作版本随官方快照绑定。摘要中的性能数字属于作者报告，代表作选择不构成质量排名或录用预测。</p>
+        </div>
+      </section>
+
       <section id="observations" class="survey-section" aria-labelledby="observations-heading">
         <div class="survey-section-heading"><div><span class="survey-small-label">READING &amp; INSIGHTS</span><h2 id="observations-heading">代表论文中的问题与方法</h2></div><span id="survey-reading-count" class="survey-section-aside">正在读取官网笔记</span></div>
         <p class="survey-section-intro">依据已解读的官网摘要和已核对的官方原稿，比较不同量化对象与研究思路。每条观察链接到具体投稿，阅读依据逐篇标明；实验数字属于作者报告，尚未独立复现，这些样本不代表全会议的方向比例。</p>
@@ -66,7 +91,7 @@ permalink: /iclr-2027-quantization/
 
       <section id="taxonomy" class="survey-section" aria-labelledby="taxonomy-heading">
         <div class="survey-section-heading"><div><span class="survey-small-label">RESEARCH MAP</span><h2 id="taxonomy-heading">沿着问题，阅读论文</h2></div><a href="#papers" class="survey-text-link">查看全部 <span aria-hidden="true">↗</span></a></div>
-        <p class="survey-section-intro">从量化方法、模型场景与部署实践三个角度组织阅读。一篇论文可以属于多个方向；以下是分类框架，下方数字只统计当前展示的论文与阅读笔记，不代表会议整体方向分布。</p>
+        <p class="survey-section-intro">从量化方法、模型场景与部署实践三个角度组织阅读。一篇候选可以属于多个方向；标签由初筛规则生成，部分代表作经人工校正。下方数量覆盖本次候选索引，点击方向可筛选论文。</p>
         <div id="survey-taxonomy" class="survey-taxonomy"></div>
         <p class="survey-taxonomy-note">方向标签来自初筛规则，已解读论文可人工修订；分类数量相加不等于论文数。数量仅覆盖当前官网候选索引。</p>
       </section>
@@ -92,7 +117,7 @@ permalink: /iclr-2027-quantization/
           <div><span class="survey-method-number">03 / READ</span><h3>标明阅读依据</h3><p>根据官方摘要写中文解读，保留原始摘要与官方 PDF 入口。只有取得并核对相应版本的投稿 PDF 后才标记“官方全文已读”；标题、摘要、PDF 或更新时间变化后恢复待核验。</p></div>
         </div>
         <div class="survey-source-box"><div><strong>数据与维护</strong><p id="survey-method-detail">同步失败时保留上次成功快照，并明确显示来源暂不可访问。没有取得数据时，数量显示为未知。</p><p class="survey-source-links"><a href="https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions" target="_blank" rel="noopener noreferrer">原始投稿列表 ↗</a><a href="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}" target="_blank" rel="noopener noreferrer">官方索引与解读 JSON ↗</a><a href="{{ '/assets/data/iclr-2027-official-exclusions.json' | relative_url }}" target="_blank" rel="noopener noreferrer">范围排除记录 ↗</a><a href="{{ '/assets/data/iclr-2027-official-pdf-receipt.json' | relative_url }}" target="_blank" rel="noopener noreferrer">官方原稿校验凭据 ↗</a><a href="{{ '/docs/iclr-2027-survey/' | relative_url }}">维护说明 ↗</a></p></div><span class="survey-source-badge">ICLR 2027<br><strong>SUBMISSIONS</strong></span></div>
-        <p class="survey-credit">页面组织参考 <a href="https://kai-liu.cn/Awesome-Model-Quantization/" target="_blank" rel="noopener noreferrer">Awesome Model Quantization</a>，独立整理 ICLR 2027 数据。研究方向为阅读框架，不代表本届会议的统计结论。</p>
+        <p class="survey-credit">页面组织参考 <a href="https://kai-liu.cn/Awesome-Model-Quantization/" target="_blank" rel="noopener noreferrer">Awesome Model Quantization</a>，独立整理 ICLR 2027 数据。统计仅针对本次官方候选快照，范围和分类仍需逐篇复核。</p>
       </section>
     </div>
   </div>

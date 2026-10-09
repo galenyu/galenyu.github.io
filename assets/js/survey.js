@@ -4,7 +4,7 @@
   if (!root) return;
   const byId = id => document.getElementById('survey-' + id);
   const SOURCE = 'https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions';
-  const state = { data: null, loaded: false, query: '', category: 'all', review: 'all', sort: 'reviewed', page: 1, size: 12 };
+  const state = { data: null, indexHash: null, loaded: false, query: '', category: 'all', review: 'all', sort: 'reviewed', page: 1, size: 12 };
   const categoryLabels = new Map();
   const integer = value => Number.isInteger(value) && value >= 0;
   const hasSummary = paper => typeof paper.summary === 'string' && Boolean(paper.summary.trim());
@@ -88,16 +88,155 @@
     Object.assign(state, { query: '', category: 'all', review: 'all', sort: 'reviewed', page: 1 }); byId('filters').reset();
   };
   const paperAnchor = paper => 'survey-paper-' + paper.id;
-  const paperLink = id => {
+  const paperLink = (id, label) => {
     const paper = allPapers().find(item => item.id === id);
     if (!paper) return null;
-    const link = element('a', '', paper.title); link.href = '#' + encodeURIComponent(paperAnchor(paper));
+    const link = element('a', '', label || paper.title); link.href = '#' + encodeURIComponent(paperAnchor(paper));
+    if (label) link.title = paper.title;
     link.addEventListener('click', event => {
       event.preventDefault(); resetFilters();
       state.page = Math.floor(sortedPapers([...allPapers()]).findIndex(item => item.id === id) / state.size) + 1;
       renderPapers(); document.getElementById(paperAnchor(paper))?.scrollIntoView({ block: 'start', behavior: 'auto' });
     });
     return link;
+  };
+  const validateLandscape = (stats, notes) => {
+    const sameIds = (a, b) => {
+      if (!Array.isArray(a) || a.length !== b.length || a.some(id => typeof id !== 'string')) return false;
+      const expected = [...b].sort(); return [...a].sort().every((id, index) => id === expected[index]);
+    };
+    const papers = allPapers(), ids = papers.map(paper => paper.id), categoryIds = state.data.categories.map(category => category.id);
+    if (state.data.metadata.status !== 'complete' || !state.indexHash) throw new Error('No complete snapshot');
+    [stats, notes].forEach(data => {
+      const meta = data?.metadata;
+      if (!meta || meta.schema_version !== 1 || meta.source_url !== SOURCE || meta.source_sha256 !== state.data.metadata.source_sha256 || meta.index_sha256 !== state.indexHash ||
+          meta.fetched_at !== state.data.metadata.fetched_at || meta.candidate_count !== papers.length) throw new Error('Stale landscape');
+    });
+    if (!Array.isArray(stats.directions) || stats.directions.length !== categoryIds.length ||
+        !sameIds(stats.directions.map(direction => direction.id), categoryIds) || !Array.isArray(stats.term_signals)) throw new Error('Invalid landscape scope');
+    const isText = value => typeof value === 'string' && Boolean(value.trim());
+    const hasSources = item => item && Array.isArray(item.paper_ids) && item.paper_ids.length > 0 &&
+      new Set(item.paper_ids).size === item.paper_ids.length && item.paper_ids.every(id => ids.includes(id));
+    const share = count => Math.round(count / papers.length * 10000) / 100;
+    stats.directions.forEach(direction => {
+      const matches = papers.filter(paper => paper.categories.includes(direction.id)).map(paper => paper.id);
+      const level = direction.count >= 200 ? 'high' : (direction.count >= 100 ? 'medium' : 'relatively-low');
+      if (!isText(direction.label) || !sameIds(direction.paper_ids, matches) || direction.count !== matches.length ||
+          direction.share_percent !== share(direction.count) || direction.statistical_saturation?.level !== level || !isText(direction.statistical_saturation?.label)) throw new Error('Invalid direction statistics');
+      const representatives = notes.representatives?.[direction.id];
+      if (!Array.isArray(representatives) || !representatives.length || representatives.some(item =>
+        !item || !matches.includes(item.id) || !isText(item.label))) throw new Error('Invalid representatives');
+    });
+    const signalIds = new Set();
+    stats.term_signals.forEach(signal => {
+      if (!signal || !isText(signal.id) || signalIds.has(signal.id) || !isText(signal.label) || !integer(signal.count) ||
+          !Array.isArray(signal.paper_ids) || signal.count !== signal.paper_ids.length || new Set(signal.paper_ids).size !== signal.count ||
+          signal.paper_ids.some(id => !ids.includes(id)) || signal.share_percent !== share(signal.count)) throw new Error('Invalid term statistics');
+      signalIds.add(signal.id);
+    });
+    if (stats.metadata.tag_assignments !== stats.directions.reduce((sum, direction) => sum + direction.count, 0) ||
+        stats.metadata.unclassified_count !== papers.filter(paper => !paper.categories.length).length) throw new Error('Invalid tag totals');
+    ['trends', 'consensus', 'recommendations'].forEach(field => {
+      if (!Array.isArray(notes[field]) || !notes[field].length || notes[field].some(item => !hasSources(item) || !isText(item.title))) throw new Error('Invalid synthesis');
+    });
+    notes.trends.forEach(item => {
+      if (!isText(item.text) || !Array.isArray(item.signal_ids) || item.signal_ids.some(id => !signalIds.has(id))) throw new Error('Invalid trend');
+      if (!Array.isArray(item.evidence) || !sameIds(item.evidence.map(source => source?.paper_id), item.paper_ids) ||
+          item.evidence.some(source => !isText(source.fact) || !['official_abstract', 'official_abstract_notes', 'official_pdf', 'official_pdf_notes'].includes(source.basis) ||
+            (source.basis.startsWith('official_pdf') && !reviewed(papers.find(paper => paper.id === source.paper_id))))) throw new Error('Invalid trend evidence');
+    });
+    notes.consensus.forEach(item => { if (!isText(item.text)) throw new Error('Invalid consensus'); });
+    notes.recommendations.forEach(item => {
+      if (['priority', 'problem', 'approach', 'metrics', 'reason', 'limitations'].some(key => !isText(item[key]))) throw new Error('Invalid recommendation');
+    });
+    return { stats, notes };
+  };
+  const landscapeEvidence = (ids, evidence = []) => {
+    const details = element('details', 'survey-landscape-evidence');
+    details.append(element('summary', '', '展开对应官方论文与阅读依据'));
+    const list = element('ul');
+    ids.forEach(id => {
+      const paper = allPapers().find(item => item.id === id), row = element('li');
+      const source = evidence.find(item => item.paper_id === id);
+      if (source) row.append(element('p', '', source.fact));
+      row.append(paperLink(id), element('small', '', reviewed(paper) && (!source || source.basis.startsWith('official_pdf')) ? '已核对官方原稿；详见论文卡片的取证页码。' :
+        (abstractReviewed(paper) || reviewed(paper) ? '本条事实依据官方摘要；逐篇笔记见论文卡片。' : '官方快照摘要；未计入逐篇中文解读或全文已读。')));
+      list.append(row);
+    });
+    details.append(list); return details;
+  };
+  const renderLandscape = ({ stats, notes }) => {
+    const meta = stats.metadata, count = meta.candidate_count;
+    byId('landscape-status').textContent = '统计范围：' + count + ' 条官方候选 · ' + formatDate(meta.fetched_at, true) + '（北京时间） · 写作与索引版本已匹配';
+    byId('landscape-status').classList.add('is-ready');
+    document.getElementById('landscape-heading').textContent = count + ' 条候选的总结与研究建议';
+    byId('landscape-caption').textContent = count + ' 条官方候选 · 方向标签统计';
+    byId('landscape-scope').textContent = '“论文数”按官方 ID 去重，统计现有方向标签（自动初筛及少量人工校正）。它是候选标签数量，不能作为逐篇确认的相关论文数；点击数量可浏览对应候选。';
+    const rows = stats.directions.map(direction => {
+      const row = element('tr'), heading = element('th', '', direction.label); heading.scope = 'row';
+      const number = element('td'), button = element('button', 'survey-landscape-count', direction.count.toLocaleString('zh-CN'));
+      button.type = 'button'; button.dataset.category = direction.id;
+      button.setAttribute('aria-label', '浏览' + direction.label + '方向的' + direction.count + '条候选');
+      button.addEventListener('click', () => {
+        resetFilters(); state.category = direction.id; byId('category').value = direction.id; renderPapers();
+        byId('papers-heading').scrollIntoView({ block: 'start', behavior: 'auto' });
+      });
+      number.append(button, element('small', '', direction.share_percent.toFixed(1) + '% · 候选'));
+      const representatives = element('td');
+      notes.representatives[direction.id].forEach(item => {
+        const paper = allPapers().find(paper => paper.id === item.id), box = element('div', 'survey-landscape-representative');
+        box.append(paperLink(item.id, item.label), element('small', '', reviewed(paper) ? '官方原稿全文' :
+          (abstractReviewed(paper) ? '官网摘要解读' : '官方摘要 · 待逐篇解读')));
+        representatives.append(box);
+      });
+      const density = element('td'); density.append(element('span', 'survey-density is-' + (direction.statistical_saturation.level === 'relatively-low' ? 'low' : direction.statistical_saturation.level), direction.statistical_saturation.label),
+        element('small', '', '按候选数量分级'));
+      row.append(heading, number, representatives, density); return row;
+    });
+    byId('landscape-directions').replaceChildren(...rows);
+    byId('landscape-counting').textContent = '多标签合计 ' + meta.tag_assignments.toLocaleString('zh-CN') + ' 次，覆盖 ' +
+      (count - meta.unclassified_count) + ' 条候选；另有 ' + meta.unclassified_count + ' 条未命中这九个方向。各行占比的分母均为 ' + count + '，各行数量和占比不可相加。';
+    byId('landscape-density').textContent = '“战线饱和度”仅用本快照候选密度作启发式代理：高 ≥ 200 条，中 100–199 条，相对低 < 100 条。它不衡量研究质量、创新枯竭、录用难度或跨年变化；宽标签和误收会放大数量。';
+    byId('landscape-rules').textContent = 'PTQ 标签含校准、旋转及重建等宽线索；低精度训练标签也含 FP4/FP8、梯度及优化器，可能命中仅讨论相关背景的工作。下列词项单独在全部官方标题、摘要和关键词中检索，每个词项按 ID 去重；“提及”不等于采用、实现或验证。词项之间允许重叠。';
+    byId('landscape-signals').replaceChildren(...stats.term_signals.map(signal => {
+      const box = element('div', 'survey-landscape-signal'); box.append(element('span', '', signal.label), element('strong', '', signal.count + ' 条 · ' + signal.share_percent.toFixed(1) + '%')); return box;
+    }));
+    const signals = new Map(stats.term_signals.map(signal => [signal.id, signal]));
+    byId('landscape-trends').replaceChildren(...notes.trends.map((item, index) => {
+      const card = element('article', 'survey-landscape-trend');
+      card.append(element('span', 'survey-small-label', 'TREND ' + String(index + 1).padStart(2, '0')), element('h4', '', item.title));
+      if (item.signal_ids.length) card.append(element('p', 'survey-landscape-signal-note', '摘要词项线索：' + item.signal_ids.map(id => {
+        const signal = signals.get(id); return signal.label + ' ' + signal.count + '/' + count;
+      }).join('；')));
+      card.append(element('p', '', item.text), landscapeEvidence(item.paper_ids, item.evidence)); return card;
+    }));
+    byId('landscape-consensus').replaceChildren(...notes.consensus.map(item => {
+      const row = element('li'); row.append(element('strong', '', item.title + '。'), ' ' + item.text, landscapeEvidence(item.paper_ids)); return row;
+    }));
+    byId('landscape-recommendations').replaceChildren(...notes.recommendations.map(item => {
+      const card = element('article', 'survey-landscape-recommendation');
+      card.append(element('span', 'survey-landscape-priority', item.priority), element('h4', '', item.title), element('p', '', item.problem));
+      const experiment = element('details', 'survey-landscape-experiment'); experiment.append(element('summary', '', '查看建议的实验设计、指标与风险'));
+      const design = element('dl');
+      [['怎么验证', item.approach], ['报告哪些指标', item.metrics], ['为什么值得研究', item.reason], ['边界与风险', item.limitations]].forEach(([label, text]) => {
+        design.append(element('dt', '', label), element('dd', '', text));
+      });
+      experiment.append(design); card.append(experiment, landscapeEvidence(item.paper_ids)); return card;
+    }));
+    byId('landscape-content').hidden = false;
+  };
+  const loadLandscape = async () => {
+    try {
+      if (!state.data || !root.dataset.landscapeUrl || !root.dataset.landscapeNotesUrl) throw new Error('Missing snapshot');
+      const [stats, notes] = await Promise.all([root.dataset.landscapeUrl, root.dataset.landscapeNotesUrl].map(async url => {
+        const response = await fetch(url, { credentials: 'same-origin' });
+        if (!response.ok) throw new Error('Analysis unavailable'); return response.json();
+      }));
+      renderLandscape(validateLandscape(stats, notes));
+    } catch (_) {
+      byId('landscape-content').hidden = true;
+      byId('landscape-status').textContent = '总体分析暂不可用或与当前索引版本不匹配。为避免沿用旧快照结论，本章暂不显示统计与建议；论文索引仍可独立使用。';
+    }
   };
   const renderObservations = () => {
     const count = allPapers().filter(paper => rank(paper) > 0).length;
@@ -242,8 +381,17 @@
     state.page += direction === 'next' ? 1 : -1; renderPapers(); byId('papers-heading').scrollIntoView({ block: 'start', behavior: 'auto' });
   }));
   fetch(root.dataset.surveyUrl, { credentials: 'same-origin' }).then(response => {
-    if (!response.ok) throw new Error('Data unavailable'); return response.json();
-  }).then(validateData).then(data => { state.data = data; }).catch(() => { state.data = null; }).finally(() => {
-    state.loaded = true; renderStatus(); renderTaxonomy(); renderObservations(); renderPapers();
+    if (!response.ok) throw new Error('Data unavailable'); return response.text();
+  }).then(async text => {
+    const data = validateData(JSON.parse(text));
+    if (window.crypto?.subtle) {
+      try {
+        const digest = await window.crypto.subtle.digest('SHA-256', new TextEncoder().encode(text));
+        state.indexHash = [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
+      } catch (_) { state.indexHash = null; }
+    }
+    return data;
+  }).then(data => { state.data = data; }).catch(() => { state.data = null; }).finally(() => {
+    state.loaded = true; renderStatus(); renderTaxonomy(); renderObservations(); renderPapers(); loadLandscape();
   });
 })();
