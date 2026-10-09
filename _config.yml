@@ -1,32 +1,39 @@
-title: "Galen's Blog"
+title: "Galen Yu"
 author: "Galen Yu"
-description: "Wellcome :D"
+description: "Research, notes, and ideas on AI edge deployment, model efficiency, and an interconnected world."
+url: "https://galenyu.github.io"
+baseurl: ""
 permalink: /:title/
 lang: "en"
 excerpt_separator: "\n\n\n"
 date_format: "%B %d, %Y"
-
-# Layout
-
-show_excerpts: true        # show article excerpts on the home page
-show_frame: true           # adds a gray frame to the site
-show_sidebar: false        # show a sidebar instead of the usual header
-minimal: false             # use a dark header
-
-# Menu
-
-navigation:                # accepts {file, title, url, icon, sidebaricon}
+show_excerpts: true
+show_frame: false
+show_sidebar: false
+minimal: false
+navigation:
   - {title: "Home", file: "index.html"}
+  - {title: "Writing", file: "writing.html"}
+  - {title: "Research", file: "iclr-2027-quantization.html"}
   - {title: "About", file: "ABOUTME.md"}
-
-external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
+external:
   - {title: Mail, icon: envelope, url: "mailto:zqyu21@m.fudan.edu.cn"}
-  - {title: Github, icon: github, url: "https://github.com/galenyu"}
-  - {title: Subscribe, icon: weixin, url: "/WXQRCode.jpg"}
-
+  - {title: GitHub, icon: github, url: "https://github.com/galenyu"}
+  - {title: WeChat, icon: weixin, url: "/WXQRCode.jpg"}
 comments:
-#  disqus_shortname: ""    # see https://disqus.com/
-#  isso_domain: ""         # see https://posativ.org/isso/
-
 plugins:
- - jekyll-feed
+  - jekyll-feed
+exclude:
+  - scripts
+  - vendor
+  - Gemfile
+  - Gemfile.lock
+  - README.md
+  - iclr-2027-official-active-submissions.json
+  - iclr-2027-official-active-submissions.json:Zone.Identifier
+  - iclr-2027-official-papers.zip
+  - iclr-2027-official-papers.zip:Zone.Identifier
+  - iclr-2027-six-official-papers.zip
+  - iclr-2027-six-official-papers.zip:Zone.Identifier
+  - assets/data/iclr-2027-reading-notes.json
+  - assets/data/iclr-2027-mirror-exclusions.json

@@ -1,0 +1,614 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "source_url": "https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions",
+    "fetched_at": "2026-10-09T05:19:57.757Z",
+    "source_sha256": "5f1a2de3f9e06fccad0078949f756c116915103d433f31f39333f3c1a1a7f023",
+    "index_sha256": "02ce8722e37667a5a6fcc74291b21ed97eb30b5b3c27720c8f3abeb5a062a9c5",
+    "candidate_count": 994,
+    "evidence_basis": "official_title_abstract_keywords_and_verified_official_pdf_notes",
+    "analysis_method": "对全部994条官方标题、摘要和关键词作可复现检索与方向统计，扫描相关方法/系统句，重点核对代表摘要并参考已核对的六篇官方原稿笔记。跨论文归纳不改变逐篇中文阅读状态。",
+    "additional_abstracts_checked_for_synthesis_count": 51,
+    "additional_abstracts_checked_for_synthesis_ids": [
+      "09gtv3rua8",
+      "0AcdxhyVou",
+      "0ow2QpmAsR",
+      "0ucx7j6l6g",
+      "18UVn4y0SO",
+      "1ED9UU1BP1",
+      "1HBkg8Exll",
+      "3aVpu9xxJQ",
+      "3xpzqlgCgE",
+      "5R8LqE51Hr",
+      "5WbHJ1SWCZ",
+      "5oSJKHhm1N",
+      "6xNJZSLSjl",
+      "7CxAFHyO1S",
+      "91Q3RaHTYz",
+      "CzwnhuTaBw",
+      "DC8YwjcpYE",
+      "DtdxkedRiX",
+      "EutVjE5fM2",
+      "Hu4rFmLvX9",
+      "LIgMvRMUdA",
+      "Lb0T1d1L63",
+      "Mt7JawGQgl",
+      "QwpFlHjX2g",
+      "Tb8ZKaLFR9",
+      "TzQfv3ingA",
+      "UmfdN8rahl",
+      "UuAAvOn17o",
+      "UubS9jd0J4",
+      "VXb6iC5X71",
+      "We9x9Twodv",
+      "XMSwLKtADv",
+      "Y0Ww5DnHS4",
+      "Y6SR8urjb1",
+      "ZGeR4gkEZq",
+      "bYpvxDEkUD",
+      "deHOhhDuWg",
+      "iFMhFS2r1E",
+      "ihD01i4wdi",
+      "nKphW3JJe3",
+      "pPunBTKTY3",
+      "qD67x7kVIo",
+      "rHJLwXYerC",
+      "sL7JFiA4c0",
+      "seKHg9ZiYL",
+      "vwsfTsPMgw",
+      "wcQVK7UR0H",
+      "x9qK9ehqNi",
+      "yP6MSpYNAi",
+      "zNMUu0NUQx",
+      "zbBSzTSQw8"
+    ],
+    "limitations": [
+      "当前候选范围和方向标签仍含噪声；994不是确认为相关或已阅读全文的论文总数。",
+      "趋势表示本次快照的重复研究主题；没有跨年增长比较或全体作者意见调查。",
+      "代表稿的实验数字属作者报告，本调研未独立复现。",
+      "建议是由上述证据提出的可验证研究假设，不保证新颖性、有效性或录用。"
+    ]
+  },
+  "representatives": {
+    "ptq": [
+      {
+        "id": "UuAAvOn17o",
+        "label": "AYOT"
+      },
+      {
+        "id": "m8YL42U0m0",
+        "label": "2PTC"
+      }
+    ],
+    "hardware": [
+      {
+        "id": "wcQVK7UR0H",
+        "label": "ULMoE"
+      },
+      {
+        "id": "Mt7JawGQgl",
+        "label": "HEPH"
+      }
+    ],
+    "training": [
+      {
+        "id": "CzwnhuTaBw",
+        "label": "SCOPE"
+      },
+      {
+        "id": "t5Rr4kcINa",
+        "label": "SQuAT"
+      }
+    ],
+    "theory": [
+      {
+        "id": "eg16jDMikI",
+        "label": "Softmax Reparameterization"
+      },
+      {
+        "id": "nhL3D1XE2R",
+        "label": "QuantMLA"
+      }
+    ],
+    "kv-cache": [
+      {
+        "id": "nhL3D1XE2R",
+        "label": "QuantMLA"
+      },
+      {
+        "id": "e1LpPIjhQW",
+        "label": "HeadGuard"
+      }
+    ],
+    "diffusion": [
+      {
+        "id": "mRLcwDPSTy",
+        "label": "Chameleon"
+      },
+      {
+        "id": "3xpzqlgCgE",
+        "label": "JustQuant"
+      }
+    ],
+    "reasoning": [
+      {
+        "id": "UuAAvOn17o",
+        "label": "AYOT"
+      },
+      {
+        "id": "edcnWg2WAV",
+        "label": "RTAQ"
+      }
+    ],
+    "multimodal": [
+      {
+        "id": "e1LpPIjhQW",
+        "label": "HeadGuard"
+      },
+      {
+        "id": "AhG6FcJBHt",
+        "label": "LoopQuant"
+      }
+    ],
+    "qat": [
+      {
+        "id": "3xpzqlgCgE",
+        "label": "JustQuant"
+      },
+      {
+        "id": "t5Rr4kcINa",
+        "label": "SQuAT"
+      }
+    ]
+  },
+  "trends": [
+    {
+      "id": "trajectory-calibration",
+      "title": "校准分布对齐真实生成轨迹与任务",
+      "text": "校准不仅是用固定文本重建权重，还涉及在哪些生成状态上收集数据。AYOT使用高精度目标模型的自身思考轨迹；OnPTQ、OPQ在量化策略或学生访问的轨迹上校准，两种来源需要区分。2PTC则跟踪误差补偿中的权重轨迹。综合这些样本，可见校准对象正在被细化到任务和计算过程；数学收益不保证跨语言或PPL同时改善，校准集大小也不等于累计训练成本。",
+      "signal_ids": [
+        "calibration",
+        "explicit-ptq",
+        "chain-of-thought"
+      ],
+      "paper_ids": [
+        "UuAAvOn17o",
+        "09gtv3rua8",
+        "91Q3RaHTYz",
+        "UmfdN8rahl",
+        "m8YL42U0m0"
+      ],
+      "evidence": [
+        {
+          "paper_id": "UuAAvOn17o",
+          "basis": "official_pdf",
+          "fact": "AYOT用目标高精度模型自己的思维链和答案校准三值化；默认约4M校准集tokens，重复60 epochs，迁移收益随任务与位宽改变。"
+        },
+        {
+          "paper_id": "09gtv3rua8",
+          "basis": "official_abstract",
+          "fact": "OnPTQ在当前量化策略访问的轨迹上校准，并通过短反事实rollout区分决策后果。"
+        },
+        {
+          "paper_id": "91Q3RaHTYz",
+          "basis": "official_abstract",
+          "fact": "OPQ基于量化学生生成轨迹，并结合输出动态KL与K/V对齐。"
+        },
+        {
+          "paper_id": "UmfdN8rahl",
+          "basis": "official_abstract",
+          "fact": "只改变GPTQ校准语料可改变低资源语言表现；该稿做多seed与多模型对照，结果仍依语言及模型而变。"
+        },
+        {
+          "paper_id": "m8YL42U0m0",
+          "basis": "official_abstract",
+          "fact": "2PTC的官方摘要提出两次校准：第二次沿补偿更新的实际权重轨迹重拟合码本，区别于仅观察原始权重分布。"
+        }
+      ]
+    },
+    {
+      "id": "functional-fidelity",
+      "title": "从局部重构误差走向功能与传播保真",
+      "text": "输出头、KV、扩散和VLA研究都在问：哪些数值改变会损伤最终功能？Softmax Reparameterization按概率分布选择等价表示；HeadGuard保护特定KV头；LoopQuant与传播感知的扩散工作考虑多步误差。尾部决策翻转、视觉信息保留、视频一致性和动作成功率成为补充指标。由此归纳的共同方向是让目标贴近功能，但轨迹不同不必然意味着错误，BF16参考保真也不等于任务正确。",
+      "signal_ids": [
+        "visual-language",
+        "joint-weight-activation"
+      ],
+      "paper_ids": [
+        "eg16jDMikI",
+        "5oSJKHhm1N",
+        "Lb0T1d1L63",
+        "5R8LqE51Hr",
+        "mRLcwDPSTy",
+        "e1LpPIjhQW",
+        "AhG6FcJBHt",
+        "bYpvxDEkUD",
+        "zNMUu0NUQx",
+        "zbBSzTSQw8",
+        "vwsfTsPMgw"
+      ],
+      "evidence": [
+        {
+          "paper_id": "eg16jDMikI",
+          "basis": "official_pdf",
+          "fact": "Softmax输出头稿利用softmax公共偏移不变性，以真实验证KL选择表示，部分设置总logit重构误差上升时KL反而降低。"
+        },
+        {
+          "paper_id": "5oSJKHhm1N",
+          "basis": "official_abstract",
+          "fact": "Butterfly稿通过误差传播分析研究平均指标之外的p99分歧与正确预测变错。"
+        },
+        {
+          "paper_id": "Lb0T1d1L63",
+          "basis": "official_abstract",
+          "fact": "Action-Contract稿冻结控制器动作语义和操作点，分别检查控制器保真与外部有标签动作错误。"
+        },
+        {
+          "paper_id": "5R8LqE51Hr",
+          "basis": "official_abstract",
+          "fact": "固定训练策略和配对初态的实际编译控制实验中，较低固定状态动作误差并不必然带来较好闭环回报。"
+        },
+        {
+          "paper_id": "mRLcwDPSTy",
+          "basis": "official_pdf_notes",
+          "fact": "Chameleon 用分布峰度和扩散 SNR 选层/时间桶格式，Turbo 与 DiT 路径并不都复现同样动态路由。原稿为 fake quantization，没有实际加速证据。"
+        },
+        {
+          "paper_id": "e1LpPIjhQW",
+          "basis": "official_pdf_notes",
+          "fact": "HeadGuard 在 VLM 的物理 KV 头上做保护；恢复收益依赖基础量化器，图像敏感性带来的额外收益并不统一。"
+        },
+        {
+          "paper_id": "AhG6FcJBHt",
+          "basis": "official_abstract_notes",
+          "fact": "LoopQuant 摘要针对 VLA 去噪步骤与连续控制两个循环，跨观察记录通道极值。打包执行仍以半精度 matmul 为基础。"
+        },
+        {
+          "paper_id": "bYpvxDEkUD",
+          "basis": "official_abstract",
+          "fact": "TeleQuant 将前次舍入残差反馈到下一次扩散计算；INT8 残差和融合算子引入额外状态，其所测图像 pipeline 相对宿主方法增加约 3–5% 延迟。"
+        },
+        {
+          "paper_id": "zNMUu0NUQx",
+          "basis": "official_abstract",
+          "fact": "PulseQuant 用短程传播风险为视频 DiT 的校准优先级和子空间补偿提供依据；作者报告传播误差比即时 block-output error 更能预测最终 latent error。"
+        },
+        {
+          "paper_id": "zbBSzTSQw8",
+          "basis": "official_abstract",
+          "fact": "EQS 将动作偏差映射到机器人配置相关的 horizon-level motion discrepancy，用于 VLA action generator 混合精度。"
+        },
+        {
+          "paper_id": "vwsfTsPMgw",
+          "basis": "official_abstract",
+          "fact": "LMTC 用 query projection weights 构造 query-free logit metric，并区分模态以量化 Keys；Values 通过相位偏移舍入尝试降低时空误差累积。"
+        }
+      ]
+    },
+    {
+      "id": "kv-full-task-cost",
+      "title": "KV预算同时关注驻留、读取和整条任务轨迹",
+      "text": "KV是明确的研究热点，但缓存驻留字节、每次读取字节和完成任务所需总成本是不同目标。QuantMLA分开内容与RoPE路径；READKV区分保留与读取的bits；Fewer Bits, More Tokens在特定agent设置下报告提高平均位宽反而减少重复和整任务KV用量。这些证据支持研究功能感知的预算分配，不能推断更低位宽总是更省或更高位宽总是更好；容量受限与带宽受限场景需分别测量。",
+      "signal_ids": [
+        "kv-cache",
+        "mixed-precision"
+      ],
+      "paper_ids": [
+        "nhL3D1XE2R",
+        "Y0Ww5DnHS4",
+        "sL7JFiA4c0",
+        "pPunBTKTY3",
+        "x9qK9ehqNi"
+      ],
+      "evidence": [
+        {
+          "paper_id": "nhL3D1XE2R",
+          "basis": "official_pdf_notes",
+          "fact": "QuantMLA 区分内容与 RoPE 路径的功能误差；官方 p.26–27 的吞吐改善发生在容量压力与抢占场景，attention kernel 本身并没有对应 5.168 倍加速。"
+        },
+        {
+          "paper_id": "Y0Ww5DnHS4",
+          "basis": "official_abstract",
+          "fact": "在 SWE-bench Verified/Qwen3-Coder-30B-A3B 设置，摘要报告平均 KV 精度 3.0→3.35 bits 后，因重复与工具调用失败减少，每任务 KV 使用量相对统一 3-bit 反降 12%。"
+        },
+        {
+          "paper_id": "sL7JFiA4c0",
+          "basis": "official_abstract",
+          "fact": "READKV 把 retained bits 与 fetched bits 分别设预算；读取 8-bit 渐进缓存的部分前缀。39% 延迟降低仅为 A10G、8K、batch-one、单层，与所测 TurboQuant codec 比较。"
+        },
+        {
+          "paper_id": "pPunBTKTY3",
+          "basis": "official_abstract",
+          "fact": "ByteBudget 联合分配 CPU 推理权重和 KV 精度，并用格式与上下文相关成本模型约束 decode 延迟。"
+        },
+        {
+          "paper_id": "x9qK9ehqNi",
+          "basis": "official_abstract",
+          "fact": "CoMixKV 针对同时驻留的多个 agent 缓存，在共享字节预算下联合分配；新精度只影响新增块，不能假定历史块被无成本重新量化。"
+        }
+      ]
+    },
+    {
+      "id": "format-kernel-codesign",
+      "title": "超低位表示与原生格式、内核和服务协同",
+      "text": "1–4bit和FP4相关词项频繁出现，但表示更紧凑只解决一部分问题。ULMoE把metadata对齐、分组GEMM与服务引擎结合；HEPH区分压缩流解码和预展开驻留；JustQuant尝试把在线变换的困难移到离线蒸馏。HyperQuant同时报告省驻留权重与所测decode内核慢于BF16的反例。由此更值得比较的是同质量下的实际字节与端到端成本，而不是用名义bit或单算子速度替代整套部署结论。",
+      "signal_ids": [
+        "low-bit",
+        "kernels",
+        "moe"
+      ],
+      "paper_ids": [
+        "3xpzqlgCgE",
+        "Mt7JawGQgl",
+        "1HBkg8Exll",
+        "EutVjE5fM2",
+        "wcQVK7UR0H",
+        "Y6SR8urjb1",
+        "ZGeR4gkEZq",
+        "iFMhFS2r1E",
+        "rHJLwXYerC"
+      ],
+      "evidence": [
+        {
+          "paper_id": "3xpzqlgCgE",
+          "basis": "official_pdf",
+          "fact": "Theseus QAD把plain A4的困难移到逐段多层级蒸馏；实际部署图仍受模型、设备与batch设置约束。"
+        },
+        {
+          "paper_id": "Mt7JawGQgl",
+          "basis": "official_abstract",
+          "fact": "HEPH限制trellis码本到原生MXFP4格点，并区分在线解码与预展开两种执行/内存模式。"
+        },
+        {
+          "paper_id": "1HBkg8Exll",
+          "basis": "official_abstract",
+          "fact": "MosaicQuant以4-bit稠密基底加4-bit稀疏残差，并把稀疏块计算融合到稠密GEMM。"
+        },
+        {
+          "paper_id": "EutVjE5fM2",
+          "basis": "official_abstract",
+          "fact": "字节约束混合精度稿把格式metadata计入实测文件大小，区分准确尺寸定价与有效敏感度排序。"
+        },
+        {
+          "paper_id": "wcQVK7UR0H",
+          "basis": "official_abstract_notes",
+          "fact": "ULMoE 用两级整数 group scales，让 64 权重的 metadata 落在对齐 32-bit word，再配 W2A16 grouped GEMM 并集成 SGLang；其数字针对 expert 权重和具体交互负载。"
+        },
+        {
+          "paper_id": "Y6SR8urjb1",
+          "basis": "official_abstract",
+          "fact": "MatGPTQ 不仅优化可切片 checkpoint，也让 r-bit 模型确实读取 r bits，并为多 batch 推理提供专用内核与 vLLM 集成。"
+        },
+        {
+          "paper_id": "ZGeR4gkEZq",
+          "basis": "official_abstract",
+          "fact": "AdaptQuant 选择 16×32 tile 的 MX 格式，与 Blackwell block-scaled MMA 操作数粒度对齐；结果在一张 RTX 5090 上报告。"
+        },
+        {
+          "paper_id": "iFMhFS2r1E",
+          "basis": "official_abstract",
+          "fact": "NibbleMLA 指出一个 latent 在 QK 与 PV 具有不同 contraction axis，靠 basis 改变让单份 scale 布局供两类 FP4 GEMM 消费；这不是单纯降低 cache bit。"
+        },
+        {
+          "paper_id": "rHJLwXYerC",
+          "basis": "official_abstract",
+          "fact": "HyperQuant 明确称 H100/batch1 下 resident weights 约缩小 2.8 倍，但 decode kernel 仍慢于裸 BF16 GEMV；KV 编码率的约 3.8 倍是计算值，不是装满缓存后的内存测量。"
+        }
+      ]
+    },
+    {
+      "id": "fp4-training",
+      "title": "FP4训练联合研究尺度、反向估计与训练配方",
+      "text": "FP4训练并非简单替换浮点格式。SCOPE从前向scale选择入手；MXFP4-MARS研究尺度层级、旋转与舍入；TetraBack诊断反向估计遗漏scale梯度的偏差。它们提供互补的机制假设，也涉及训练预算、学习率和格式约束。这里可归纳的趋势是联合诊断前后向与完整训练过程，尚无依据把不同模型和数据设置合并成“只改前向”或“只改STE”即可普遍生效的共识。",
+      "signal_ids": [
+        "format-fp4",
+        "format-fp8",
+        "explicit-qat"
+      ],
+      "paper_ids": [
+        "CzwnhuTaBw",
+        "18UVn4y0SO",
+        "Hu4rFmLvX9",
+        "0ow2QpmAsR"
+      ],
+      "evidence": [
+        {
+          "paper_id": "CzwnhuTaBw",
+          "basis": "official_abstract",
+          "fact": "SCOPE摘要用解析scale oracle与固定候选scale搜索优化NVFP4前向；在其设置下采用较低开销的反向路径。"
+        },
+        {
+          "paper_id": "18UVn4y0SO",
+          "basis": "official_abstract",
+          "fact": "MXFP4-MARS结合旋转、随机舍入、overflow-aware与宏块尺度，保留块级power-of-two尺度。"
+        },
+        {
+          "paper_id": "Hu4rFmLvX9",
+          "basis": "official_abstract",
+          "fact": "TetraBack指出MXFP4 QAT的常规STE遗漏group scale梯度并修复到前层RMSNorm的偏差。"
+        },
+        {
+          "paper_id": "0ow2QpmAsR",
+          "basis": "official_abstract",
+          "fact": "随机特征回归理论把精度位置、时间与学习率/迭代平均联系起来，模型假设有限。"
+        }
+      ]
+    },
+    {
+      "id": "fair-total-cost",
+      "title": "评价转向同预算对照、失败模式与完整成本",
+      "text": "部分投稿专门检查随机位宽分配、校准样本、数值累积顺序或软件pipeline如何影响结果，说明方法排名可能依条件变化。已核对原稿也提示：AYOT需计入重复校准与轨迹生成成本；QuantMLA的服务吞吐改善依赖缓存压力，不能等同为attention内核同倍加速。综合这些证据，应同时报告质量、实际内存、离线计算、端到端延迟及失败切片。它们是评价议题，不能据此声称全部投稿已经遵守同一标准。",
+      "signal_ids": [
+        "latency-throughput",
+        "mixed-precision"
+      ],
+      "paper_ids": [
+        "UubS9jd0J4",
+        "XMSwLKtADv",
+        "yP6MSpYNAi",
+        "nKphW3JJe3",
+        "We9x9Twodv",
+        "UuAAvOn17o",
+        "nhL3D1XE2R"
+      ],
+      "evidence": [
+        {
+          "paper_id": "UubS9jd0J4",
+          "basis": "official_abstract",
+          "fact": "SGMPQ 在相同约 5.2-bit 预算用随机 placement、uniform W5/W6 和 capability-agnostic ranking 作为控制，报告敏感性规则在不同模型上可能更好、相同或更差，并指出五 seed 检验功效限制。"
+        },
+        {
+          "paper_id": "XMSwLKtADv",
+          "basis": "official_abstract",
+          "fact": "固定校准样本仅改变 Hessian 累积顺序即可影响量化性能；作者报告某些设置的波动超过方法间差距甚至反转排名。"
+        },
+        {
+          "paper_id": "yP6MSpYNAi",
+          "basis": "official_abstract",
+          "fact": "COMPACT-Bench 以每个历史 token 的实际保留 bytes 比较不同记忆压缩路线；同一个 2-bit KV 配方跨模型并不稳定。"
+        },
+        {
+          "paper_id": "nKphW3JJe3",
+          "basis": "official_abstract",
+          "fact": "VLA-HWBench 的时延受 action-generation 模式和软件 stage 强烈影响，参数量解释其所测 latency 方差最多 15%；优化后 CPU 预处理可由 12% 占到 39%。"
+        },
+        {
+          "paper_id": "We9x9Twodv",
+          "basis": "official_abstract",
+          "fact": "ActTune 把 GPU energy per successful task 而非每次 inference call 的能耗设为目标，同时约束成功率与任务时长。"
+        },
+        {
+          "paper_id": "UuAAvOn17o",
+          "basis": "official_pdf_notes",
+          "fact": "AYOT 的约 4M 校准集 tokens 重复优化 60 epochs，4B 三值化需 8×A100 约八小时；不能将小校准集等价为完整低成本训练。"
+        },
+        {
+          "paper_id": "nhL3D1XE2R",
+          "basis": "official_pdf_notes",
+          "fact": "QuantMLA 的大吞吐收益来自避开缓存抢占；单次低位服务运行对历史 BF16 参照、没有独立重复 CI。"
+        }
+      ]
+    }
+  ],
+  "consensus": [
+    {
+      "title": "优化目标应与最终功能对应",
+      "text": "局部MSE、缓存NMSE或PPL可以作为诊断，但无法单独替代任务成功率、正确到错误的翻转或闭环回报。应同时测量数值保真和外部真值质量，并检验误差沿计算过程传播的路径。",
+      "paper_ids": [
+        "eg16jDMikI",
+        "nhL3D1XE2R",
+        "AhG6FcJBHt",
+        "5R8LqE51Hr"
+      ]
+    },
+    {
+      "title": "名义位宽、有效存储和真实速度分别报告",
+      "text": "scale、zero point、索引、padding、异常值、保护块和补偿状态都消耗实际字节。低位内核、打包后半精度执行和模拟量化有不同含义；磁盘压缩率、常驻显存、单算子速度、并发服务吞吐不能相互替代。",
+      "paper_ids": [
+        "Mt7JawGQgl",
+        "wcQVK7UR0H",
+        "rHJLwXYerC",
+        "mRLcwDPSTy",
+        "3xpzqlgCgE"
+      ]
+    },
+    {
+      "title": "收益必须连同条件、完整预算和反例一起解释",
+      "text": "模型、校准分布、训练与搜索预算、seed、硬件、batch、上下文及测量边界决定结论可否迁移。同预算基线、重复测量与最差切片有助于区分可复现改善和设置优势；这些是本调研从代表作归纳的研究原则，不是全体作者的一致意见。",
+      "paper_ids": [
+        "UuAAvOn17o",
+        "nhL3D1XE2R",
+        "UubS9jd0J4",
+        "XMSwLKtADv",
+        "nKphW3JJe3"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "id": "trajectory-budget",
+      "title": "在固定校准成本下比较轨迹与语言覆盖",
+      "priority": "优先",
+      "problem": "在同一模型、量化格式和真实计算预算下，哪些校准分布能够同时保留数学/代码能力与跨语言泛化？",
+      "approach": "固定权重量化器、group size、位宽与优化器；交叉比较通用文本、领域问题、高精度目标自身轨迹、量化学生轨迹，并加入单语/平衡多语条件。分别匹配独立tokens、累计token passes与GPU小时，记录轨迹生成成本；用校准不相交的题目、语言及长度分桶，多seed重复。控制监督来源，避免把轨迹来源和训练量同时改变。",
+      "metrics": "MATH/代码pass@1与有标签正确率；语言建模PPL/BPB；源模型正确→量化错误比例，另报错误→正确比例；按语言、长度和难度的最差切片质量；完整校准GPU小时、能耗、累计token passes；部署端真实tokens/s及峰值显存。",
+      "reason": "这一问题可先用1–4B模型在固定量化器下做对照，资源门槛相对可控；代表稿已经提示轨迹来源与语言覆盖会改变结果，适合研究哪些条件才稳定受益。",
+      "limitations": "先在约1–4B模型/W4与W2做筛选，再对最有希望的方案放大；不能只用同一校准题目的teacher agreement作为泛化证明。",
+      "paper_ids": [
+        "UuAAvOn17o",
+        "09gtv3rua8",
+        "91Q3RaHTYz",
+        "UmfdN8rahl"
+      ]
+    },
+    {
+      "id": "agent-success-under-real-budget",
+      "title": "按任务完成成本设计长程 agent 的 KV 精度分配",
+      "priority": "优先 · 需要可运行的KV后端",
+      "problem": "提高少数敏感层/头的精度是否能减少重复、工具误用与冗长轨迹，从而在同实际缓存字节或同能耗下提高任务完成率？何时值得提高位宽？",
+      "approach": "冻结同一模型与 agent scaffold；比较 BF16、统一 2/3/4-bit、同实际字节随机混合精度、基于 attention error 的规则以及行为感知规则。用 SWE-bench Verified 的工具交互、长推理和 exact-copy retrieval 分开测；做敏感保护位置、上下文长度、并发和压力负载消融；校准任务与测试任务分离，使用配对重复和置信区间。",
+      "metrics": "任务成功率与每次成功所需 tokens/工具调用；含 metadata、保护块和残差的 peak/resident KV bytes；TTFT、TPOT、p50/p95 时延与抢占/重计算次数；每成功任务 GPU joules、校准成本和吞吐 break-even。",
+      "reason": "已有候选显示更低 per-token bits 可能被更长轨迹抵消；容量受限服务与 bandwidth-bound 单请求还可能得到完全不同收益。把这两个部署状态分开具有明确问题与可测贡献。",
+      "limitations": "不能只优化已知 benchmark 的终止模式；需跨模型、跨任务与不同工具接口验证。",
+      "paper_ids": [
+        "Y0Ww5DnHS4",
+        "nhL3D1XE2R",
+        "x9qK9ehqNi",
+        "sL7JFiA4c0",
+        "yP6MSpYNAi"
+      ]
+    },
+    {
+      "id": "deployment-first-format-benchmark",
+      "title": "给混合格式/超低位方法建立同成本、可运行的系统比较",
+      "priority": "系统方向 · 先锁定一种硬件后端",
+      "problem": "一套更低编码率或动态格式何时真正降低完整服务成本？反量化、额外状态、格式切换与离线训练会不会吞掉节省？",
+      "approach": "选同一模型和已支持的低位硬件后端，用真实 packed checkpoint 对 uniform INT4/FP4、动态混合格式及一种 lattice/trellis 表示作同实际字节比较。完整核算 codebook、scale、补偿、保护状态；分别测 prefill、decode、多 batch 和服务负载。给出校准/训练/轨迹生成总成本、重复运行 CI 与版本化可运行实现；若跨硬件，按各平台支持格式重测。",
+      "metrics": "same-quality 下实际常驻/峰值 bytes；kernel、完整 request 与并发 serving 三种时延/吞吐；packing/反量化/online transform/format switch 开销；离线 GPU-hours 与总请求数/能耗 break-even；多 seed 的质量与时延置信区间、失败模型。",
+      "reason": "候选集同时存在原生部署收益与“省内存但更慢”的反例。研究可聚焦一种现有低位内核路径，提出布局/融合改进，并证明质量—实际字节—全 pipeline 时延的 Pareto 改善。",
+      "limitations": "CPU、Ampere/Blackwell 或不同 engine 的数值不能拼成一个统一加速比；对没有原生支持的格式需明确模拟与真实执行边界。",
+      "paper_ids": [
+        "wcQVK7UR0H",
+        "Mt7JawGQgl",
+        "Y6SR8urjb1",
+        "ZGeR4gkEZq",
+        "rHJLwXYerC",
+        "UuAAvOn17o",
+        "UubS9jd0J4"
+      ]
+    },
+    {
+      "id": "fp4-factorial",
+      "title": "联合诊断FP4前向尺度和反向梯度估计",
+      "priority": "资源允许再投入",
+      "problem": "尺度搜索与scale-aware反向估计的收益能否组合，还是在同一误差源上重复补偿？",
+      "approach": "固定数据顺序、模型、随机种子与原生格式，进行前向固定scale/候选scale × 常规STE/scale-aware反向的2×2对照，并设BF16参照。先固定学习率，再在最有效组合上比较精度/学习率调度；每个条件至少多个独立seed。分别匹配训练token量与达到指定质量的完整墙钟时间，分解scale搜索、舍入和反向修正的开销。",
+      "metrics": "独立验证BPB/PPL及下游质量；达到同验证质量的总GPU小时、能耗与峰值显存；激活极值/尺度利用率、RMSNorm幅值和梯度偏差诊断；训练进程中的异常/崩溃比例；前后向与完整step吞吐；模型规模和数据长度变化下的迁移稳定性。",
+      "reason": "低精度训练投稿提供互补但依设置的机制，适合做可解释组合实验；完整训练成本较高，宜在小模型上先建立机制证据。",
+      "limitations": "随机特征回归理论只作假设来源；小模型结论必须经扩大规模核验，不承诺所有硬件或从头训练都同样收益。",
+      "paper_ids": [
+        "CzwnhuTaBw",
+        "18UVn4y0SO",
+        "Hu4rFmLvX9",
+        "LIgMvRMUdA"
+      ]
+    },
+    {
+      "id": "closed-loop-vla-functional-quantization",
+      "title": "量化 VLA 的动作生成与真实闭环执行",
+      "priority": "场景方向 · 具备机器人或仿真条件",
+      "problem": "哪类数值误差经过 action chunk 与机器人动力学放大，导致失败或 deadline miss？在固定实时控制预算下保护哪些模块比统一提高精度更有效？",
+      "approach": "先对视觉编码、语言 backbone、action generator、后处理逐阶段测量，确认主要瓶颈；在至少两种 VLA action-generation 模式、仿真与少量真实任务中比较统一量化、静态误差排名、execution-aware 保护。校准包含连续观测和多步动作，held-out 机器人配置检验迁移；把 native 低位、packed 半精度执行和 fake quant 分别报告。",
+      "metrics": "闭环任务成功率、每成功任务时长与 joules；deadline miss/control frequency、端到端 p95 call latency；动作 chunk 的时间相关残差、轨迹偏差与接触/抓取失败类型；逐阶段 latency、驻留内存、在线选择/切换成本。",
+      "reason": "VLA 具有动作阶段、闭环状态分布与硬件 pipeline 的共同约束；现有候选提供 execution sensitivity、loop-aware calibration 和能耗视角，可以形成区别于普通 LLM 重建损失的明确研究问题。",
+      "limitations": "标量 action MSE 与成功率相关并非因果证明；更好的 simulator 分数也不足以断言真实机器人收益。",
+      "paper_ids": [
+        "AhG6FcJBHt",
+        "zbBSzTSQw8",
+        "qD67x7kVIo",
+        "nKphW3JJe3",
+        "We9x9Twodv"
+      ]
+    }
+  ]
+}
