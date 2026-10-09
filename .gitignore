@@ -8,3 +8,9 @@ _site
 
 __pycache__/
 *.pyc
+
+# Local OpenReview exports; the site publishes only the curated public index.
+/iclr-2027-official-active-submissions.json
+/iclr-2027-official-papers.zip
+/iclr-2027-six-official-papers.zip
+*:Zone.Identifier

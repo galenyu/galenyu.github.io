@@ -2,6 +2,7 @@
 """Build an auditable model-quantization candidate index from public OpenReview notes."""
 import argparse
 import datetime as dt
+import hashlib
 import json
 import os
 from pathlib import Path
@@ -40,7 +41,25 @@ RULES = {
     'multimodal': r'multimodal|multi[ -]modal|vision[ -]language|vlm|visual language',
     'theory': r'theoretical|theorem|error bound|convergence|robustness|generalization|generalisation',
 }
-MANUAL_FIELDS = ('review_status', 'summary', 'contribution', 'limitations', 'categories')
+MANUAL_FIELDS = ('review_status', 'review_basis', 'official_pdf_verified', 'pdf_sha256',
+                 'reviewed_pdf_url', 'reviewed_source_updated_at', 'reviewed_at', 'summary', 'contribution',
+                 'limitations', 'categories', 'quantization_target', 'bit_width', 'evidence',
+                 'results', 'reading_basis', 'interpretation')
+
+
+def fulltext_reviewed(paper):
+    return (paper.get('review_status') == 'reviewed' and paper.get('review_basis') == 'official_pdf'
+            and paper.get('official_pdf_verified') is True
+            and isinstance(paper.get('summary'), str) and bool(paper['summary'].strip())
+            and isinstance(paper.get('pdf_sha256'), str)
+            and re.fullmatch(r'[0-9a-f]{64}', paper['pdf_sha256']) is not None
+            and paper.get('reviewed_pdf_url') == paper.get('pdf_url')
+            and paper.get('reviewed_source_updated_at') == paper.get('updated_at'))
+
+
+def abstract_reviewed(paper):
+    return (paper.get('review_status') == 'abstract' and paper.get('review_basis') == 'official_abstract'
+            and isinstance(paper.get('summary'), str) and bool(paper['summary'].strip()))
 
 
 def now():
@@ -99,6 +118,13 @@ def validate_notes(notes, expected_count, active, require_public=False):
             raise RuntimeError('Imported export contains a note not explicitly public')
         if not isinstance(note.get('content'), dict):
             raise RuntimeError('Submission has invalid content fields')
+        if require_public:
+            for field in ('title', 'abstract', 'keywords', 'pdf', 'venueid'):
+                item = note['content'].get(field)
+                if isinstance(item, dict) and 'readers' in item:
+                    field_readers = item['readers']
+                    if not isinstance(field_readers, list) or 'everyone' not in field_readers:
+                        raise RuntimeError('Imported export contains a nonpublic research field')
         if value(note['content'], 'venueid') != active:
             raise RuntimeError('Export contains a note outside the active-submission venue')
         if not isinstance(value(note.get('content', {}), 'title'), str):
@@ -157,25 +183,31 @@ def candidate(note):
         parsed = urllib.parse.urlsplit(pdf)
         if parsed.scheme == 'https' and parsed.hostname == 'openreview.net' and not parsed.username and not parsed.password:
             pdf_url = pdf
-        elif pdf.startswith('/pdf?'):
+        elif pdf.startswith('/pdf?') or re.fullmatch(r'/pdf/[0-9a-f]+\.pdf', pdf):
             pdf_url = 'https://openreview.net' + pdf
     updated = note.get('tmdate') or note.get('mdate') or note.get('tcdate') or note.get('cdate')
     updated_at = None
     if isinstance(updated, (int, float)) and not isinstance(updated, bool):
-        updated_at = dt.datetime.fromtimestamp(updated / 1000, dt.timezone.utc).isoformat(timespec='seconds').replace('+00:00', 'Z')
+        updated_at = dt.datetime.fromtimestamp(updated / 1000, dt.timezone.utc).isoformat(timespec='milliseconds').replace('+00:00', 'Z')
     return {'id': note_id, 'number': note.get('number'), 'title': title, 'abstract': abstract,
+            'source_kind': 'openreview', 'active_submission_verified': True,
             'keywords': keywords, 'forum_url': 'https://openreview.net/forum?id=' + encoded,
             'pdf_url': pdf_url, 'updated_at': updated_at, 'categories': categories,
             'matched_terms': matched, 'review_status': 'candidate', 'summary': None,
             'contribution': None, 'limitations': None}
 
 
-def build(notes, active, previous, checked_at, source_method='OpenReview API v2 匿名公开数据'):
+def build(notes, active, previous, checked_at, source_method='OpenReview API v2 匿名公开数据',
+          fetched_at=None, exclusions=None, provenance=None, source_sha256=None):
     old = {paper['id']: paper for paper in previous.get('papers', []) if isinstance(paper, dict) and 'id' in paper}
-    papers = []
+    papers, excluded_ids = [], set(exclusions or [])
+    automated_count = 0
     for note in notes:
         paper = candidate(note)
         if paper is None:
+            continue
+        automated_count += 1
+        if paper['id'] in excluded_ids:
             continue
         prior = old.get(paper['id'])
         if prior:
@@ -183,20 +215,31 @@ def build(notes, active, previous, checked_at, source_method='OpenReview API v2 
                 if field in prior:
                     paper[field] = prior[field]
             # A changed title, abstract, or source revision invalidates prior full-text review.
-            if any(prior.get(field) != paper[field] for field in ('title', 'abstract', 'updated_at')):
+            if any(prior.get(field) != paper[field] for field in ('title', 'abstract', 'updated_at', 'pdf_url')):
                 paper['review_status'] = 'candidate'
-        if paper['review_status'] not in ('candidate', 'reviewed'):
+                paper['official_pdf_verified'] = False
+        if paper['review_status'] not in ('candidate', 'abstract', 'reviewed'):
             paper['review_status'] = 'candidate'
-        if paper['review_status'] == 'reviewed' and (not isinstance(paper.get('summary'), str) or not paper['summary'].strip()):
+        if paper['review_status'] == 'reviewed' and not fulltext_reviewed(paper):
+            paper['review_status'] = 'candidate'
+        if paper['review_status'] == 'abstract' and not abstract_reviewed(paper):
             paper['review_status'] = 'candidate'
         papers.append(paper)
     return {'metadata': {'venue': VENUE, 'active_venue_id': active, 'source_url': SOURCE,
-            'api_url': API, 'checked_at': checked_at, 'fetched_at': checked_at, 'status': 'complete',
+            'api_url': API, 'checked_at': checked_at, 'fetched_at': fetched_at or checked_at, 'status': 'complete',
             'total_active_submissions': len(notes), 'candidate_count': len(papers),
-            'reviewed_count': sum(p['review_status'] == 'reviewed' for p in papers),
-            'method': source_method + '；标题、摘要和关键词检索；分类为初筛标签。',
+            'automated_candidate_count': automated_count, 'scope_excluded_count': len(excluded_ids),
+            'reviewed_count': sum(fulltext_reviewed(p) for p in papers),
+            'abstract_reviewed_count': sum(abstract_reviewed(p) for p in papers),
+            'source_provenance': provenance, 'source_sha256': source_sha256,
+            'official_pdf_receipt': previous.get('metadata', {}).get('official_pdf_receipt'),
+            'fulltext_reviewed_at': previous.get('metadata', {}).get('fulltext_reviewed_at'),
+            'method': source_method + '；标题、摘要和关键词检索；' + ('按官网摘要排除纯表示、tokenizer、codec 等范围外记录；' if excluded_ids else '') + '分类为初筛标签。',
             'message': '已完整获取本次可公开访问的 active submissions；候选需逐篇核验。',
-            'scope': 'quantization'}, 'categories': CATEGORIES, 'papers': papers}
+            'scope': 'quantization'}, 'categories': CATEGORIES, 'papers': papers,
+            'observations': [item for item in previous.get('observations', [])
+                             if isinstance(item, dict) and isinstance(item.get('paper_ids'), list)
+                             and all(identifier in {p['id'] for p in papers} for identifier in item['paper_ids'])]}
 
 
 def unavailable(previous, checked_at, message, active=None):
@@ -206,12 +249,32 @@ def unavailable(previous, checked_at, message, active=None):
             'source_url': SOURCE, 'api_url': API, 'checked_at': checked_at,
             'fetched_at': prior.get('fetched_at'), 'status': 'unavailable',
             'total_active_submissions': None, 'candidate_count': None,
-            'reviewed_count': sum(p.get('review_status') == 'reviewed' and isinstance(p.get('summary'), str) and bool(p['summary'].strip()) for p in papers),
+            'reviewed_count': sum(fulltext_reviewed(p) for p in papers),
+            'abstract_reviewed_count': sum(abstract_reviewed(p) for p in papers),
             'previous_total_active_submissions': prior.get('total_active_submissions') if prior.get('total_active_submissions') is not None else prior.get('previous_total_active_submissions'),
             'previous_candidate_count': len(papers) if prior.get('fetched_at') else None,
             'method': 'OpenReview API v2 匿名公开访问；当前未取得完整投稿列表。',
             'message': message, 'scope': 'quantization'},
-            'categories': previous.get('categories') or CATEGORIES, 'papers': papers}
+            'categories': previous.get('categories') or CATEGORIES, 'papers': papers,
+            'observations': previous.get('observations', [])}
+
+
+def validate_scope(scope, notes, source_sha256):
+    metadata = scope.get('metadata', {})
+    if metadata.get('source_sha256') != source_sha256 or metadata.get('source_url') != SOURCE:
+        raise RuntimeError('Scope exclusions do not match this official source snapshot')
+    initial_ids = {n['id'] for n in notes if candidate(n) is not None}
+    excluded = scope.get('exclusions')
+    if not isinstance(excluded, list):
+        raise RuntimeError('Scope exclusions must be an auditable list')
+    seen = set()
+    for item in excluded:
+        if not isinstance(item, dict) or item.get('id') not in initial_ids or item['id'] in seen or not isinstance(item.get('reason'), str) or not item['reason'].strip():
+            raise RuntimeError('Invalid, duplicate or unrelated scope exclusion')
+        seen.add(item['id'])
+    if metadata.get('raw_candidate_count') != len(initial_ids) or metadata.get('excluded_count') != len(seen) or metadata.get('retained_candidate_count') != len(initial_ids) - len(seen):
+        raise RuntimeError('Scope exclusion counts do not match the source')
+    return seen
 
 
 def atomic_write(path, data):
@@ -231,9 +294,11 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--output', type=Path, default=DEFAULT_OUTPUT)
     parser.add_argument('--input-json', type=Path, help='Import a full public export with notes, count and active_venue_id; every note is validated')
+    parser.add_argument('--scope-exclusions', type=Path, help='Optional exclusion manifest tied to the exact official export SHA256')
     args = parser.parse_args()
     previous = json.loads(args.output.read_text(encoding='utf-8')) if args.output.exists() else {}
     checked_at, active = now(), None
+    fetched_at, provenance, source_sha256, exclusions = None, None, None, None
     try:
         if args.input_json:
             exported = json.loads(args.input_json.read_text(encoding='utf-8'))
@@ -241,12 +306,21 @@ def main():
             if active != VENUE + '/Submission':
                 raise RuntimeError('Export must identify the ICLR 2027 active-submission venue')
             notes = validate_notes(exported.get('notes'), exported.get('count'), active, require_public=True)
+            fetched_at = exported.get('fetched_at')
+            if not isinstance(fetched_at, str) or dt.datetime.fromisoformat(fetched_at.replace('Z', '+00:00')).utcoffset() is None:
+                raise RuntimeError('Official export requires a timezone-aware source timestamp')
+            provenance = exported.get('provenance')
+            source_sha256 = hashlib.sha256(args.input_json.read_bytes()).hexdigest()
+            if args.scope_exclusions:
+                exclusions = validate_scope(json.loads(args.scope_exclusions.read_text(encoding='utf-8')), notes, source_sha256)
             method = '经验证的完整公开投稿 JSON 导出'
         else:
             active = resolve_active_venue()
             notes = fetch_notes(active)
             method = 'OpenReview API v2 匿名公开数据'
-        result = build(notes, active, previous, checked_at, method)
+            if args.scope_exclusions:
+                raise RuntimeError('Snapshot-specific scope exclusions require --input-json')
+        result = build(notes, active, previous, checked_at, method, fetched_at, exclusions, provenance, source_sha256)
     except (RuntimeError, urllib.error.URLError, TimeoutError, ValueError, OSError) as error:
         result = unavailable(previous, checked_at, str(error), active)
         atomic_write(args.output, result)

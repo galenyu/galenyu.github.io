@@ -6,75 +6,81 @@ permalink: /docs/iclr-2027-survey/
 sitemap: false
 ---
 
-这份调研的目标是 **ICLR 2027 模型量化相关的公开 Active submissions**。完整 OpenReview 列表暂受浏览器验证限制；现阶段整理可取得的公开预印本全文，并用第三方历史快照补充候选线索。阅读全文、作者投稿声明、镜像投稿关联与官方当前活跃状态分别核对。投稿与录用结果是不同状态。
+调研范围是 **ICLR 2027 模型量化相关的官方公开 Active submissions**。页面仅使用 OpenReview 官方数据；摘要解读、官方原稿全文阅读、活跃投稿状态与录用状态分别记录。
 
-### 当前来源与阅读状态
+### 本次官方快照
 
-- `assets/data/iclr-2027-quantization.json`：OpenReview 官方活跃投稿快照。未获取完整列表时状态为 `unavailable`，会议总数和候选数为未知。
-- `assets/data/iclr-2027-reading-notes.json` 的 `papers`：公开全文阅读笔记。`source_kind: public_preprint` 表示原文来自公开预印本；`submission_evidence: author_reported` 表示有作者明确声明，`mirror_snapshot` 表示关联仅来自镜像。`active_submission_verified: false` 表示尚未与官方当前活跃记录匹配。不能据此判断未撤稿、未桌拒或已录用。
-- 同一文件的 `candidates`：第三方快照的自动初筛线索，`source_kind: mirror_candidate`。记录标题、关键词、编号和链接，不发布原始摘要，不填未经全文阅读的方法或实验总结。
-- `mirror_metadata`：固定来源提交、快照日期、筛选方式和核验边界；镜像记录数量不会填入官方统计卡片。
+用户在能正常显示投稿列表的浏览器会话中，使用官网公开 API 客户端导出完整公开 notes。采集于 **2026-10-09 13:19（北京时间）**：
 
-截至 2026-10-09 已核对 Softmax Reparameterization（arXiv v2）、Chameleon（v1）、HeadGuard（v1）、QuantMLA（v2）、JustQuant（v1）与 AYOT / ScaleQ-1.58（v1）的正文、关键表格和局限。前三篇具有作者明确的 ICLR 2027 声明；后三篇的投稿关联仅来自镜像。AYOT 的预印本副标题与镜像不同，方法和摘要数值匹配，但原投稿版本对应关系仍待官方原页核实。页面记录原文链接、版本、量化对象/精度、实验结果和部署证据；没有运行作者代码，不能称为独立复现。SP-QAT 只有作者公开投稿声明，尚无已取得的可核对全文，因此单列为线索。
+| 项目 | 本次结果 |
+| --- | ---: |
+| 公开活跃投稿，全会议 | 42,368 |
+| 完整分页 | 43 |
+| 标题、摘要和关键词自动初筛 | 1,133 |
+| 官网摘要范围清理排除 | 139 |
+| 保留待审候选 | 994 |
+| 代表论文的官网摘要解读 | 12 |
+| 已取得并阅读该版本官方 PDF | 6 |
 
-第三方来源为 [iclr2027-explorer 的固定提交](https://github.com/yzc-666/iclr2027-explorer/tree/5b07b9aa7c2c5fbca35a9f4bb765cf71c489dbf0)，提交时间 2026-10-07。下载的摘要分片逐一通过该 Git 树的 blob SHA 校验，再在本地做标题、关键词和摘要初筛。镜像未保留原始 `readers` 和 `venueid`；即使内部数量一致，也不能证明官方公开性字段、列表完整性或当前状态，不能作为下面的官方完整导出导入。
+已校验总数、唯一 ID、公开 readers、字段公开权限和 ICLR.cc/2027/Conference/Submission venue。完整导出 SHA256 为 **5f1a2de3f9e06fccad0078949f756c116915103d433f31f39333f3c1a1a7f023**。原始 90 MB JSON 和下载的 PDF ZIP 保留本地，由 Git 和 Jekyll 排除，网页只发布候选索引及中文解读。
 
-本次快照初筛得到 1,136 条线索，按摘要中的范围规则和保守人工抽查排除 141 条纯表示离散化、tokenizer、codec 等记录，保留 995 条候选。模糊项保留待审，仍可能误收或漏检；6 条已读关联合并后，页面另有 989 条待阅读镜像候选。[排除清单与筛选元数据]({{ "/assets/data/iclr-2027-mirror-exclusions.json" | relative_url }}) 可供核对。候选数不是官方或已确认的模型量化论文数。
+[官方索引与解读 JSON]({{ '/assets/data/iclr-2027-quantization.json' | relative_url }}) 记录来源、UTC 时间、导出校验值和逐篇摘要。[范围排除记录]({{ '/assets/data/iclr-2027-official-exclusions.json' | relative_url }}) 记录 139 条排除理由。范围清理直接依据本次官网摘要；检查表示、tokenizer、codec 等工作，并保留权重 VQ、KV 压缩、二值网络、SNN 数值量化及含混项。剩余候选未逐篇确认为模型量化论文，仍可能误收或漏检。
 
-“公开全文已读”仅计实际有全文取证的阅读笔记。方向标签和阶段性观察描述本页展示记录，不能作为 ICLR 2027 全量方向分布或趋势结论。主论文索引保留原文入口，并按来源筛选。
+此前的公开预印本和镜像研究文件作为历史资料保留在仓库，已从网站构建和主页面加载中排除。它们不会覆盖官方 ID、摘要或阅读计数。
 
-### 获取数据
+### 获取与导入
 
-在仓库根目录运行（Python 3，仅使用标准库）：
+Python 3 同步脚本仅使用标准库。正常匿名 API 可用时：
 
-```bash
+~~~bash
 python3 scripts/sync_iclr2027.py
-```
+~~~
 
-脚本先从 Conference group 读取 `submission_venue_id`，再以该 ID 分页下载公开 notes。每页的 count 必须稳定，完整列表须满足总数、唯一论文 ID 和活跃投稿 venue 校验。它只访问匿名公开接口，不使用私人投稿权限。
+脚本从 Conference group 读取 active venue ID，然后顺序分页，核对稳定 count、唯一 ID 和活跃 venue。遇访问验证、数量变化或不完整分页时返回非零，保留上次成功的官方记录与人工笔记，本次数量标为未知。历史快照不代表当前状态；取得有效的完整零条结果时才显示零。
 
-OpenReview 要求访问验证或请求失败时，脚本会返回非零退出码，将状态标为 `unavailable`，保留上次成功数据和人工笔记，并将本次投稿数、候选数标为 `null`。页面显示未知数量与历史快照日期。首次访问失败时，空数组表示尚未取得论文，不能解释成“零篇量化论文”。
+若日常浏览器能看到官网投稿列表，打开 [官方导出助手]({{ '/tools/openreview-export/' | relative_url }})，复制脚本，在**同一个 OpenReview 官方页面**的 Console 执行。脚本复用官网 Webfield2.api.get 或正常浏览器会话的 GET 请求，不读取或导出密码、Cookie、令牌、私有评论或作者身份。只导出公开研究字段和 ID、编号、时间；逐页及最后一次检查总数，遇验证或分页异常则停止。
 
-如果已有从公开来源取得的**完整** JSON 导出，可以导入：
+完整 JSON 放到项目根目录后：
 
-```bash
-python3 scripts/sync_iclr2027.py --input-json /path/to/public-export.json
-```
+~~~bash
+python3 scripts/sync_iclr2027.py --input-json iclr-2027-official-active-submissions.json --scope-exclusions assets/data/iclr-2027-official-exclusions.json
+~~~
 
-导出必须包含 `active_venue_id: "ICLR.cc/2027/Conference/Submission"`、完整 `notes` 数组与准确 `count`，每条 note 都须保留 OpenReview 原始 `content.venueid`、标题与唯一 ID，且 `readers` 必须包含 `everyone`，确认原始记录为公开数据。局部检索结果不可冒充完整投稿列表。
+排除清单必须对应**完全相同的原始导出 SHA256**，且所有 ID 是该快照的初筛候选，数量一致。新快照需重新审核范围、制作对应的清单；不能把旧快照的排除结果直接套到新导出。省略 --scope-exclusions 时只执行自动初筛。
 
-### 网站要求浏览器验证时
+导入保留原始 fetched_at，另记 checked_at；不能把本地导入时间当成官网采集时间。局部搜索结果不能作为完整列表导入。
 
-在正常浏览器打开 [ICLR 2027 投稿列表](https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions)，手动完成 OpenReview 的人机验证，或自行登录。无需向维护者提供账号、密码或 Cookie。
+### 阅读与总结
 
-若已能访问公开列表，可查看 [公开数据导出脚本]({{ '/assets/js/openreview-export.js' | relative_url }})，在官方 OpenReview 页面的浏览器开发者工具 Console 中执行。脚本请求正常公开 API，检查每条记录的 `readers` 含 `everyone`，完整分页后下载 `iclr-2027-public-submissions.json`；不会导出登录凭据。再用上述 `--input-json` 命令导入。
+代表样本涵盖 Softmax Reparameterization、Chameleon、HeadGuard、QuantMLA、AYOT、JustQuant、LoopQuant、2PTC、SQuAT、SCOPE、HybridQuant、ULMoE、RTAQ、OrbitQuant、Prefix-Point、MetricKV、CanonQ 和 HEPH。前六篇已取得并核对该版官方原稿，附正文、表格和相关附录页码证据；其余十二篇仅根据官方摘要解读。每篇注明量化对象、位宽、方法、作者报告的结果和未核实的问题。
 
-若脚本仍返回 403，说明该浏览器的正常 API 请求尚未通过验证，不能将局部页面或验证错误当作完整导出。导出脚本已做静态检查，尚未在真实已验证会话中运行成功。
+| 阅读状态 | 必要依据 | 计数 |
+| --- | --- | --- |
+| candidate | 标题、摘要、关键词初筛 | 待审候选 |
+| abstract | review_basis 为 official_abstract，有效中文摘要解读 | 官网摘要解读 |
+| reviewed | 对应版本官方 PDF 已取得、校验并阅读全文 | 官方投稿全文已读 |
 
-### 初筛与核验
+不能把预印本全文阅读自动提升为官方原稿阅读，也不能把摘要中的作者结果当作独立复现。全文状态还要求 review_basis 为 official_pdf、official_pdf_verified 为 true、64 位十六进制 pdf_sha256、reviewed_pdf_url 与快照 PDF 一致，以及 reviewed_source_updated_at 与记录版本一致。修改标题、摘要、PDF 或更新时间会恢复 candidate，保留旧笔记以供复核。不再属于 active venue 的投稿不进入新快照。
 
-初筛搜索标题、摘要与关键词中的 quantization、quantisation、PTQ、QAT、low precision、mixed precision、低比特整数、W3A16 等配置和浮点格式等线索，同时要求模型、权重、激活、网络、训练或推理上下文。它可能漏检或误收；向量量化、表征离散化和数值分析论文尤其需要人工确认是否属于模型量化。候选数量只是可继续阅读的线索数量，不是已确认的模型量化论文数。
+可用导出助手第二部分在正常官网浏览器下载六篇官方原稿，生成 iclr-2027-six-official-papers.zip。脚本核对官方 ID、标题、编号、公开权限、active venue 与固定 PDF 路径，验证 HTTP 200 和 PDF 文件头，附 SHA256 与 manifest；任一篇失败时不保存残缺 ZIP。真正阅读后再更新上述状态，不能因下载成功就标为已读。
 
-方向标签涵盖训练后量化、量化感知训练、低精度训练、KV Cache、硬件与系统、推理能力、扩散、多模态以及理论分析。一篇论文可有多个标签；标签是阅读框架，不是本届会议的趋势结论。
+论文记录的人工字段：
 
-编辑 `assets/data/iclr-2027-quantization.json` 的对应论文记录，补充：
+- summary、contribution、limitations：中文问题、方法、作者结果及明确局限。
+- quantization_target、bit_width、categories：量化对象、摘要明确给出的精度和方向；未知位宽直接注明。
+- evidence：原文位置与对应事实；摘要解读的位置为“官方摘要”。
+- review_status、review_basis：区分摘要与全文。
+- 全文的文件校验值、对应版本和 reading_basis：实际官方原稿的阅读依据。
 
-- `summary`：中文阅读总结，包括研究问题与方法。
-- `contribution`：原文可核对的贡献与实验结果。
-- `limitations`：适用范围、实验限制与尚待验证的问题。
-- `categories`：人工修订的方向标签。
-- `review_status`：原文核验完成后设置为 `reviewed`；初筛阶段保持 `candidate`。
-
-没有中文总结的记录不能计为已核验。同步按论文 ID 保留人工字段；标题、摘要或来源的稿件更新时间变化后，会恢复为待核验状态，同时保留旧笔记供重新检查。撤稿或不再属于 Active submissions 的论文不进入新的活跃快照。
-
-公开阅读笔记应在独立 `reading-notes` 文件中维护，保留 `active_submission_verified: false`，注明预印本版本、阅读范围和投稿关联证据。仅取得摘要时保持候选，不标记 `reviewed`。同一论文的镜像候选与全文笔记按候选 ID 或规范化标题合并展示，优先显示全文笔记。
+方向标签是检索和阅读框架，一篇可多标签。阶段性观察只比较已解读样本，附对应官方 ID；不能推断全会议的趋势、比例或录用情况。
 
 ### 验证
 
-```bash
+~~~bash
 python3 -m unittest discover -s scripts -p 'test_sync_iclr2027.py' -v
-```
+node scripts/test_openreview_export.cjs
+~~~
 
-测试覆盖分页完整性、数量变化、重复 ID、非活跃 venue、真实零条结果、未知数量、检索误报、历史数据和阅读笔记保留等行为。
+Python 验证完整分页、范围清单与源快照绑定、权限、版本变化、历史数据保留及摘要/全文独立计数。导出脚本的内存测试核对官网客户端分页、字段清理、最后计数复核和错误停止，不访问真实官网。页面另经桌面、平板、手机浏览器检查搜索、分类、阅读筛选、分页、官方链接与失败显示。
 
 [返回调研页面]({{ '/iclr-2027-quantization/' | relative_url }}) · [OpenReview 原始投稿列表](https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions)

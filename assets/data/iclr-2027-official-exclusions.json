@@ -1,0 +1,969 @@
+{
+  "metadata": {
+    "source_type": "official-openreview-public-export",
+    "source_file": "iclr-2027-official-active-submissions.json",
+    "source_sha256": "5f1a2de3f9e06fccad0078949f756c116915103d433f31f39333f3c1a1a7f023",
+    "source_url": "https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions",
+    "active_venue_id": "ICLR.cc/2027/Conference/Submission",
+    "fetched_at": "2026-10-09T05:19:57.757Z",
+    "scope_reviewed_at": "2026-10-09T05:27:03Z",
+    "total_active_submissions": 42368,
+    "raw_candidate_count": 1133,
+    "excluded_count": 139,
+    "retained_candidate_count": 994,
+    "scope_suspect_count": 210,
+    "scope_context_checked_count": 210,
+    "method": "仅使用用户提供的官网完整公开 active JSON；当前 sync.candidate() 按标题、摘要、关键词初筛；对表示/tokenizer/codec 线索进行官网摘要语义清理，保护模型权重、KV、二值/SNN 数值量化，含混项保留待阅。未使用镜像或第三方摘要/排除结果。",
+    "retained_candidates_fully_verified": false,
+    "message": "官网完整公开投稿初筛与摘要范围清理结果；剩余候选尚未逐篇阅读全文确认为模型量化论文。",
+    "provenance": {
+      "origin": "official_openreview_browser_session",
+      "api_url": "https://api2.openreview.net",
+      "transport": "official_Webfield2_api_get",
+      "started_at": "2026-10-09T05:15:40.614Z",
+      "page_count": 43,
+      "public_fields_only": true,
+      "final_count_verified": true
+    },
+    "model_weight_kv_binary_audit": {
+      "Ps7rUvLZGb": "官方摘要明确对视觉 KV states 做 progressive RVQ。",
+      "I9sF2v1sOi": "官方摘要明确支持 KV 元素低于 1-bit 存储。",
+      "xoc8GGXykA": "官方摘要明确分块量化 LLM weight matrices。",
+      "NMPncFF2We": "VQ-QAT 联合学习 LLM 权重与隐式码本。",
+      "3AfnbslMtb": "官方摘要明确低比特 LLM model matrices 的 mixed-precision codebooks。",
+      "7Y0QIJSohA": "官方摘要明确 binary neural network/binary convolutions。",
+      "cmcGeC1HmI": "QuantLIF 量化 SNN 神经元输出，power-of-two codebook 支持低成本模型计算。",
+      "lmBI0rWxso": "明确压缩 LLM embedding tables（模型参数）。",
+      "ka1v0Eh0AU": "Qwen3 的 3/2/1.58-bit block-wise QAT 和权重分布。",
+      "Xra0cAevjO": "Boolean/logic gate neural network 的离散化，保守保留待阅。",
+      "D61YRmQOq6": "通用 PQ 与向量基准，模型应用不明确，保留待阅。",
+      "l09sNgBLr9": "attention keys 的 VQ/激活压缩边界待全文核验。",
+      "PL1K8viGcc": "理论实验明确含 LLM KV-cache quantization。"
+    },
+    "retained_ambiguous_or_model_scope_overrides": {
+      "cmcGeC1HmI": "QuantLIF 量化 SNN 神经元输出，power-of-two codebook 支持低成本模型计算。",
+      "aznqUxfIuv": "研究四种 4-bit LLM 模型量化方案对 agent 安全行为的影响。",
+      "mxGIkpABn7": "2–2.5 bit 激活通信和 all-reduce 量化。",
+      "NMPncFF2We": "VQ-QAT 联合学习 LLM 权重与隐式码本。",
+      "m8YL42U0m0": "在 GPTQ/LDLQ 补偿过程中重新拟合模型权重码本。",
+      "sm22EahEaf": "量化 MoE expert storage/bit-width，包含 2.25-bit expert compression。",
+      "hmcSnEcYXB": "权重 LSQ/QAT 与稀疏度及 lossless checkpoint storage。",
+      "ka1v0Eh0AU": "Qwen3 的 3/2/1.58-bit block-wise QAT 和权重分布。",
+      "lmBI0rWxso": "明确压缩 LLM embedding tables（模型参数）。",
+      "3tiANWm9Iv": "GPT-2 reconstruction objective 的固定码本理论，具体参数对象仍待全文核验。",
+      "mYDDvIglKc": "合成模型参数 post-training quantization，应用范围含混，保留待阅。",
+      "YqUjb0f1UC": "MoE router 的 VQ 参与模型运行时计算；数值压缩边界待全文核验。",
+      "SUjdBtZZ27": "adapter priors 码本涉及模型参数模式，是否数值压缩待阅。",
+      "tyflex1iqI": "VQ motor skills 与低秩模型权重更新的关系待阅。"
+    },
+    "scope_context_checked_ids": [
+      "xAVonyP1SQ",
+      "ugeUCOyVn0",
+      "Ps7rUvLZGb",
+      "JNAe5EpbjI",
+      "QB8AGDbKSy",
+      "0hKKRMK7JU",
+      "BpPvJxQxg5",
+      "2xEAiAmivy",
+      "iGrbQcsVDF",
+      "UA1HqDcG9H",
+      "MacJXyZVen",
+      "rHJLwXYerC",
+      "gLH1DRKJVv",
+      "lqqXe3gsxg",
+      "MJE81EQgGk",
+      "QPdhwnOh9a",
+      "K6mOMIOghl",
+      "rQa3MHoUQG",
+      "pKRT8nTFj6",
+      "g7rpNmtiER",
+      "35LwdG9SZy",
+      "McYjA5cHt6",
+      "bXrCVJ6zzg",
+      "XCTUKWfcP5",
+      "cmcGeC1HmI",
+      "ElYB12H9u1",
+      "81bbXpQzvh",
+      "40Arf70gfe",
+      "Ln5ZK7TChe",
+      "1tZgbtYkP3",
+      "oV9tZGWLEy",
+      "xPNBlAnYXo",
+      "lyQKZhg9aM",
+      "rrYnrso7F8",
+      "aznqUxfIuv",
+      "AhG6FcJBHt",
+      "I9sF2v1sOi",
+      "0F0TtaLoHM",
+      "Z1BrwFVJBd",
+      "odjVzbTb0X",
+      "oUnHRKuYEZ",
+      "I6qiPGhr44",
+      "L5XwCAUnZf",
+      "onh0OoRi1h",
+      "jneDXKIp5O",
+      "QJTmwyJziM",
+      "QzwrGtWD1B",
+      "RouA5nA2Ny",
+      "dAhF6NUdjU",
+      "SfB0INxHLG",
+      "DVoL8ayhwA",
+      "kdUXh3Nlfl",
+      "g6w4ffwXA6",
+      "YqUjb0f1UC",
+      "BQUQtfrb1X",
+      "tyflex1iqI",
+      "h67v30Z5SL",
+      "Df0OqvQYGI",
+      "zejU11C6Hc",
+      "7Y0QIJSohA",
+      "D2AfBRZ01K",
+      "8WqGlncZzQ",
+      "VlHmHiE5g4",
+      "BMFkVzbSsO",
+      "3ln8VFLIdc",
+      "SFwxl48Jtl",
+      "0PtLe10fb1",
+      "nEuM4oO9hI",
+      "bITW1JwxpG",
+      "SUjdBtZZ27",
+      "ILugpHmVWj",
+      "0lsa7teWtR",
+      "L5QiIRT792",
+      "XxqCqCergu",
+      "3P1hU9Qk3W",
+      "jEPxb3Qjgf",
+      "Ox5olvrFJe",
+      "nM0dMst1Yg",
+      "IzDTEuEZo8",
+      "ccVdQhHOc0",
+      "y6XtHpY3n6",
+      "1W5aP7VZOd",
+      "HXmiKD1kS0",
+      "FGVr95nHCv",
+      "HWi9uA3nEe",
+      "YFbfgStGTr",
+      "vfIATPmlVJ",
+      "ZYfgzNZN0r",
+      "321sdPH4RF",
+      "m5GbbmbVzL",
+      "FaTXdk2WIv",
+      "NLc8KJzXBK",
+      "q78689yLxv",
+      "axCkvgjF57",
+      "mxGIkpABn7",
+      "uh426x3DWx",
+      "xoc8GGXykA",
+      "TlO7NHkqAg",
+      "kUJHsGLsyH",
+      "aGfpzml2qT",
+      "5T9scPdNLE",
+      "LeP7I1JSPm",
+      "edcnWg2WAV",
+      "5wglh9H9xl",
+      "9xeLf4RXlj",
+      "xcaXcND0dQ",
+      "IwvIHWajmN",
+      "wva13wlOMY",
+      "XBZnOHUDxC",
+      "V1BxlV2FAC",
+      "JJx6fuz0tE",
+      "CzwnhuTaBw",
+      "gI40n3fdJ6",
+      "60nOXGruxP",
+      "zpXMAB7b1x",
+      "p8U1qWYmG2",
+      "NMPncFF2We",
+      "m8YL42U0m0",
+      "qdQPkSaG8B",
+      "f6w4Ean3J0",
+      "t5Rr4kcINa",
+      "wY3Ttt2nuY",
+      "QoOG74NKO9",
+      "NPhDWygvtu",
+      "qlbMRilloi",
+      "Lg1FLMXfR8",
+      "5ZId9onlW5",
+      "gpqH98THyv",
+      "gLTwr6wVq8",
+      "ihtmCb51sE",
+      "er2ddAsUMz",
+      "SvvZIdo941",
+      "e7DIU2hXBJ",
+      "Zinxc0GU6h",
+      "8o38qsTBNE",
+      "6Y6ZbdvW7Q",
+      "sm22EahEaf",
+      "g7toyENNGH",
+      "R8obaNz0uu",
+      "mXgwCt8t7X",
+      "8q6NKGfAFZ",
+      "R1yyxR3kIQ",
+      "YQ0Q2nxTD0",
+      "ObTlBT032Y",
+      "VDrqHWzZ3I",
+      "56DlGfzPIB",
+      "WbDQOU4X2w",
+      "lWUM9JOGww",
+      "0bsGLcFOQt",
+      "h89pC2CMDo",
+      "yDwwnEdFu0",
+      "3AfnbslMtb",
+      "qhAZfg9j2q",
+      "f92skggSl2",
+      "0D7ikGwiUp",
+      "wbey6FqqUN",
+      "f1nZgOniEs",
+      "Me4aIRmI32",
+      "H2hUJf5Djl",
+      "V2B53OQXU5",
+      "eev2PiUqvA",
+      "3tiANWm9Iv",
+      "hmcSnEcYXB",
+      "mYDDvIglKc",
+      "049lqWfTaP",
+      "cDX4HofspM",
+      "9kGZM8yCzA",
+      "YvrtNbSjDZ",
+      "cCw8Ca0yEx",
+      "hJ9kQATIq3",
+      "r0uyAXBe0E",
+      "gGu3JNZGa5",
+      "Cb794G8ZzP",
+      "W5kL3vlfvt",
+      "pkbH50xGeO",
+      "QztV2AB7oQ",
+      "wcQVK7UR0H",
+      "lhzc2cZxzb",
+      "aYNRC1ULAJ",
+      "GBrSknDrcb",
+      "KzObdwhaKi",
+      "ISh3jyOh0e",
+      "bOzJySQLDS",
+      "c62T490HwA",
+      "NR8lYUNnka",
+      "kY0EvTgJsL",
+      "MfGbNWGAaO",
+      "ax56hvx2w2",
+      "1mmsBjYOlx",
+      "D61YRmQOq6",
+      "mtqSFJTgJC",
+      "hb8ZpFcUzY",
+      "Mt7JawGQgl",
+      "lmBI0rWxso",
+      "QKkJNRYyZ9",
+      "dmxUPwR9YV",
+      "dGNtOmkFye",
+      "kNBGZoi3NC",
+      "1fjO9ha1Ep",
+      "Pwx4s1dJ46",
+      "gC6mdwY8O7",
+      "YJ8Ar8qmTF",
+      "WMtfpBzuVb",
+      "o9aMmEdpyD",
+      "Xra0cAevjO",
+      "GjbqKYphGW",
+      "PL1K8viGcc",
+      "vBW7hBaTsu",
+      "ka1v0Eh0AU",
+      "l09sNgBLr9"
+    ]
+  },
+  "exclusions": [
+    {
+      "id": "xAVonyP1SQ",
+      "title": "VQ-DSGAN: Mitigating Latent Representation Collapse via Dual-Space Discrimination",
+      "reason": "视觉 VQ tokenizer 的潜表示/codebook collapse 研究，非模型数值精度量化。"
+    },
+    {
+      "id": "ugeUCOyVn0",
+      "title": "FlowTalker: Causal Streaming Audio-Driven 3D Head Animation via Factorized Motion Modeling with Rectified Flow",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "JNAe5EpbjI",
+      "title": "NeuroDETR: Multiscale Discrete Spatiotemporal Tokenization for Asynchronous EEG Event Detection",
+      "reason": "量化 EEG 事件的时空表示/token；attention 用于特征提取，不是模型数值精度压缩。"
+    },
+    {
+      "id": "QB8AGDbKSy",
+      "title": "Recover Semantics, Not Codewords: An Asymmetric Paradigm for Vector-Quantized JSCC",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "0hKKRMK7JU",
+      "title": "SartorAI: Multimodal Garment Pattern Generation and Editing with Tokenized Geometry",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "BpPvJxQxg5",
+      "title": "FiT: from market language to market decisions",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "2xEAiAmivy",
+      "title": "Efficient Generative Image Compression with Quantized Latents Refinement",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "iGrbQcsVDF",
+      "title": "Joint Semantic-Channel Coding and Modulation for Generative Image Transmission",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "UA1HqDcG9H",
+      "title": "Joint Fidelity and Perceptual Modulation via Adaptive Corrections for Implicit-Motion Neural Video Compression",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "MacJXyZVen",
+      "title": "ResARC: Residual-Aware AutoRegressive Coding for Ultra-Low Bitrate Image Compression",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "gLH1DRKJVv",
+      "title": "Mapping Entropy: A Distributional Information-Theoretic Probe for LLM Manifold Structure",
+      "reason": "VQ 用于 LLM 表征分区与相似性探针，非模型权重/运行时张量数值压缩。"
+    },
+    {
+      "id": "lqqXe3gsxg",
+      "title": "VQ-LLMTS: Vector Quantization-based Large Language Models for Time Series Forecasting and Understanding",
+      "reason": "RVQ 离散化输入时间序列为 temporal vocabulary；保持 LLM backbone，非权重量化。"
+    },
+    {
+      "id": "rQa3MHoUQG",
+      "title": "MarkovTS: Pretrained State–Transition Representations for Zero-Shot Time Series Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "g7rpNmtiER",
+      "title": "Predicting Token-Level Watermark Retention from Unwatermarked Images for Autoregressive Image Models",
+      "reason": "视觉 tokens 的 watermark retention 评估，不研究模型数值精度量化。"
+    },
+    {
+      "id": "35LwdG9SZy",
+      "title": "LEMO: LLM-Guided Fine-Grained Emotion Editing for Speech-Driven Facial Motion Generation",
+      "reason": "量化面部动作 blendshape activation 描述符；activation 指面部动作强度。"
+    },
+    {
+      "id": "McYjA5cHt6",
+      "title": "CUDiT: Cubic Uniform Diffusion for Efficient Generation of High-Dimensional Discrete Visual Representations",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "bXrCVJ6zzg",
+      "title": "ProtoFlow: Prototype-Guided Flow Matching for Multivariate Time Series Forecasting",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "XCTUKWfcP5",
+      "title": "Can Discrete Tokens Serve as Semantically Lossless Representations of Visual Signals?",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "ElYB12H9u1",
+      "title": "scPathVQ: A Pathway-Guided Discrete Latent Interface for Single-Cell Understanding and Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "81bbXpQzvh",
+      "title": "VideoRAE: Taming Video Foundation Models for Generative Modeling via Representation Autoencoders",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "40Arf70gfe",
+      "title": "DisParQ: Self-Supervised Part Concepts for Interpretable Vision Foundation Models",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "Ln5ZK7TChe",
+      "title": "Guided End-to-End AutoRegression for Image Synthesis",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "1tZgbtYkP3",
+      "title": "Visual-to-M/EEG Brain Encoding with Time-Frequency Dual-Path Finite Scalar Quantization",
+      "reason": "FSQ 离散化 M/EEG 数据 latent tokens，目标为脑信号重建与预测。"
+    },
+    {
+      "id": "xPNBlAnYXo",
+      "title": "CodePaint: Generating IC Layouts in a Learned Discrete Space",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "lyQKZhg9aM",
+      "title": "Coverage-Gated Coalitional Coding for Multi-Modal Discrete Tokens",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "rrYnrso7F8",
+      "title": "GSTAR: Group-Scaled Token Capacity for Deeply Compressed Autoregressive Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "0F0TtaLoHM",
+      "title": "Beyond Regression: Probabilistic Ranking for Financial Forecasting",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "Z1BrwFVJBd",
+      "title": "Learning Discrete Representations via Mutually Exclusive Random Variables",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "odjVzbTb0X",
+      "title": "IMAGINE IN DISCRETE SPACE: DISCRETE VISUAL LATENT REASONING FOR VIDEO EVENT PREDICTION",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "I6qiPGhr44",
+      "title": "FLAT-SID: Resampling Image and Text into Flexible-Length Aligned Semantic IDs via Learned Step Quantization",
+      "reason": "LSQ/QAT 用于 Semantic IDs latent tokenizer，非模型参数或运行时数值精度。"
+    },
+    {
+      "id": "L5XwCAUnZf",
+      "title": "Learn Before You Fuse: Preserving Complementarity in Generative Recommendation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "jneDXKIp5O",
+      "title": "MyoCodec: A Streaming Neural Codec for Electromyography",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "QzwrGtWD1B",
+      "title": "MoDeFold: Modal-Degradation Joint Unfolding for All-in-One Medical Image Restoration",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "SfB0INxHLG",
+      "title": "CALR: Continuous Anchored Latent Reasoning via Render-of-Thought Compression",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "DVoL8ayhwA",
+      "title": "Separating Free Token Geometry from Raw Feature-Energy Routing: An OAPC Diagnostic Study",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "kdUXh3Nlfl",
+      "title": "Taming the Entropy Cliff: Variable Codebook Size Quantization for Autoregressive Visual Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "g6w4ffwXA6",
+      "title": "Autoregressive Visual Generation Needs a Prologue",
+      "reason": "视觉生成 prologue tokens 与 tokenizer 的表征设计。"
+    },
+    {
+      "id": "BQUQtfrb1X",
+      "title": "VOLT: 3D Medical Foundation Model for Volumetric Latent Tokenization",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "h67v30Z5SL",
+      "title": "When Learned Compression Loses Identity: Stage-Resolved Diagnostics for Exact-Entity Conditional Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "Df0OqvQYGI",
+      "title": "Beyond Node Tokens: Motifs as Structural Context for Graph Tokenization",
+      "reason": "量化 graph node tokens/motif vocabulary，用于图数据表示。"
+    },
+    {
+      "id": "zejU11C6Hc",
+      "title": "DiJEPA: Self-Supervised Learning via Diffusion in Latent Space",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "D2AfBRZ01K",
+      "title": "TokenPrint: A Calibrated Token-Space Fingerprint for Language-Model Provenance",
+      "reason": "模型 provenance 指纹；INT8/INT4 仅为指纹稳健性测试。"
+    },
+    {
+      "id": "8WqGlncZzQ",
+      "title": "Where codecs draw the line: allocation profiles for speech tokenisers",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "VlHmHiE5g4",
+      "title": "What Does a Skill Vocabulary Cost? A Closed-Loop Decomposition over Demonstrated Motions",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "BMFkVzbSsO",
+      "title": "NeuroWeave: Frequency-Factorized Multi-Slot Discrete Targets\\\\ for Masked EEG Pre-Training",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "3ln8VFLIdc",
+      "title": "Tree-VQ: Progressive Image Compression from Pretrained Vector Quantizers",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "SFwxl48Jtl",
+      "title": "TIDE: Selective State Exposure for Low-Budget Robot Transfer from Passive Video",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "0PtLe10fb1",
+      "title": "The Update Bottleneck: Re-examining Joint Training for Semantic-ID-Based Generative Recommendation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "0lsa7teWtR",
+      "title": "Same Rankings, Different Semantic IDs: Optimization Non-Invariance in Tokenization",
+      "reason": "推荐 Semantic IDs tokenizer 的优化；gradient 是分析量，不做梯度低精度存储。"
+    },
+    {
+      "id": "L5QiIRT792",
+      "title": "FlowCoMotion: Text-to-Motion Generation via Token–Latent Flow Modeling",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "XxqCqCergu",
+      "title": "Semantic ID Learning for Safe Medication Recommendation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "3P1hU9Qk3W",
+      "title": "ADT: All-Atom Diffusion Tokenizer for 3D Molecular Structures",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "jEPxb3Qjgf",
+      "title": "PhaseLock: Phase-Structured Tokenization for Watermarking Periodic Time Series",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "Ox5olvrFJe",
+      "title": "Agreeing on Allocation: Shared-Prefix Selective Adaptation for Frozen Speech Codecs",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "nM0dMst1Yg",
+      "title": "MoGeFlow: Flowing Through Motion Codebook Geometry for Text-to-Motion Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "y6XtHpY3n6",
+      "title": "Does Positional Encoding Matter for Semantic ID-based Generative Recommendation?",
+      "reason": "推荐 Semantic IDs 的位置编码研究；RQ 用于 item 数据 tokens。"
+    },
+    {
+      "id": "YFbfgStGTr",
+      "title": "BrainCodes: A Lightweight EEG Foundation Model over Discrete Neural Codes",
+      "reason": "EEG 数据的 neural tokenizer，非模型参数或运行时数值精度量化。"
+    },
+    {
+      "id": "vfIATPmlVJ",
+      "title": "Audio Tokens as a Budgeted Resource: Marginal-Utility Allocation for Scalable Audio Representations",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "321sdPH4RF",
+      "title": "Tuning Multimodal Large Language Model for Microstructure Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "m5GbbmbVzL",
+      "title": "ActionPiece: Rethinking Action Tokenization for Autoregressive Vision-Language-Action Models",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "FaTXdk2WIv",
+      "title": "RICH: Preserving Intra-Class Semantic Order in Binary Codes Learned from Coarse Labels",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "NLc8KJzXBK",
+      "title": "Protecting Images from Autoregressive Editing via Token Discrepancy Maximization",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "q78689yLxv",
+      "title": "HUG: Learning and Transferring Visual Tokens for Unified Image Understanding and Generation",
+      "reason": "视觉 tokenizer 与 visual vocabulary transfer，非 LLM 权重量化。"
+    },
+    {
+      "id": "axCkvgjF57",
+      "title": "Not All Recovered Symbols Are Equal: Reliability-Aware Watermark Verification for Autoregressively Generated Images",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "uh426x3DWx",
+      "title": "UFC: Universal FocalCodec for Ultra-low Bitrate Audio Compression",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "kUJHsGLsyH",
+      "title": "RetVDQ: Retrieval-Aware Variable-Depth Residual Quantization for Visual Document Retrieval",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "5T9scPdNLE",
+      "title": "Hydra: A Navigation World Action Model with Discrete Latent Planning and Continuous Flow-Matching Execution",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "LeP7I1JSPm",
+      "title": "Factorized Semantic IDs for Controllable Coarse-to-Fine Outfit Retrieval",
+      "reason": "catalog item 的 role/color/compatibility IDs 与检索索引。"
+    },
+    {
+      "id": "5wglh9H9xl",
+      "title": "Finite Clinical Programs: An Inspectable Discrete Interface for Radiology Report Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "9xeLf4RXlj",
+      "title": "Residual Trajectory Distillation for Generative Retrieval",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "xcaXcND0dQ",
+      "title": "VENICE: UNIVERSAL SPECTRAL RATE-DISTORTION QUANTIZATION FRAMEWORK FOR VECTOR SEARCH",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "wva13wlOMY",
+      "title": "Multimodal Flow: Unified Flow Modeling of Language and Vision in Embedding Spaces",
+      "reason": "连续多模态生成；视觉 quantization 仅为被对比的数据表示瓶颈。"
+    },
+    {
+      "id": "JJx6fuz0tE",
+      "title": "DVD: Dynamic Vector Decoding for Efficient MLLM-based Perception",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "gI40n3fdJ6",
+      "title": "Joint Multi-View Latent Actions for Robust Vision-Language-Action Learning",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "60nOXGruxP",
+      "title": "Composable Crystals: Controllable Materials Discovery via Concept Learning",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "p8U1qWYmG2",
+      "title": "Internalizing Dense Recommendation Knowledge for Generative Recommendation via Progressive Transfer",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "qdQPkSaG8B",
+      "title": "GRAPHVQ: STRUCTURE-AWARE AUTOREGRESSIVE DECODING OVER CONTEXT-QUANTIZED GRAPH TOKENS",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "f6w4Ean3J0",
+      "title": "Beyond Scalar Assignments: Geometric Binary Quantization for Visual Tokenization",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "wY3Ttt2nuY",
+      "title": "PepDiT: Structure-Tokenized Diffusion Transformers for Target-Spot Driven Antimicrobial Peptide Generation",
+      "reason": "量化多肽 3D 结构几何 tokens，非 diffusion 模型参数量化。"
+    },
+    {
+      "id": "QoOG74NKO9",
+      "title": "VP-VAE: Rethinking Vector Quantization via Adaptive Vector Perturbation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "NPhDWygvtu",
+      "title": "RiCoTA: Riemannian Companding Token Autoencoder",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "qlbMRilloi",
+      "title": "VideoFace: Learning a Discrete Motion Space for Sparse-to-Dense Facial Motion Reconstruction",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "Lg1FLMXfR8",
+      "title": "Order-Marginalized Generation of Semantic and Collaborative IDs for Generative Recommendation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "5ZId9onlW5",
+      "title": "Spend Bits Where the Pattern Bends: Corner-Based Coding of Sewing-Pattern Boundaries",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "gLTwr6wVq8",
+      "title": "Learning to Search for Executable Patternmaking from Certified Programs",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "ihtmCb51sE",
+      "title": "Reconstruction Wastes Rate: Selective Prediction over Code Targets for Biosignal Foundation Models",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "er2ddAsUMz",
+      "title": "Item Representations Matter: Bridging Hard Semantic IDs and Soft Prototype Mixtures for Generative Retrieval",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "SvvZIdo941",
+      "title": "Learning a PRECISE language for small-molecule binding",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "e7DIU2hXBJ",
+      "title": "SimPersona: Learning Discrete Buyer Personas from Raw Clickstreams for Grounded E-commerce Agents",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "Zinxc0GU6h",
+      "title": "Scale-aware Identifiers for Generative Recommendation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "8o38qsTBNE",
+      "title": "Attentive Vector Quantization",
+      "reason": "对图像 latent tokens 进行 VQ/codebook 学习，非 attention 激活或 KV 数值量化。"
+    },
+    {
+      "id": "6Y6ZbdvW7Q",
+      "title": "Compositional Discrete Forecasting with Orthogonal Frequency-Band Codebooks",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "g7toyENNGH",
+      "title": "CLEAN-SPEECH TRANSPARENCY IS NOT DEPLOYMENT TRANSPARENCY: PREDICTING AND REPAIRING THE WORDS NEURAL AUDIO CODECS LOSE ON DEGRADED SPEECH",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "R8obaNz0uu",
+      "title": "Past2Next: Past Action Conditioning Policy with Data-Augmented Tokenization",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "mXgwCt8t7X",
+      "title": "TopAct: Topology-Aware Action Tokens for Autoregressive Robot Policies",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "8q6NKGfAFZ",
+      "title": "A Discrete World Exploration Model with Superior Action Alignment",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "R1yyxR3kIQ",
+      "title": "Selective Coarse-Layer Discrete Distillation for Continual EEG Pretraining",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "YQ0Q2nxTD0",
+      "title": "Hyperbolic Representation Learning for Multimodal-to-Unimodal Transfer in EEG-based Auditory Attention Decoding",
+      "reason": "EEG 与辅助生理信号的共享表示码本，用于 auditory-attention 分类。"
+    },
+    {
+      "id": "ObTlBT032Y",
+      "title": "Consolidating Specialist Representations into a Shared World Model",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "VDrqHWzZ3I",
+      "title": "PointSTAR: Continuous Next-Scale Autoregressive Generation for 3D Point Cloud",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "56DlGfzPIB",
+      "title": "DisAb: Self-Consistent Antibody Sequence--Structure Co-Design with Multi-Chain All-Atom Discrete Diffusion",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "WbDQOU4X2w",
+      "title": "Scaling Collider Event Generation with Residual-Quantized Tokens",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "0bsGLcFOQt",
+      "title": "High-Fidelity Song Generation with Joint Discrete and Continuous Modeling",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "h89pC2CMDo",
+      "title": "Next Concept Prediction Leads to Stronger and More Scalable Language Models",
+      "reason": "VQ 学习 hidden-state concept vocabulary，用于语义预训练，不是低精度模型计算。"
+    },
+    {
+      "id": "yDwwnEdFu0",
+      "title": "MoTween: In-Betweening for Part-wise Text-to-Motion Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "qhAZfg9j2q",
+      "title": "AC-Scoreq: Amplitude-Coupled Scalable Complex 2-bit Residual Quantization for Efficient Vector Retrieval",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "0D7ikGwiUp",
+      "title": "Decoupled Multi-Codebook Quantization",
+      "reason": "多码本 VQ 用于数据向量重建/检索表示，未涉及模型权重或 KV 数值压缩。"
+    },
+    {
+      "id": "wbey6FqqUN",
+      "title": "Tokenize the Physics, Not the Pixels: TessTok and Fold-Flow Quantization for Material Microstructures",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "f1nZgOniEs",
+      "title": "GraphToken: A General Graph Vocabulary for Text-attributed Graph Foundation Models",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "Me4aIRmI32",
+      "title": "When Does Quantization Form Reusable Concepts?",
+      "reason": "分析表示 tokens 是否形成可复用 concepts，非模型参数/运行时数值量化。"
+    },
+    {
+      "id": "H2hUJf5Djl",
+      "title": "Fast Multivariate Time Series Generation via Sampling from a Spherical Manifold",
+      "reason": "连续 spherical manifold 时序生成；明确不使用 VQ，相关术语仅为背景对比。"
+    },
+    {
+      "id": "V2B53OQXU5",
+      "title": "Learned Image Compression with Vector Quantization-Based Prior Modeling",
+      "reason": "图像 codec 的 latent prior/码率编码，非模型数值精度量化。"
+    },
+    {
+      "id": "eev2PiUqvA",
+      "title": "Target First, Background Later: Region-Progressive Latent Compression for Satellite Image Transmission",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "049lqWfTaP",
+      "title": "TRANSFERRING ACTIVITY PROTOTYPES FOR ZERO- SHOT CROSS-CITY MOBILITY GENERATION",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "cDX4HofspM",
+      "title": "Coverage-Aware Reasoning with Medical Tokens for Diagnosis Prediction",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "9kGZM8yCzA",
+      "title": "BioSQ: Frequency-Aware Neural Compression of Biosignals",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "cCw8Ca0yEx",
+      "title": "LaFree World Model: Label-Free Pretraining for Action-Conditioned JEPA World Models",
+      "reason": "quantized latent actions 为 world-model 数据/动作表示。"
+    },
+    {
+      "id": "r0uyAXBe0E",
+      "title": "Real-Time Sign Language Translation by Prototype-Assisted Causal Streaming",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "gGu3JNZGa5",
+      "title": "A discrete generative model of neuronal spiking activity on microelectrode arrays",
+      "reason": "量化实验神经脉冲数据的时空 motifs，非 SNN 模型参数/计算量化。"
+    },
+    {
+      "id": "W5kL3vlfvt",
+      "title": "How Much of Your Codebook Survives Denoising?",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "pkbH50xGeO",
+      "title": "Visual Tokenization with Latent Anchored Binary Quantization",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "lhzc2cZxzb",
+      "title": "Beyond Reconstruction: Understanding Discrete Representations for Autoregressive Wearable Sensor Data Generation",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "aYNRC1ULAJ",
+      "title": "Generative Retrieval for Reverse Target Fishing with a Proteome-Scale Benchmark",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "GBrSknDrcb",
+      "title": "TRACE: Temporal Risk Assessment and Concept Editing for Safer Language Generation",
+      "reason": "activation concept 识别与 safety steering，未压缩激活的数值精度或存储。"
+    },
+    {
+      "id": "KzObdwhaKi",
+      "title": "Steering intonational tunes in text-to-speech synthesis",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "bOzJySQLDS",
+      "title": "Learning Behavioural Abstractions For Programmatic Policies",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "c62T490HwA",
+      "title": "When do discrete actions make good continuous controllers?",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "ax56hvx2w2",
+      "title": "Subdivision Measure Matching: Generative Modeling in Integral Form",
+      "reason": "生成数据域的递归细分与 measure matching，非模型数值精度量化。"
+    },
+    {
+      "id": "mtqSFJTgJC",
+      "title": "LEXA: Learning a lexicon of gene-programme states from single-cell transcriptomes",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "hb8ZpFcUzY",
+      "title": "Exploring Token-Space Manipulation in Latent Audio Tokenizers",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "QKkJNRYyZ9",
+      "title": "Asymptotically Optimal Quantizer-Guided Sinkhorn Alignment for Mitigating Codebook Collapse",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "dmxUPwR9YV",
+      "title": "Role-GAD: Role-Aware Graph Anomaly Detection via Dual-Codebook Vector Quantization",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "kNBGZoi3NC",
+      "title": "ActWeave: Efficient Action Generation for Vision-Language-Action Models via Hierarchical Autoregression and Wavefront Decoding",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "1fjO9ha1Ep",
+      "title": "KiRoSe: Using Kinematic Data for Efficient Segmentation of Robot Demonstrations",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "gC6mdwY8O7",
+      "title": "SAuBER: Neural Audio Coding via a Learnable MDCT Tokenizer and Energy-Based Refinement",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "YJ8Ar8qmTF",
+      "title": "Dual-Process Atomic Skill Learning: Decoupling Semantic Reasoning and Real-Time Control",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "WMtfpBzuVb",
+      "title": "StimEM: Stimulus-Conditioned Masked Modeling for Eye-Movement Representation Learning",
+      "reason": "FSQ 量化眼动波形的 ocular tokenizer。"
+    },
+    {
+      "id": "GjbqKYphGW",
+      "title": "Act on the Low Frequencies: Prefix Execution of Vision-Language-Action Chunks",
+      "reason": "官网摘要中的量化用于数据向量、离散 token、潜表示或 codec 编码；研究目标不属于模型权重、激活数值精度、KV 缓存、梯度/优化器状态的低精度量化。"
+    },
+    {
+      "id": "vBW7hBaTsu",
+      "title": "DQ-PAD: Discriminative Quantized Prototype Alignment for Adversarial Patch Defense",
+      "reason": "VQ-VAE 图像表示原型用于 patch detection，非检测器参数数值量化。"
+    }
+  ]
+}

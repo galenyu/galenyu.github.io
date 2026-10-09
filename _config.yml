@@ -29,3 +29,11 @@ exclude:
   - Gemfile
   - Gemfile.lock
   - README.md
+  - iclr-2027-official-active-submissions.json
+  - iclr-2027-official-active-submissions.json:Zone.Identifier
+  - iclr-2027-official-papers.zip
+  - iclr-2027-official-papers.zip:Zone.Identifier
+  - iclr-2027-six-official-papers.zip
+  - iclr-2027-six-official-papers.zip:Zone.Identifier
+  - assets/data/iclr-2027-reading-notes.json
+  - assets/data/iclr-2027-mirror-exclusions.json

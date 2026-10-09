@@ -19,15 +19,20 @@ Open http://localhost:4000. For a production build, run `bundle exec jekyll buil
 - `_posts/`: dated writing; `/writing/`: article index.
 - `iclr-2027-quantization.html`: Chinese submission survey with search, research direction filters, and source status.
 - `assets/data/iclr-2027-quantization.json`: auditable official-source snapshot.
-- `assets/data/iclr-2027-reading-notes.json`: sourced public full-text notes, third-party snapshot candidates, submission evidence, and limited cross-paper observations.
+- `assets/data/iclr-2027-official-exclusions.json`: exclusions reviewed against official abstracts, tied to the original export SHA256.
 - `scripts/sync_iclr2027.py`: public OpenReview synchronization, integrity checks, and validated export import.
+- `/tools/openreview-export/`: copyable official-browser export helper; runs on the normal OpenReview page and keeps account/session information out of exports.
 - `docs/iclr-2027-survey.md`: data scope, update instructions, and review workflow (also published on the site).
 
-The survey distinguishes active submissions, keyword candidates, and papers whose full text has been reviewed. Failed access is displayed as unknown data, never a zero-paper result. The official snapshot records OpenReview's HTTP 403 verification requirement. A separate dataset includes real public full-text notes and automatic candidates from a pinned third-party public snapshot. Submission evidence distinguishes author declarations from mirror associations; current OpenReview active status remains unverified. Snapshot candidates have no invented summaries or raw abstracts. Conference-wide counts remain unknown until a verified complete public export is available.
+The survey uses only official OpenReview records. The October 9, 2026 browser export contains 42,368 unique public active submissions: 1,133 keyword candidates, 139 scope exclusions, and 994 retained candidates. Six representative papers have Chinese readings of their actual official submission PDFs, with table/page evidence; twelve more have official-abstract readings. Abstract readings and verified original-PDF readings are counted separately. Failed refreshes retain the last official snapshot and show current counts as unknown.
+
+The 90 MB raw export and downloaded PDF ZIPs stay local, outside Git and the generated site. Earlier preprint/mirror research files remain in the repository as an archive and are excluded from the site.
 
 ```bash
 python3 scripts/sync_iclr2027.py
+python3 scripts/sync_iclr2027.py --input-json iclr-2027-official-active-submissions.json --scope-exclusions assets/data/iclr-2027-official-exclusions.json
 python3 -m unittest discover -s scripts -p 'test_sync_iclr2027.py' -v
+node scripts/test_openreview_export.cjs
 ```
 
 ## Design and attribution

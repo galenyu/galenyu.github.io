@@ -1,0 +1,49 @@
+---
+layout: page
+title: OpenReview 官方投稿导出
+lang: zh-CN
+permalink: /tools/openreview-export/
+sitemap: false
+---
+<p>利用已经能显示论文列表的 OpenReview 正常浏览器会话，直接从官方 API 导出 ICLR 2027 的公开活跃投稿。此页面仅提供脚本；数据请求在你的 OpenReview 页面运行。</p>
+<ol>
+  <li>点击下方“复制导出脚本”。</li>
+  <li>切回能看到论文列表的 <a href="https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions" target="_blank" rel="noopener noreferrer">OpenReview 官方页面</a>，按 <strong>F12</strong> 打开开发者工具，选择 <strong>Console／控制台</strong>。</li>
+  <li>粘贴脚本并按 Enter，保持该页打开，等待下载 <code>iclr-2027-official-active-submissions.json</code>。下载完成后告诉我。</li>
+</ol>
+<p>脚本只对 OpenReview 官方 API 发出读取请求，逐页检查投稿总数、唯一 ID、活跃状态和公开字段。不读取或导出账号密码、Cookie、令牌、私有评论或作者身份字段。遇到验证或分页错误时停止，不下载残缺文件。</p>
+<button type="button" id="export-copy" disabled style="padding:11px 18px;border:0;border-radius:7px;background:#285ee7;color:white;font:inherit;cursor:pointer">正在载入脚本…</button>
+<a href="{{ '/assets/js/openreview-export.js' | relative_url }}" style="margin-left:15px">查看脚本文件</a>
+<p id="export-message" role="status" aria-live="polite"></p>
+<details><summary>查看完整脚本</summary><textarea id="export-code" readonly aria-label="官方导出脚本" style="box-sizing:border-box;width:100%;height:420px;margin-top:12px;font:12px/1.6 monospace;white-space:pre"></textarea></details>
+<h2 id="official-pdfs">下载六篇代表论文的官方原稿</h2>
+<p>完整投稿 JSON 已导入后，可以继续取得 Softmax Reparameterization、Chameleon、HeadGuard、QuantMLA、JustQuant 和 AYOT 的投稿 PDF，用于核对正文、表格与附录。</p>
+<ol>
+  <li>点击“复制官方 PDF 脚本”，在同一个正常 OpenReview 官方页面的 Console 粘贴执行。</li>
+  <li>等待下载 <code>iclr-2027-six-official-papers.zip</code>，把文件放到当前项目根目录。</li>
+</ol>
+<p>脚本先核对六篇官方 ID、公开权限、活跃状态和原稿路径，再从官网逐篇下载，生成含文件校验值的 ZIP。它不提取账号或会话信息；任何一篇遇到验证、版本变化或返回非 PDF 内容时停止，不生成残缺压缩包。</p>
+<button type="button" id="pdf-export-copy" disabled style="padding:11px 18px;border:0;border-radius:7px;background:#285ee7;color:white;font:inherit;cursor:pointer">正在载入 PDF 脚本…</button>
+<a href="{{ '/assets/js/openreview-export-pdfs.js' | relative_url }}" style="margin-left:15px">查看 PDF 脚本文件</a>
+<p id="pdf-export-message" role="status" aria-live="polite"></p>
+<details><summary>查看完整 PDF 脚本</summary><textarea id="pdf-export-code" readonly aria-label="官方原稿导出脚本" style="box-sizing:border-box;width:100%;height:420px;margin-top:12px;font:12px/1.6 monospace;white-space:pre"></textarea></details>
+<p><a href="{{ '/iclr-2027-quantization/' | relative_url }}">返回调研页面</a> · <a href="https://docs.openreview.net/how-to-guides/data-retrieval-and-modification/how-to-get-all-notes-for-submissions-reviews-rebuttals-etc" target="_blank" rel="noopener noreferrer">官方获取投稿文档</a></p>
+<script>
+(() => {
+  const configure = (prefix, url, label) => {
+  const button = document.getElementById(prefix + '-copy');
+  const code = document.getElementById(prefix + '-code');
+  const message = document.getElementById(prefix + '-message');
+  fetch(url)
+    .then(response => { if (!response.ok) throw new Error(); return response.text(); })
+    .then(text => { code.value = text; button.disabled = false; button.textContent = label; })
+    .catch(() => { button.textContent = '脚本暂未载入'; message.textContent = '请通过“查看脚本文件”读取并复制。'; });
+  button.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(code.value); message.textContent = '已复制。请切回 OpenReview 官方页面的 Console，粘贴并按 Enter。'; }
+    catch (_) { code.parentElement.open = true; code.focus(); code.select(); message.textContent = '请按 Ctrl+C 复制已选中的脚本。'; }
+  });
+  };
+  configure('export', {{ '/assets/js/openreview-export.js' | relative_url | jsonify }}, '复制导出脚本');
+  configure('pdf-export', {{ '/assets/js/openreview-export-pdfs.js' | relative_url | jsonify }}, '复制官方 PDF 脚本');
+})();
+</script>
