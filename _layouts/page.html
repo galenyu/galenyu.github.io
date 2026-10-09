@@ -1,7 +1,7 @@
 ---
 layout: default
 ---
-<article>
-  <header><h1><a href="{{ page.url | relative_url }}">{{ page.title }}</a></h1></header>
-  {{ content }}
+<article class="prose-page site-container">
+  <header class="prose-heading"><p class="eyebrow">Galen Yu · Personal notes</p><h1>{{ page.title | escape }}</h1>{% if page.description %}<p class="page-lead">{{ page.description | escape }}</p>{% endif %}</header>
+  <div class="prose">{{ content }}</div>
 </article>

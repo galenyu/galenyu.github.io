@@ -1,14 +1,8 @@
 ---
 layout: default
 ---
-
-<article>
-  {% include meta.html post=page %}
-  {{ content }}
-  {% if page.comments != false and site.comments.isso or site.comments.disqus %}
-    <hr>
-    {% if site.comments.isso_domain %}<div id="isso-thread"></div>{% endif %}
-    {% if site.comments.disqus_shortname %}<div id="disqus_thread"></div>{% endif %}
-    <noscript>Please enable JavaScript to view comments.</noscript>
-  {% endif %}
+<article class="prose-page site-container">
+  <header class="prose-heading"><a class="eyebrow" href="{{ '/writing/' | relative_url }}">← Back to writing</a><h1>{{ page.title | escape }}</h1><div class="post-meta"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: '%B %d, %Y' }}</time>{% for category in page.categories %}<span>{{ category | escape }}</span>{% endfor %}</div></header>
+  <div class="prose">{{ content }}</div>
+  {% if page.comments != false %}{% if site.comments.isso_domain %}<div id="isso-thread"></div>{% endif %}{% if site.comments.disqus_shortname %}<div id="disqus_thread"></div>{% endif %}{% endif %}
 </article>

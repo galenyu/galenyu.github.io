@@ -1,99 +1,36 @@
----
-title: "About"
-permalink: "/about/"
-layout: page
----
+# Galen Yu · Personal website
 
-## Installation
+A Jekyll personal website for research interests, writing, and an ICLR 2027 model quantization submission survey.
 
-Just fork this [repository](https://github.com/niklasbuschmann/contrast) and adjust the `_config.yml` to use with [Github Pages](https://pages.github.com/) and your page is done.
+## Local preview
 
-## Features
+Ruby and Bundler are required. From the repository root:
 
- - supports dark mode on macOS Mojave
- - optional sidebar
- - MathJax support
- - no external ressources
- - included archive page
- - supports pagination
- - feed generation
- - responsive
- - syntax highlighting
- - supports comments via [disqus](https://disqus.com/) or [isso](http://posativ.org/isso/)
-
-## Based on
-
-- [Hyde](https://github.com/poole/hyde)
-- [Minima](https://github.com/jekyll/minima)
-- [Lagrange](https://github.com/LeNPaul/Lagrange)
-- [Font Awesome](http://fontawesome.io/)
-- [KaTeX](https://katex.org/)
-- [Pygments](https://github.com/richleland/pygments-css)
-
-## Installation (jekyll-remote-theme method)
-
-You can use this theme with the `jekyll-remote-theme` plugin. Just create an empty repo, copy over the `index.html` file and add this to your `_config.yml`:
-
-```yaml
-remote_theme: niklasbuschmann/contrast@v2.11
-
-plugins:
-  - jekyll-remote-theme
+```bash
+bundle install
+bundle exec jekyll serve
 ```
 
-Note: to enable icons you also need to copy over the `_data` folder.
+Open http://localhost:4000. For a production build, run `bundle exec jekyll build`.
 
-## Config
+## Content
 
-Your `_config.yml` could for example look like this:
+- `index.html`: homepage; `ABOUTME.md`: personal introduction.
+- `_posts/`: dated writing; `/writing/`: article index.
+- `iclr-2027-quantization.html`: Chinese submission survey with search, research direction filters, and source status.
+- `assets/data/iclr-2027-quantization.json`: auditable survey snapshot and manually verified reading notes.
+- `scripts/sync_iclr2027.py`: public OpenReview synchronization, integrity checks, and validated export import.
+- `docs/iclr-2027-survey.md`: data scope, update instructions, and review workflow (also published on the site).
 
-```yaml
-title: "Blog Title"
-author: "Blog Author"
-description: "My personal blog about ... something"
-permalink: /:title/
-lang: "en"
-excerpt_separator: "\n\n\n"
-date_format: "%B %d, %Y"
+The survey distinguishes active submissions, keyword candidates, and papers whose full text has been reviewed. Failed access is displayed as unknown data, never a zero-paper result. The initial snapshot records OpenReview's HTTP 403 verification requirement; actual paper summaries still require a successful public export and full-text review.
 
-# Layout
-
-show_excerpts: true        # show article excerpts on the home page
-show_frame: true           # adds a gray frame to the site
-show_sidebar: false        # show a sidebar instead of the usual header
-
-# Menu
-
-navigation:                # accepts {file, title, url, icon, sidebaricon}
-  - {file: "index.html"}
-  - {file: "README.md"}
-
-external:                  # shows a footer with social links - for available icons see fontawesome.com/icons
-  - {title: Mail, icon: envelope, url: "mailto:niklasbuschmann@users.noreply.github.com"}
-  - {title: Github, icon: github, url: "https://github.com/niklasbuschmann/contrast"}
-  - {title: Subscribe, icon: rss, url: "/feed.xml"}
-
-comments:
-#  disqus_shortname: ""    # see https://disqus.com/
-#  isso_domain: ""         # see https://posativ.org/isso/
-
-plugins:
- - jekyll-feed
-
+```bash
+python3 scripts/sync_iclr2027.py
+python3 -m unittest discover -s scripts -p 'test_sync_iclr2027.py' -v
 ```
 
-## MathJax
+## Design and attribution
 
-Contrast comes preinstalled with a leightweight alternative to MathJax called [KaTeX](https://katex.org/). To display equations in a post simply set `mathjax: true` in the article's front matter.
+The homepage follows common researcher-site patterns: a concise introduction, research interests, featured work, writing, and contact links. The survey organization was inspired by [Awesome Model Quantization](https://kai-liu.cn/Awesome-Model-Quantization/); its 2026 paper list and statistics are not reused.
 
-## License
-
-[public domain](http://unlicense.org/)
-
-## Screenshots
-
-![screenshot](https://user-images.githubusercontent.com/4943215/109431850-cd711780-7a08-11eb-8601-2763f2ee6bb4.png)
-
-![screenshot](https://user-images.githubusercontent.com/4943215/109431832-b6cac080-7a08-11eb-9c5e-a058680c23a1.png)
-
-![screenshot](https://user-images.githubusercontent.com/4943215/73125194-5f0b8b80-3fa4-11ea-805c-8387187503ad.png)
+Built from the original [Contrast theme](https://github.com/niklasbuschmann/contrast). Bundled font and icon licenses remain in their asset directories. Project license: [Unlicense](UNLICENSE.txt).

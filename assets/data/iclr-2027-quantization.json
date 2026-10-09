@@ -1,0 +1,67 @@
+{
+  "metadata": {
+    "venue": "ICLR.cc/2027/Conference",
+    "active_venue_id": "ICLR.cc/2027/Conference/Submission",
+    "source_url": "https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions",
+    "api_url": "https://api2.openreview.net",
+    "checked_at": "2026-10-09T03:07:13Z",
+    "fetched_at": null,
+    "status": "unavailable",
+    "total_active_submissions": null,
+    "candidate_count": null,
+    "reviewed_count": 0,
+    "previous_total_active_submissions": null,
+    "previous_candidate_count": null,
+    "method": "OpenReview API v2 匿名公开访问；当前未取得完整投稿列表。",
+    "message": "OpenReview HTTP 403: Challenge verification required",
+    "scope": "quantization"
+  },
+  "categories": [
+    {
+      "id": "ptq",
+      "label": "训练后量化",
+      "description": "校准、舍入、旋转与重建等训练后量化方法。"
+    },
+    {
+      "id": "qat",
+      "label": "量化感知训练",
+      "description": "将量化误差引入训练或微调过程。"
+    },
+    {
+      "id": "training",
+      "label": "低精度训练",
+      "description": "低比特数值格式与训练稳定性。"
+    },
+    {
+      "id": "kv-cache",
+      "label": "KV Cache",
+      "description": "注意力缓存与长上下文推理中的量化。"
+    },
+    {
+      "id": "hardware",
+      "label": "硬件与系统",
+      "description": "内核、部署和真实运行效率。"
+    },
+    {
+      "id": "reasoning",
+      "label": "推理能力",
+      "description": "量化与推理、数学和代码能力的关系。"
+    },
+    {
+      "id": "diffusion",
+      "label": "扩散模型",
+      "description": "图像、视频与其他扩散模型的量化。"
+    },
+    {
+      "id": "multimodal",
+      "label": "多模态",
+      "description": "视觉语言及其他多模态模型的量化。"
+    },
+    {
+      "id": "theory",
+      "label": "理论与分析",
+      "description": "量化误差、界、鲁棒性和机理分析。"
+    }
+  ],
+  "papers": []
+}
