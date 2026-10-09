@@ -18,11 +18,12 @@ Open http://localhost:4000. For a production build, run `bundle exec jekyll buil
 - `index.html`: homepage; `ABOUTME.md`: personal introduction.
 - `_posts/`: dated writing; `/writing/`: article index.
 - `iclr-2027-quantization.html`: Chinese submission survey with search, research direction filters, and source status.
-- `assets/data/iclr-2027-quantization.json`: auditable survey snapshot and manually verified reading notes.
+- `assets/data/iclr-2027-quantization.json`: auditable official-source snapshot.
+- `assets/data/iclr-2027-reading-notes.json`: sourced public full-text notes, third-party snapshot candidates, submission evidence, and limited cross-paper observations.
 - `scripts/sync_iclr2027.py`: public OpenReview synchronization, integrity checks, and validated export import.
 - `docs/iclr-2027-survey.md`: data scope, update instructions, and review workflow (also published on the site).
 
-The survey distinguishes active submissions, keyword candidates, and papers whose full text has been reviewed. Failed access is displayed as unknown data, never a zero-paper result. The initial snapshot records OpenReview's HTTP 403 verification requirement; actual paper summaries still require a successful public export and full-text review.
+The survey distinguishes active submissions, keyword candidates, and papers whose full text has been reviewed. Failed access is displayed as unknown data, never a zero-paper result. The official snapshot records OpenReview's HTTP 403 verification requirement. A separate dataset includes real public full-text notes and automatic candidates from a pinned third-party public snapshot. Submission evidence distinguishes author declarations from mirror associations; current OpenReview active status remains unverified. Snapshot candidates have no invented summaries or raw abstracts. Conference-wide counts remain unknown until a verified complete public export is available.
 
 ```bash
 python3 scripts/sync_iclr2027.py

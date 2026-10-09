@@ -27,7 +27,7 @@ CATEGORIES = [
     {'id': 'multimodal', 'label': '多模态', 'description': '视觉语言及其他多模态模型的量化。'},
     {'id': 'theory', 'label': '理论与分析', 'description': '量化误差、界、鲁棒性和机理分析。'},
 ]
-QUANT = re.compile(r'\b(?:quantiz\w*|quantis\w*|[1248][ -]?bit|low[ -]precision|mixed[ -]precision|low[ -]bit|mxfp[468]|nvfp[468]|binary|binariz\w*|ternary|ptq|qat|fp[468]|int[248]|bit[ -]width)\b', re.I)
+QUANT = re.compile(r'\b(?:quantiz\w*|quantis\w*|[1-8][ -]?bit|1\.58[ -]?bit|b1\.58|w[1-8]a(?:16|32|[1-8])(?:kv(?:16|32|[1-8]))?|low[ -]precision|mixed[ -]precision|low[ -]bit|mxfp[468]|nvfp[468]|binary|binariz\w*|ternary|ptq|qat|fp[468]|int[1-8]|bit[ -]width)\b', re.I)
 MODEL = re.compile(r'\b(?:models?|networks?|weights?|activations?|transformers?|llms?|neural|diffusion|training|inference|attention)\b', re.I)
 RULES = {
     'ptq': r'post[ -]training|\bptq\b|calibrat|rounding|rotation|reconstruction',

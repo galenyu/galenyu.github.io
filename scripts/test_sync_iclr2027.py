@@ -71,6 +71,11 @@ class SurveySyncTests(unittest.TestCase):
         self.assertIsNotNone(sync.candidate(note(title='Binary Neural Networks', abstract='We compress neural network weights.')))
         self.assertIsNotNone(sync.candidate(note(title='NVFP4 Model Training', abstract='Low-bit model weights improve training.')))
 
+    def test_numeric_formats_do_not_omit_three_or_six_bit_models(self):
+        for title in ('W3A16 for Language Models', '6-bit Vision Transformer', 'INT3 Neural Models', 'b1.58 Neural Models'):
+            with self.subTest(title=title):
+                self.assertIsNotNone(sync.candidate(note(title=title, abstract='Compressed weights for neural inference.')))
+
     def test_multilabel_categories(self):
         paper = sync.candidate(note(abstract='Post-training quantization of diffusion model weights improves GPU latency.'))
         self.assertEqual(set(paper['categories']), {'ptq', 'diffusion', 'hardware'})

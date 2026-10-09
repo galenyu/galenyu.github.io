@@ -8,12 +8,12 @@ stylesheet: /assets/css/survey.css
 script: /assets/js/survey.js
 permalink: /iclr-2027-quantization/
 ---
-<div class="survey" data-survey-url="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}">
+<div class="survey" data-survey-url="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}" data-reading-url="{{ '/assets/data/iclr-2027-reading-notes.json' | relative_url }}">
   <section class="survey-hero" aria-labelledby="survey-title">
     <div class="survey-hero-copy">
       <span class="survey-eyebrow"><span class="survey-dot" aria-hidden="true"></span> OPEN RESEARCH · ICLR 2027</span>
       <h1 id="survey-title">模型量化<br><span>投稿调研与阅读笔记</span></h1>
-      <p class="survey-intro">从低比特权重到高效推理，记录模型量化研究的新进展。面向 ICLR 2027 的公开投稿，整理研究方向、候选论文与原文核验后的中文笔记。</p>
+      <p class="survey-intro">从低比特权重到高效推理，记录模型量化研究的新进展。面向 ICLR 2027 的公开投稿，整理研究方向、候选论文与原文阅读后的中文笔记。作者投稿声明与第三方快照中的投稿关联，均附来源逐篇标注。</p>
       <div class="survey-hero-actions">
         <a class="survey-primary" href="#papers">浏览论文索引 <span aria-hidden="true">↓</span></a>
         <a class="survey-secondary" href="https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions" target="_blank" rel="noopener noreferrer">OpenReview 投稿列表 <span aria-hidden="true">↗</span></a>
@@ -40,9 +40,10 @@ permalink: /iclr-2027-quantization/
     <aside class="survey-toc" aria-label="页面目录">
       <span class="survey-small-label">本页导航</span>
       <a href="#overview"><span>01</span> 调研概览</a>
-      <a href="#taxonomy"><span>02</span> 研究方向</a>
-      <a href="#papers"><span>03</span> 论文索引</a>
-      <a href="#method"><span>04</span> 来源与方法</a>
+      <a href="#observations"><span>02</span> 阶段性观察</a>
+      <a href="#taxonomy"><span>03</span> 研究方向</a>
+      <a href="#papers"><span>04</span> 论文与笔记</a>
+      <a href="#method"><span>05</span> 来源与方法</a>
       <div class="survey-toc-note">投稿状态与稿件内容可能变化。阅读笔记以注明的数据快照为准。</div>
     </aside>
     <div class="survey-content">
@@ -50,26 +51,35 @@ permalink: /iclr-2027-quantization/
         <div class="survey-section-heading"><div><span class="survey-small-label">THE BIG PICTURE</span><h2 id="overview-heading">调研概览</h2></div><span class="survey-section-aside">公开数据 · 持续整理</span></div>
         <div class="survey-stats">
           <div><span>公开活跃投稿</span><strong id="survey-total">—</strong><small>完整列表获取成功后统计</small></div>
-          <div><span>量化相关候选</span><strong id="survey-candidates">—</strong><small>标题、摘要与关键词初筛</small></div>
-          <div><span>已核验阅读笔记</span><strong id="survey-reviewed">—</strong><small>已核对原文并补充总结</small></div>
+          <div><span>官方量化候选</span><strong id="survey-candidates">—</strong><small>标题、摘要与关键词初筛</small></div>
+          <div><span>公开全文已读</span><strong id="survey-reviewed">—</strong><small>去重后的已读数量，投稿状态见逐篇来源</small></div>
         </div>
-        <p class="survey-overview-note">“候选”表示检索命中，仍需核验研究主题；“已核验”表示已阅读原文并记录贡献与局限。这里收录的是投稿，录用结果以会议公布为准。</p>
+        <p class="survey-overview-note">候选表示标题、摘要或关键词检索命中，需要人工确认主题。公开预印本笔记表示已阅读全文，但作者声明或镜像关联都不能确认其目前属于 Active submissions。来源逐篇标注；录用结果以会议公布为准。</p>
+      </section>
+
+      <section id="observations" class="survey-section" aria-labelledby="observations-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">READING &amp; INSIGHTS</span><h2 id="observations-heading">从已读论文得到的观察</h2></div><span id="survey-reading-count" class="survey-section-aside">正在读取公开笔记</span></div>
+        <p class="survey-section-intro">以下观察基于当前已读的公开全文，属于阶段性归纳。每条观察都链接到具体论文；它们不能代表 ICLR 2027 全部量化投稿的趋势或比例。</p>
+        <div id="survey-observations" class="survey-observations"><p class="survey-overview-note">正在载入阅读笔记与对应论文来源。</p></div>
+        <details id="survey-leads" class="survey-leads" hidden><summary>仅有投稿线索、尚未完成全文阅读的工作</summary><div id="survey-leads-list"></div></details>
       </section>
 
       <section id="taxonomy" class="survey-section" aria-labelledby="taxonomy-heading">
         <div class="survey-section-heading"><div><span class="survey-small-label">RESEARCH MAP</span><h2 id="taxonomy-heading">沿着问题，阅读论文</h2></div><a href="#papers" class="survey-text-link">查看全部 <span aria-hidden="true">↗</span></a></div>
-        <p class="survey-section-intro">从量化方法、模型场景与部署实践三个角度组织阅读。一篇论文可以属于多个方向；以下是分类框架，方向分布将在取得论文后更新。</p>
+        <p class="survey-section-intro">从量化方法、模型场景与部署实践三个角度组织阅读。一篇论文可以属于多个方向；以下是分类框架，下方数字只统计当前展示的论文与阅读笔记，不代表会议整体方向分布。</p>
         <div id="survey-taxonomy" class="survey-taxonomy"></div>
-        <p class="survey-taxonomy-note">方向标签来自初筛规则，逐篇核验时可修订；分类数量相加不等于候选论文数。</p>
+        <p class="survey-taxonomy-note">方向标签来自初筛规则，逐篇核验时可修订；分类数量相加不等于论文数。当前显示范围包含已读公开预印本，活跃投稿状态仍待核对。</p>
       </section>
 
       <section id="papers" class="survey-section survey-paper-section" aria-labelledby="survey-papers-heading">
         <div class="survey-section-heading"><div><span class="survey-small-label">PAPER EXPLORER</span><h2 id="survey-papers-heading">论文索引</h2></div><span id="survey-result-count" class="survey-section-aside" aria-live="polite"></span></div>
+        <p id="survey-mirror-detail" class="survey-overview-note" hidden></p>
         <form id="survey-filters" class="survey-filters" role="search">
           <div class="survey-search"><label for="survey-query">搜索论文</label><input type="search" id="survey-query" placeholder="标题、关键词、摘要或阅读笔记…" autocomplete="off"></div>
+          <div class="survey-select"><label for="survey-source">论文来源</label><select id="survey-source"><option value="all">全部来源</option><option value="openreview">OpenReview 投稿</option><option value="public_preprint">公开预印本</option><option value="mirror_candidate">第三方快照候选</option></select></div>
           <div class="survey-select"><label for="survey-category">研究方向</label><select id="survey-category"><option value="all">全部方向</option></select></div>
-          <div class="survey-select"><label for="survey-review">阅读状态</label><select id="survey-review"><option value="all">全部状态</option><option value="reviewed">已核验</option><option value="candidate">待核验</option></select></div>
-          <div class="survey-select"><label for="survey-sort">排序方式</label><select id="survey-sort"><option value="number">投稿编号</option><option value="updated">最近更新</option><option value="title">标题字母序</option></select></div>
+          <div class="survey-select"><label for="survey-review">阅读状态</label><select id="survey-review"><option value="all">全部状态</option><option value="reviewed">全文已读</option><option value="candidate">待阅读</option></select></div>
+          <div class="survey-select"><label for="survey-sort">排序方式</label><select id="survey-sort"><option value="reviewed">全文已读优先</option><option value="number">投稿编号</option><option value="updated">最近更新</option><option value="title">标题字母序</option></select></div>
           <button type="button" id="survey-reset" class="survey-reset">重置筛选</button>
         </form>
         <div id="survey-paper-list" class="survey-paper-list" aria-live="polite" aria-busy="true"><div class="survey-empty"><span class="survey-empty-icon" aria-hidden="true">↗</span><h3>正在载入论文索引</h3><p>请稍候，读取公开数据的最新快照。</p></div></div>
@@ -79,14 +89,14 @@ permalink: /iclr-2027-quantization/
       <section id="method" class="survey-section" aria-labelledby="method-heading">
         <div class="survey-section-heading"><div><span class="survey-small-label">SOURCE & METHOD</span><h2 id="method-heading">可追溯的来源，明确的边界</h2></div></div>
         <div class="survey-method-grid">
-          <div><span class="survey-method-number">01 / COLLECT</span><h3>收集公开投稿</h3><p>来源为 OpenReview 的 ICLR 2027 Active submissions。使用 Conference group 公布的 submission venue ID 获取完整分页，核对数量、论文 ID 与投稿状态。</p></div>
+          <div><span class="survey-method-number">01 / COLLECT</span><h3>收集公开投稿</h3><p>官方索引来源为 OpenReview 的 ICLR 2027 Active submissions，须核对完整分页、数量、论文 ID 与投稿状态。公开预印本用于全文阅读；第三方历史快照提供候选线索，单独注明日期和出处。</p></div>
           <div><span class="survey-method-number">02 / SCREEN</span><h3>检索并分类</h3><p>对标题、摘要与关键词检索 quantization、PTQ、QAT、low precision、低比特数值格式等线索。初筛可能漏检或误收，候选记录不等同于确认相关。</p></div>
-          <div><span class="survey-method-number">03 / READ</span><h3>阅读原文再总结</h3><p>阅读笔记记录问题、核心贡献与局限，附原始讨论页和论文链接。仅在原文核验后标记“已核验”；投稿更新后需重新确认。</p></div>
+          <div><span class="survey-method-number">03 / READ</span><h3>阅读原文再总结</h3><p>阅读笔记记录问题、核心贡献与局限，附原始讨论页和论文链接。读过全文才标记“全文已读”，并注明阅读依据。预印本的作者声明、镜像关联与当前活跃状态分开核对，投稿更新后需重新确认。</p></div>
         </div>
-        <div class="survey-source-box"><div><strong>数据与维护</strong><p id="survey-method-detail">同步失败时保留上次成功快照，并明确显示来源暂不可访问。没有取得数据时，数量显示为未知。</p><p class="survey-source-links"><a href="https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions" target="_blank" rel="noopener noreferrer">原始投稿列表 ↗</a><a href="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}" target="_blank" rel="noopener noreferrer">数据快照 JSON ↗</a><a href="{{ '/docs/iclr-2027-survey/' | relative_url }}">维护说明 ↗</a></p></div><span class="survey-source-badge">ICLR 2027<br><strong>SUBMISSIONS</strong></span></div>
+        <div class="survey-source-box"><div><strong>数据与维护</strong><p id="survey-method-detail">同步失败时保留上次成功快照，并明确显示来源暂不可访问。没有取得数据时，数量显示为未知。</p><p class="survey-source-links"><a href="https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions" target="_blank" rel="noopener noreferrer">原始投稿列表 ↗</a><a href="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}" target="_blank" rel="noopener noreferrer">官方索引快照 ↗</a><a href="{{ '/assets/data/iclr-2027-reading-notes.json' | relative_url }}" target="_blank" rel="noopener noreferrer">公开阅读笔记 JSON ↗</a><a href="{{ '/docs/iclr-2027-survey/' | relative_url }}">维护说明 ↗</a></p></div><span class="survey-source-badge">ICLR 2027<br><strong>SUBMISSIONS</strong></span></div>
         <p class="survey-credit">页面组织参考 <a href="https://kai-liu.cn/Awesome-Model-Quantization/" target="_blank" rel="noopener noreferrer">Awesome Model Quantization</a>，独立整理 ICLR 2027 数据。研究方向为阅读框架，不代表本届会议的统计结论。</p>
       </section>
     </div>
   </div>
-  <noscript><div class="survey-noscript">论文搜索需要启用 JavaScript。可直接查看 <a href="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}">JSON 数据快照</a> 或 <a href="https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions">OpenReview 投稿列表</a>。页面不会将未获取的数据显示为零篇。</div></noscript>
+  <noscript><div class="survey-noscript">论文搜索需要启用 JavaScript。可直接查看 <a href="{{ '/assets/data/iclr-2027-reading-notes.json' | relative_url }}">公开全文阅读笔记</a>、<a href="{{ '/assets/data/iclr-2027-quantization.json' | relative_url }}">官方索引快照</a> 或 <a href="https://openreview.net/group?id=ICLR.cc/2027/Conference#tab-active-submissions">OpenReview 投稿列表</a>。页面不会将未获取的数据显示为零篇。</div></noscript>
 </div>

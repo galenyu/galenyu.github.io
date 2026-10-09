@@ -1132,3 +1132,222 @@
   }
 
 }
+/* Public reading notes remain distinct from the OpenReview snapshot. */
+.survey-observations {
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:13px
+}
+
+.survey-observation {
+  border:1px solid var(--sq-line);
+  background:#fff;
+  border-radius:12px;
+  padding:23px
+}
+
+.survey-observation:last-child:nth-child(odd) {
+  grid-column:1/-1
+}
+
+.survey-observation-number {
+  font-size:9px;
+  letter-spacing:.12em;
+  color:#8b9db8
+}
+
+.survey-observation h3 {
+  font-size:16px;
+  line-height:1.5;
+  margin:10px 0 12px
+}
+
+.survey-observation p {
+  font-size:12px;
+  line-height:1.95;
+  color:#6d7f97;
+  margin-bottom:15px
+}
+
+.survey-observation .survey-small-label {
+  font-size:9px;
+  letter-spacing:.05em
+}
+
+.survey-observation-sources {
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  font-size:11px;
+  margin-top:7px;
+  line-height:1.7
+}
+
+.survey-leads {
+  border-top:1px solid var(--sq-line);
+  margin-top:19px;
+  padding-top:16px;
+  color:#7789a3;
+  font-size:11px
+}
+
+.survey-leads summary {
+  cursor:pointer
+}
+
+.survey-lead {
+  padding:15px 0;
+  border-bottom:1px solid #e8edf6
+}
+
+.survey-lead strong {
+  display:block;
+  color:#566b89;
+  font-size:12px
+}
+
+.survey-lead p {
+  font-size:11px;
+  line-height:1.9;
+  margin:6px 0
+}
+
+.survey-lead a {
+  font-size:10px
+}
+
+.survey-paper-top {
+  flex-wrap:wrap
+}
+
+.survey-source-label {
+  color:#6c7f99;
+  font-size:10px;
+  border-left:1px solid #dde5f0;
+  padding-left:9px
+}
+
+.survey-paper .survey-provenance {
+  font-size:10px;
+  color:#8b775a;
+  background:#fffbf2;
+  border:1px solid #f1e6d1;
+  border-radius:6px;
+  padding:8px 10px;
+  margin-bottom:13px;
+  line-height:1.8
+}
+
+.survey-paper-facts {
+  display:grid;
+  grid-template-columns:1.2fr .8fr 1.5fr;
+  gap:13px;
+  background:#f6f8fc;
+  border-radius:7px;
+  margin:14px 0 18px;
+  padding:14px
+}
+
+.survey-paper-facts div {
+  min-width:0
+}
+
+.survey-paper-facts dt {
+  font-size:9px;
+  color:#8b9ab0;
+  margin-bottom:4px
+}
+
+.survey-paper-facts dd {
+  font-size:11px;
+  color:#61758f;
+  line-height:1.8;
+  margin:0
+}
+
+.survey-note-list {
+  padding-left:18px;
+  font-size:12px;
+  line-height:1.95;
+  color:#5e7088;
+  margin:6px 0
+}
+
+.survey-note-list li {
+  margin:4px 0
+}
+
+.survey-evidence>a {
+  display:inline-block;
+  margin-top:8px;
+  font-size:10px
+}
+
+.survey-paper {
+  scroll-margin-top:35px
+}
+
+.survey-paper-links {
+  flex-wrap:wrap;
+  gap:10px 18px
+}
+
+.survey-filters {
+  grid-template-columns:repeat(4,minmax(0,1fr))
+}
+
+.survey-search {
+  grid-column:1/-1
+}
+
+.survey-taxonomy-card-top {
+  flex-wrap:wrap
+}
+
+.survey-taxonomy-card-count {
+  font-size:9px;
+  white-space:nowrap
+}
+
+@media(max-width:760px) {
+    .survey-observations {
+    grid-template-columns:1fr
+  }
+
+  .survey-observation {
+    padding:20px
+  }
+
+  .survey-filters {
+    grid-template-columns:repeat(2,minmax(0,1fr))
+  }
+
+  .survey-paper-facts {
+    grid-template-columns:1fr;
+    gap:10px
+  }
+
+  .survey-paper-facts div {
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:10px
+  }
+
+  .survey-paper-facts dt {
+    font-size:10px;
+    margin-top:2px
+  }
+
+  .survey-paper-facts dd {
+    font-size:11px
+  }
+
+  .survey-taxonomy-card-count {
+    font-size:8px
+  }
+
+  .survey-select:last-of-type {
+    grid-column:auto
+  }
+
+}
