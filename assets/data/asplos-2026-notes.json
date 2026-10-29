@@ -1,0 +1,614 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "conference": "ASPLOS 2026",
+    "checked_at": "2026-10-29",
+    "program_source_url": "https://www.asplos-conference.org/asplos2026/program/index.html",
+    "program_source_sha256": "58470e84dffaaad19c0c93f7b7270735f720815f4da0d047d74609031a96b037",
+    "program_count": 168,
+    "reading_count": 19,
+    "fulltext_count": 6,
+    "abstract_count": 13,
+    "scope": "全量官方议程索引与代表论文中文解读分开维护。",
+    "selection_method": "优先选择作者、机构或出版社公开可读材料，覆盖推理、训练、编译、内存、安全、量子、硬件语言、可靠性和云成本；不是排名或随机抽样。",
+    "analysis_method": "论文身份按官方详细议程核对；逐篇记录实际阅读版本和选定章节，跨论文主题及建议为调研者归纳。",
+    "limitations": [
+      "19 篇代表稿不等于全会议全部已读；6 篇公开原文解读只覆盖列明的重点章节。",
+      "其他 13 篇仅作公开摘要解读；阅读边界不能当作作者自述的论文缺陷。",
+      "预印本、作者公开稿与会议版本可能存在题名、作者和实验差异，笔记逐篇注明。",
+      "实验结果为作者报告，未独立复现；研究建议是待验证假设，没有新颖性保证。",
+      "趋势没有作跨年增长比较，归纳不代表全部作者的共同意见。"
+    ]
+  },
+  "papers": [
+    {
+      "id": "asplos26-dfcc5833a8a5",
+      "title": "BlendServe: Optimizing Offline Inference with Resource-Aware Batching",
+      "session_id": "1b",
+      "session": "Session 1B: LLM Serving: Latency & Scheduling",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "作者 arXiv:2411.16102 公开摘要；预印本题名为 Optimizing Offline Inference for Auto-regressive Large Models with Resource-aware Batching，会议题名略有调整。",
+      "source_url": "https://arxiv.org/abs/2411.16102",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#i-b"
+      ],
+      "summary": "用资源感知的前缀树同时保留前缀共享与计算、访存重叠，优化离线批量推理。",
+      "problem": "离线请求的计算和内存需求不同；为资源互补而重排，会破坏前缀共享。",
+      "method": "构造资源感知前缀树，利用离线任务较宽松的延迟要求重排与混合请求。",
+      "takeaway": "调度应联合考虑请求之间可共享的数据和互补的资源需求，而非分别优化。",
+      "limitations": "摘要评估采用合成多模态负载；这里未核对输出长度估计及重排成本，不能把离线吞吐收益直接套用到在线 SLO。",
+      "tags": [
+        "离线推理",
+        "前缀共享",
+        "资源调度"
+      ]
+    },
+    {
+      "id": "asplos26-563596205f0c",
+      "title": "MSCCL++: Rethinking GPU Communication Abstractions for AI Inference",
+      "session_id": "2c",
+      "session": "Session 2C: GPU Systems & Scheduling",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v4：摘要、§3–4 的三层接口与通道语义、§7 的硬件与基线重点核对；未复现。",
+      "source_url": "https://arxiv.org/html/2504.09014v4",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#ii-c",
+        "https://roshandathathri.github.io/publication/2026-asplos"
+      ],
+      "summary": "把 GPU 通信拆成底层原语、算法 DSL 和标准集合通信接口，在可移植性与细粒度优化之间保留选择空间。",
+      "problem": "专用通信栈优化快，却重复处理同步、一致性与硬件差异；通用抽象又容易遮蔽硬件能力。",
+      "method": "以 PortChannel、MemoryChannel、SwitchChannel 表示不同传输模式，支持单边异步通信，并在上层生成集合通信。",
+      "takeaway": "抽象的关键是保留会影响性能的传输和同步语义；不能仅比较接口层数。",
+      "limitations": "§7 比较 A100、H100、MI300x 上调优后的不同通信库，微基准与端到端推理收益不同；各消息大小采用离线选择的配置，不能视为任意拓扑的自动最优。",
+      "tags": [
+        "GPU通信",
+        "DSL",
+        "异步执行"
+      ]
+    },
+    {
+      "id": "asplos26-52cf91a5d5a8",
+      "title": "SNIP: An Adaptive Mixed Precision Framework for Subbyte Large Language Model Training",
+      "session_id": "2a",
+      "session": "Session 2A: LLM Training Systems",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v1：摘要、§3、§5 与 §6.1–6.2 重点核对；§6.1 明确使用 fake quantization，以 FP4 FLOPs 比例衡量效率。",
+      "source_url": "https://arxiv.org/html/2602.01410v1",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#ii-a"
+      ],
+      "summary": "根据训练中的前向损失与反向权重偏离，周期性求解逐层混合精度分配。",
+      "problem": "统一低精度与固定敏感层启发式难以适应不同训练阶段，可能破坏收敛。",
+      "method": "采集激活、梯度和优化器统计，估计两类 divergence，再用 ILP 在给定效率预算下选择逐层精度。",
+      "takeaway": "量化误差的训练影响应关联最终更新与收敛轨迹；只减小局部张量误差不足以保证训练质量。",
+      "limitations": "作者没有原生 FP4/FP8 训练硬件，使用伪量化并报告 FP4 FLOPs 占比；不能把摘要中的计算节约解释为已实测的端到端时间或能耗降低。",
+      "tags": [
+        "混合精度",
+        "FP4",
+        "训练稳定性"
+      ]
+    },
+    {
+      "id": "asplos26-2946ffef50a4",
+      "title": "SwiftSpec: Disaggregated Speculative Decoding and Fused Kernels for Low-Latency LLM Inference",
+      "session_id": "2b",
+      "session": "Session 2B: Speculative Decoding",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要；预印本题名为 Ultra-Low Latency LLM Decoding by Scaling Asynchronous Speculative Decoding，与会议题名不同。",
+      "source_url": "https://arxiv.org/abs/2506.11309v1",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#ii-b"
+      ],
+      "summary": "通过异步分离草稿与验证，并配合树形 KV 管理与融合内核，降低推测解码的关键路径延迟。",
+      "problem": "草稿和目标模型负载不平衡，KV 状态一致性与小批量通信开销使推测解码难以直接叠加张量并行。",
+      "method": "分离并扩展各组件，采用并行树生成、感知树结构的 KV cache 管理和低延迟融合内核。",
+      "takeaway": "提高接受率之外，还要测草稿生成是否仍在目标模型的关键路径上。",
+      "limitations": "本次只读摘要；预印本侧重低延迟和单查询场景，未核对高并发、额外 GPU 成本与吞吐权衡。",
+      "tags": [
+        "推测解码",
+        "关键路径",
+        "KV cache"
+      ]
+    },
+    {
+      "id": "asplos26-93d62adbf9bd",
+      "title": "PowerMove: Optimizing Compilation for Neutral Atom Quantum Computers with Zoned Architecture",
+      "session_id": "1c",
+      "session": "Session 1C: Quantum Computing: Compilation",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "作者 arXiv:2411.12263 公开摘要；未核对全部编译算法及物理误差模型。",
+      "source_url": "https://arxiv.org/abs/2411.12263",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#i-c"
+      ],
+      "summary": "面向分区中性原子量子架构，联合门调度、量子比特分配、移动与区间通信进行编译优化。",
+      "problem": "量子比特移动和分区架构带来新自由度，也让各编译阶段之间产生耦合。",
+      "method": "在编译流程中显式利用门调度、分配、移动及跨区通信之间的依赖。",
+      "takeaway": "硬件新增可移动资源后，编译阶段的接口也需要同步调整，局部最优可能损害整体保真度。",
+      "limitations": "摘要报告的保真度与时间改进依赖作者评估条件；这里未核对具体硬件噪声、基线或真实设备执行，不能作实机效果保证。",
+      "tags": [
+        "量子编译",
+        "中性原子",
+        "联合优化"
+      ]
+    },
+    {
+      "id": "asplos26-a2c89a45a009",
+      "title": "Insum: Sparse GPU Kernels Simplified and Optimized with Indirect Einsums",
+      "session_id": "2c",
+      "session": "Session 2C: GPU Systems & Scheduling",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v1：摘要、§3 的间接索引表示、§5.2 的 Tensor Core 代码生成、§6.1–6.3 重点核对；预印本版本。",
+      "source_url": "https://arxiv.org/html/2510.17505v1",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#ii-c"
+      ],
+      "summary": "把稀疏数据和元数据改写为带间接索引的稠密张量操作，复用 PyTorch 编译栈生成稀疏 GPU 内核。",
+      "problem": "稀疏编程既要处理索引与负载不规则性，也要让稠密子计算使用 Tensor Core。",
+      "method": "提出 indirect Einsum、GroupCOO 与 BlockGroupCOO；扩展 TorchInductor，通过 ops.dot 和延迟广播生成融合的 gather–matmul–scatter。",
+      "takeaway": "统一表示的价值在于把稀疏格式、稠密计算与后端优化接起来，而非仅减少表达式行数。",
+      "limitations": "该版 §6.1 所有实验在 RTX3090、打补丁的 PyTorch 上运行；比较四类稀疏内核，代码行数不包含整个编译器实现，跨平台和端到端应用收益仍需另测。",
+      "tags": [
+        "稀疏张量",
+        "Tensor Core",
+        "编译器"
+      ]
+    },
+    {
+      "id": "asplos26-b58371e971b5",
+      "title": "Linear Layouts: Robust Code Generation of Efficient Tensor Computation Using F2",
+      "session_id": "4b",
+      "session": "Session 4B: ML Compilers & Tensor Programs",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v2：摘要、§3–4 的表示、§6.1 的正确性与微基准、§6.2 的实用基准范围重点核对。",
+      "source_url": "https://arxiv.org/html/2505.23819v2",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#iv-b"
+      ],
+      "summary": "用有限域 F₂ 上的线性映射统一张量到线程、寄存器和存储资源的布局，减少逐对布局转换的特殊实现。",
+      "problem": "GPU 布局种类增多后，手写转换组合膨胀，既影响性能也容易产生边界错误。",
+      "method": "用作用于索引比特的二进制矩阵定义布局，并统一布局变换、转换与代码生成。",
+      "takeaway": "统一代数表示可以同时改善性能与正确性；新优化应检查原先不支持的形状和类型组合。",
+      "limitations": "本文比较的是指定 Triton 版本及 RTX4090、GH200、MI250 上的算子和微基准；混合精度测试覆盖率提升不能等同所有程序已验证，结果也不代表今天所有编译器版本。",
+      "tags": [
+        "张量布局",
+        "Triton",
+        "F₂"
+      ]
+    },
+    {
+      "id": "asplos26-d1f71f9ad6cf",
+      "title": "RowArmor: Efficient and Comprehensive Protection Against DRAM Disturbance Errors",
+      "session_id": "2d",
+      "session": "Session 2D: DRAM Reliability & Security",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "成均馆大学机构知识库所列会议摘要；标题与官方议程一致，未读取正文。",
+      "source_url": "https://scholarx.skku.edu/item/871b050b-d750-4463-aa28-b95dd244efb1",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#ii-d"
+      ],
+      "summary": "通过地址扰乱与增强 ECC，在干扰错误出现后纠正，以同时控制数据破坏和拒绝服务风险。",
+      "problem": "依靠激活跟踪和额外刷新预防 DRAM 干扰，可能增加性能代价并产生 DoS 风险。",
+      "method": "摘要描述反应式纠错方案，结合地址扰乱和增强纠错编码，覆盖包括 RowPress 在内的干扰模式。",
+      "takeaway": "保护机制应同时评估完整性、攻击诱发的资源消耗和性能成本。",
+      "limitations": "这里只依据机构摘要；尚未核对纠错边界、物理错误分布及攻击模型，不能据此声称对所有真实 DRAM 干扰均安全。",
+      "tags": [
+        "DRAM",
+        "ECC",
+        "RowHammer"
+      ]
+    },
+    {
+      "id": "asplos26-cabda58866fa",
+      "title": "PACT: A Criticality-First Design for Tiered Memory",
+      "session_id": "8c",
+      "session": "Session 8C: Memory Hierarchy & Performance",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "作者公开会议 PDF：摘要、§4 的 PAC 与迁移、§5.1 实验平台及 §5 结果范围重点核对；CXL 使用 NUMA 仿真。",
+      "source_url": "https://people.cs.vt.edu/jinshu/docs/papers/PACT_ASPLOS.pdf",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#viii-c",
+        "https://github.com/MoatLab/PACT"
+      ],
+      "summary": "按页对 CPU 停顿的贡献安排快慢内存层级，以访问关键性代替单纯热度。",
+      "problem": "高频页面未必拖慢处理器；内存级并行度高的访问可能比低频指针追踪更能容忍慢内存。",
+      "method": "利用硬件队列计数器分解各层 MLP，估计 Per-page Access Criticality，结合主动降级与自适应提升。",
+      "takeaway": "分层内存的调度信号应靠近性能目标；需要同步统计迁移次数、采样与扫描开销。",
+      "limitations": "§5.1 在双路 Skylake 上调低远端 NUMA uncore 频率模拟 CXL，不是实物 CXL 多主机评测；公开仓库后续实现有变化，不能混用版本结果。",
+      "tags": [
+        "分层内存",
+        "CXL",
+        "性能计数器"
+      ]
+    },
+    {
+      "id": "asplos26-97ca660624d9",
+      "title": "Graphiti: Formally Verified Out-of-Order Execution in Dataflow Circuits",
+      "session_id": "5c",
+      "session": "Session 5C: Formal Verification",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "ETH Research Collection 公开的会议论文摘要；未核对所有形式化证明与综合实验。",
+      "source_url": "https://www.research-collection.ethz.ch/items/e6d696ca-4614-4a59-8c39-e6543c1a846f",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#v-c"
+      ],
+      "summary": "在 Lean 4 中建立数据流电路的图精化与重写框架，验证引入乱序执行的循环变换。",
+      "problem": "HLS 为不规则程序采用激进的数据流与推测优化后，变换复杂性提高了出错风险。",
+      "method": "给图精化建立元理论，验证通用电路重写算法，再证明引入乱序执行的循环重写正确。",
+      "takeaway": "高性能编译变换可以把正确性证明作为设计的一部分，并与现有 HLS 流程组合。",
+      "limitations": "作者称其为走向完整验证 HLS 的一步；单个已验证重写不能推出整个前端、RTL 后端与物理实现都已验证。",
+      "tags": [
+        "HLS",
+        "形式验证",
+        "Lean 4"
+      ]
+    },
+    {
+      "id": "asplos26-fa8d2d1a129f",
+      "title": "Anvil: A General-Purpose Timing-Safe Hardware Description Language",
+      "session_id": "6b",
+      "session": "Session 6B: Hardware Design Languages",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "作者 NUS 论文页公开摘要，与 ASPLOS 2026 关联已核对；未核对类型系统证明细节。",
+      "source_url": "https://www.comp.nus.edu.sg/~umathur/publications/2026-asplos-yu-anvil-hdl/",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#vi-b"
+      ],
+      "summary": "在 HDL 类型系统中表达寄存器更新与信号使用的时间关系，用可组合契约阻止时序使用错误。",
+      "problem": "信号依赖的寄存器可能在信号预期稳定时被修改，跨模块设计尤其难靠人工约定维护。",
+      "method": "保留寄存器、信号和周期控制，以参数化时间点的契约约束模块通信和动态时序。",
+      "takeaway": "将稳定性要求变成可检查的接口约束，有助于模块组合时保持设计意图。",
+      "limitations": "这里的 timing safety 指语言层的时序使用约束；不能解释为已经完成物理时序收敛、无亚稳态或无侧信道保证。",
+      "tags": [
+        "HDL",
+        "类型系统",
+        "模块契约"
+      ]
+    },
+    {
+      "id": "asplos26-e6b45f4b18fd",
+      "title": "Tilus: A Tile-Level GPGPU Programming Language for Low-Precision Computation",
+      "session_id": "5a",
+      "session": "Session 5A: Generative Model Serving",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v3 摘要及 NVIDIA 作者项目 README；未读取全部代码生成与性能消融。",
+      "source_url": "https://arxiv.org/abs/2504.12984v3",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#v-a",
+        "https://github.com/NVIDIA/tilus"
+      ],
+      "summary": "提供 1–8 任意比特宽度的数据类型、线程块级编程和显式存储控制，让低精度内核更容易映射到 GPU。",
+      "problem": "只支持二次幂位宽和过高层次的 GPU 抽象，会阻碍低比特数据装载、寄存器管理与计算优化。",
+      "method": "设计层级存储空间、代数布局系统与低精度类型，经自动向量化和指令选择生成内核。",
+      "takeaway": "量化格式应和可实现的内核共同评估；省下的比特只有通过实际数据通路才能兑现。",
+      "limitations": "摘要的性能比较针对选定低精度内核；这里未核对所有模型精度损失与端到端配置，任意位宽支持也不意味着任意位宽同样快。",
+      "tags": [
+        "低比特",
+        "GPU DSL",
+        "量化"
+      ]
+    },
+    {
+      "id": "asplos26-24070c5667da",
+      "title": "LPO: Discovering Missed Peephole Optimizations with Large Language Models",
+      "session_id": "5c",
+      "session": "Session 5C: Formal Verification",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "作者 Waterloo 公开会议 PDF 的摘要；未读取全部算法、消融或 LLVM 修复记录。",
+      "source_url": "https://cs.uwaterloo.ca/~cnsun/public/publication/asplos26/asplos26.pdf",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#v-c"
+      ],
+      "summary": "让 LLM 提出窥孔优化候选，再由形式验证器检查并反馈，形成发现编译器遗漏优化的闭环。",
+      "problem": "局部指令替换的搜索空间大；LLM 善于探索却可能生成错误改写，传统搜索也有扩展性限制。",
+      "method": "联合模型生成与形式验证，把验证结果反馈给后续候选搜索，并在 LLVM 上评估发现能力。",
+      "takeaway": "生成式系统更适合作为候选发现器，语义正确性应由可复核的验证流程约束。",
+      "limitations": "发现遗漏优化的数量不等于端到端程序加速；本次未验证 Alive2 约束、模型调用成本或所有候选是否被上游合入。",
+      "tags": [
+        "LLM for systems",
+        "LLVM",
+        "形式验证"
+      ]
+    },
+    {
+      "id": "asplos26-b17708639fd5",
+      "title": "Nemo: A Low-Write-Amplification Cache for Tiny Objects on Log-Structured Flash Devices",
+      "session_id": "5d",
+      "session": "Session 5D: Storage & Caching",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要；未核对完整闪存寿命和轨迹实验。",
+      "source_url": "https://arxiv.org/abs/2603.09605v1",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#v-d"
+      ],
+      "summary": "通过提高缓存集合填充率、压缩索引与混合热度追踪，联合降低小对象闪存缓存的写放大和 DRAM 元数据成本。",
+      "problem": "即使设备支持低写放大的 ZNS/FDP，应用层的小对象更新仍可能主导整体写放大。",
+      "method": "提高哈希碰撞概率以改善集合填充率，使用 Bloom filter 索引，并以混合热度追踪控制未命中率。",
+      "takeaway": "设备接口改进不自动消除应用层放大；索引、装箱和替换策略应共同设计。",
+      "limitations": "这里只读摘要，尚未核对对象分布、碰撞代价、设备型号与耐久性；需同时报告主机写入量、物理写入量和未命中率。",
+      "tags": [
+        "闪存缓存",
+        "小对象",
+        "写放大"
+      ]
+    },
+    {
+      "id": "asplos26-219cae322c25",
+      "title": "Radshield: Software Radiation Protection for Commodity Hardware in Space",
+      "session_id": "9c",
+      "session": "Session 9C: Reliability & Fault Tolerance",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "作者公开会议 PDF：摘要、§2–3 的故障类型与软件检测、§5 部署经验重点核对；不表示通读每个实验。",
+      "source_url": "https://www.cs.columbia.edu/~junfeng/papers/radshield-asplos26.pdf",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#ix-c"
+      ],
+      "summary": "利用低负载时的电流异常检测和高效冗余执行，让航天任务中的通用硬件获得软件辐射保护。",
+      "problem": "微小闩锁电流可能被正常负载波动遮蔽，CPU 管线和缓存中的瞬态错误也难由存储校验覆盖。",
+      "method": "ILD 比较实测电流与 OS 可见活动所预测的电流，必要时插入短暂空闲；EMR 通过冗余执行检查数据损坏。",
+      "takeaway": "可靠性设计需要把真实传感信号、应用运行模式与冗余开销一起建模。",
+      "limitations": "论文部署章节说明相关在轨程序尚未检出辐射错误；“已部署”不能解释为在轨错误覆盖率已充分验证。这里只讨论指定故障场景，不覆盖所有空间失效。",
+      "tags": [
+        "辐射保护",
+        "冗余执行",
+        "可靠性"
+      ]
+    },
+    {
+      "id": "asplos26-aab6673ebd26",
+      "title": "MoDM: Efficient Serving for Image Generation via Mixture-of-Diffusion Models",
+      "session_id": "3b",
+      "session": "Session 3B: Mixture-of-Experts & Efficient Inference",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv:2503.11972 作者公开摘要；未核对全部质量指标与在线负载配置。",
+      "source_url": "https://arxiv.org/abs/2503.11972",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#iii-b"
+      ],
+      "summary": "缓存最终生成图像，以命中情况选择大小扩散模型，并动态分配 GPU 资源来平衡质量和延迟。",
+      "problem": "小扩散模型快但质量较弱，大模型质量高却慢；模型内部特征缓存又不容易跨模型族复用。",
+      "method": "缓存最终图像，命中请求借助检索结果由小模型处理，未命中请求使用大模型，配合全局监控与资源分配。",
+      "takeaway": "生成式服务的缓存可以改变使用哪个模型，而不只减少同一模型的步骤。",
+      "limitations": "摘要中的质量保持与平均服务时间依赖缓存命中和请求分布；未核对长尾语义、新颖提示或严格尾延迟下是否仍成立。",
+      "tags": [
+        "扩散模型",
+        "检索缓存",
+        "SLO"
+      ]
+    },
+    {
+      "id": "asplos26-c2a99e169e2e",
+      "title": "CXLMC: Model Checking CXL Shared Memory Programs",
+      "session_id": "1d",
+      "session": "Session 1D: CXL & Memory Fabric",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "UCI 作者公开会议 PDF 的摘要；未读取所有内存模型规则和状态空间削减算法。",
+      "source_url": "https://plrg.ics.uci.edu/publications/CXLMCASPLOS26.pdf",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#i-d"
+      ],
+      "summary": "系统探索 x86-CXL 共享内存程序的崩溃执行，检查计算节点失效与脏缓存行丢失造成的一致性错误。",
+      "problem": "远端共享 DRAM 能通过缓存降低延迟，但节点在刷回脏行前失效，会丢失最新写入。",
+      "method": "对共享内存数据结构、flush 与 fence 的交互建立模型检查，探索普通测试难覆盖的崩溃路径。",
+      "takeaway": "缓存一致性并不等价于节点故障后的数据结构一致性；故障模型需要成为软件接口的一部分。",
+      "limitations": "摘要针对 x86-CXL 平台；不能据此覆盖所有 CXL 拓扑、设备失效和其他 ISA，有限模型的结果也不能自动外推到任意程序规模。",
+      "tags": [
+        "CXL",
+        "崩溃一致性",
+        "模型检查"
+      ]
+    },
+    {
+      "id": "asplos26-3f77b7d283cf",
+      "title": "CounterPoint: Using Hardware Event Counters to Refute and Refine Microarchitectural Assumptions",
+      "session_id": "8c",
+      "session": "Session 8C: Memory Hierarchy & Performance",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "作者 arXiv:2601.01265 扩展版公开摘要；会场题名不含 Extended Version。",
+      "source_url": "https://arxiv.org/abs/2601.01265",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#viii-c"
+      ],
+      "summary": "用带置信区间的性能计数器测量检验微架构模型，在模型与观测不符时定位可能遗漏的硬件行为。",
+      "problem": "计数器定义不清、硬件实现不透明及复用噪声，使测量值很难直接验证微架构假设。",
+      "method": "将用户模型表示成 μpath 决策图，比较多维计数器置信区域，以 Haswell MMU 为案例分析未充分记录的行为。",
+      "takeaway": "性能模型应允许被数据证伪；出现偏差时先检验模型和计数器语义，再调整优化策略。",
+      "limitations": "本次仅摘要阅读；Haswell MMU 案例的发现不能当作其他 CPU 的规范，模型表达能力和置信区间构造仍需查阅正文。",
+      "tags": [
+        "性能计数器",
+        "微架构建模",
+        "测量噪声"
+      ]
+    },
+    {
+      "id": "asplos26-e87e239a0363",
+      "title": "Skyler: Static Analysis for Predicting API-Driven Costs in Serverless Applications",
+      "session_id": "8b",
+      "session": "Session 8B: Serverless & Cloud Networking",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "ACM 官方 DOI 页面公开摘要；未核对全部分析规则与服务价格模型。",
+      "source_url": "https://doi.org/10.1145/3779212.3790221",
+      "evidence_urls": [
+        "https://www.asplos-conference.org/asplos2026/program/index.html#viii-b"
+      ],
+      "summary": "在部署前静态分析无服务器应用的控制流与 API 计费语义，生成随输入变化的符号成本模型。",
+      "problem": "API 调用和分层定价可能主导费用，人工估算和部署后剖析难以及时发现高成本路径。",
+      "method": "把分支、循环与计费规则编码为 SMT 公式，定位费用集中点；实现支持三家云上的 JavaScript 工作流。",
+      "takeaway": "架构效率目标可包含经济成本，但成本模型必须随 API 语义、输入和定价共同变化。",
+      "limitations": "摘要中的误差来自选定工作流和当时定价；没有证明对动态调用、未知外部状态及未来价格均准确，本页不提供当前云账单预测。",
+      "tags": [
+        "Serverless",
+        "静态分析",
+        "成本模型"
+      ]
+    }
+  ],
+  "trends": [
+    {
+      "title": "调度从单一吞吐指标走向多约束联合优化",
+      "summary": "BlendServe 同时维护资源互补与前缀共享，SwiftSpec 调整草稿和验证的关键路径，MoDM 根据缓存与模型质量分配 GPU。共同主题是先明确请求场景、可重排空间和服务目标，再决定调度粒度。",
+      "paper_titles": [
+        "BlendServe: Optimizing Offline Inference with Resource-Aware Batching",
+        "SwiftSpec: Disaggregated Speculative Decoding and Fused Kernels for Low-Latency LLM Inference",
+        "MoDM: Efficient Serving for Image Generation via Mixture-of-Diffusion Models"
+      ]
+    },
+    {
+      "title": "低比特的收益取决于训练策略和执行表示",
+      "summary": "SNIP 用训练影响选择精度，Tilus 处理任意位宽的 GPU 映射，Linear Layouts 用统一布局支撑混合精度。三者分别解决“哪些计算可降精度”和“硬件怎样高效执行”，不能用单一 FLOPs 或位宽指标替代全链路验证。",
+      "paper_titles": [
+        "SNIP: An Adaptive Mixed Precision Framework for Subbyte Large Language Model Training",
+        "Tilus: A Tile-Level GPGPU Programming Language for Low-Precision Computation",
+        "Linear Layouts: Robust Code Generation of Efficient Tensor Computation Using F2"
+      ]
+    },
+    {
+      "title": "编译抽象需要暴露足够的硬件语义",
+      "summary": "MSCCL++ 保留异步传输方式，Insum 保留稀疏索引与稠密计算结构，PowerMove 显式连接移动与门调度。归纳上，好的抽象让优化器看到关键约束，并控制使用者需要处理的细节。",
+      "paper_titles": [
+        "MSCCL++: Rethinking GPU Communication Abstractions for AI Inference",
+        "Insum: Sparse GPU Kernels Simplified and Optimized with Indirect Einsums",
+        "PowerMove: Optimizing Compilation for Neutral Atom Quantum Computers with Zoned Architecture"
+      ]
+    },
+    {
+      "title": "内存优化同时面对性能与故障语义",
+      "summary": "PACT 将页放置目标从热度改为停顿贡献；Nemo 联合考虑写放大与元数据；CXLMC 检查节点失效时的数据结构状态。存储层设计不仅涉及数据放在哪里，也涉及何时可用、代价多大及故障后还剩什么。",
+      "paper_titles": [
+        "PACT: A Criticality-First Design for Tiered Memory",
+        "Nemo: A Low-Write-Amplification Cache for Tiny Objects on Log-Structured Flash Devices",
+        "CXLMC: Model Checking CXL Shared Memory Programs"
+      ]
+    },
+    {
+      "title": "正确性约束正进入生成和硬件设计流程",
+      "summary": "LPO 用验证器筛选模型提出的优化，Graphiti 验证数据流电路重写，Anvil 用类型契约约束信号使用。这里的共同线索是把可检查条件放在设计和变换过程中，降低事后发现错误的成本。",
+      "paper_titles": [
+        "LPO: Discovering Missed Peephole Optimizations with Large Language Models",
+        "Graphiti: Formally Verified Out-of-Order Execution in Dataflow Circuits",
+        "Anvil: A General-Purpose Timing-Safe Hardware Description Language"
+      ]
+    },
+    {
+      "title": "从可观察信号检验系统假设",
+      "summary": "CounterPoint 用计数器置信区域质疑微架构模型，Radshield 联合实测电流与软件活动识别故障，Skyler 将控制流和计费语义转成可分析模型。它们提醒研究者说明模型输入、测量噪声和结论能覆盖的场景。",
+      "paper_titles": [
+        "CounterPoint: Using Hardware Event Counters to Refute and Refine Microarchitectural Assumptions",
+        "Radshield: Software Radiation Protection for Commodity Hardware in Space",
+        "Skyler: Static Analysis for Predicting API-Driven Costs in Serverless Applications"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "把量化策略与真实低精度内核放在同一评估回路",
+      "priority": "模型与编译交叉",
+      "question": "相同质量预算下，按训练敏感性选出的位宽，是否也能在目标 GPU 上获得稳定时间和能耗收益？",
+      "experiment": "先在小模型比较统一精度、SNIP 式逐层策略与硬件时间感知策略；将伪量化精度实验与 Tilus/现有内核计时分开记录，扫描形状和 batch，报告质量、实际吞吐、转换成本及显存。",
+      "paper_titles": [
+        "SNIP: An Adaptive Mixed Precision Framework for Subbyte Large Language Model Training",
+        "Tilus: A Tile-Level GPGPU Programming Language for Low-Precision Computation",
+        "Linear Layouts: Robust Code Generation of Efficient Tensor Computation Using F2"
+      ]
+    },
+    {
+      "title": "研究跨请求共享与异步推理的联合调度",
+      "priority": "可先软件实验",
+      "question": "前缀共享、草稿生成和通信重叠同时存在时，怎样在给定 GPU 预算下满足延迟要求？",
+      "experiment": "在固定硬件上分别启用前缀调度、草稿分离与通信优化，构成消融组合；按离线和在线两类负载分别扫描输入/输出长度和请求率，记录 TTFT、TPOT、P99、吞吐及额外 GPU 占用。",
+      "paper_titles": [
+        "BlendServe: Optimizing Offline Inference with Resource-Aware Batching",
+        "SwiftSpec: Disaggregated Speculative Decoding and Fused Kernels for Low-Latency LLM Inference",
+        "MSCCL++: Rethinking GPU Communication Abstractions for AI Inference"
+      ]
+    },
+    {
+      "title": "用反例驱动改进分层内存的关键性模型",
+      "priority": "测量与内存系统",
+      "question": "计数器噪声或工作负载阶段变化会否让 PAC 排序失真，导致不必要的迁移？",
+      "experiment": "先用 NUMA 控制延迟和带宽，再迁移到实物 CXL；注入阶段切换与计数器复用噪声，比较热度、关键性和带置信区间的策略，同时测应用运行时间、迁移字节数与错误排序比例。",
+      "paper_titles": [
+        "PACT: A Criticality-First Design for Tiered Memory",
+        "CounterPoint: Using Hardware Event Counters to Refute and Refine Microarchitectural Assumptions"
+      ]
+    },
+    {
+      "title": "给自动优化增加正确性和成本双重预算",
+      "priority": "工具与验证",
+      "question": "生成式编译优化在未见输入与模块组合中能保持正确，且值得投入多少搜索和验证成本？",
+      "experiment": "固定候选生成预算，在 LLVM 或小型数据流 IR 中记录生成、验证、失败反例及最终收益；用训练外程序和边界类型检查泛化，分别统计验证器拒绝率、编译时间、代码大小和运行时间。",
+      "paper_titles": [
+        "LPO: Discovering Missed Peephole Optimizations with Large Language Models",
+        "Graphiti: Formally Verified Out-of-Order Execution in Dataflow Circuits",
+        "Anvil: A General-Purpose Timing-Safe Hardware Description Language"
+      ]
+    }
+  ],
+  "consensus": [
+    {
+      "summary": "先区分目标：离线吞吐、在线延迟、训练质量与成本约束需要不同的优化策略和指标。",
+      "paper_titles": [
+        "BlendServe: Optimizing Offline Inference with Resource-Aware Batching",
+        "SwiftSpec: Disaggregated Speculative Decoding and Fused Kernels for Low-Latency LLM Inference",
+        "SNIP: An Adaptive Mixed Precision Framework for Subbyte Large Language Model Training",
+        "Skyler: Static Analysis for Predicting API-Driven Costs in Serverless Applications"
+      ]
+    },
+    {
+      "summary": "抽象保留的语义决定可优化空间；布局、索引、异步通信和硬件时序都值得成为显式接口。",
+      "paper_titles": [
+        "Linear Layouts: Robust Code Generation of Efficient Tensor Computation Using F2",
+        "Insum: Sparse GPU Kernels Simplified and Optimized with Indirect Einsums",
+        "MSCCL++: Rethinking GPU Communication Abstractions for AI Inference",
+        "Anvil: A General-Purpose Timing-Safe Hardware Description Language"
+      ]
+    },
+    {
+      "summary": "性能数字应伴随证据边界：伪量化、NUMA 仿真、特定处理器测量和已部署系统各能支持不同结论。",
+      "paper_titles": [
+        "SNIP: An Adaptive Mixed Precision Framework for Subbyte Large Language Model Training",
+        "PACT: A Criticality-First Design for Tiered Memory",
+        "CounterPoint: Using Hardware Event Counters to Refute and Refine Microarchitectural Assumptions",
+        "Radshield: Software Radiation Protection for Commodity Hardware in Space"
+      ]
+    }
+  ]
+}

@@ -337,3 +337,9 @@
     transition:none
   }
 }
+
+.research-map-row>span:last-child { line-height:1.9;text-align:right }
+.research-card-micro .research-card-badge { color:#3d6d7b;background:#e9f3f6 }
+.research-card-asplos .research-card-badge { color:#7353a0;background:#f1ecf8 }
+.research-card-hpca .research-card-badge { color:#5366a0;background:#edf0fa }
+.research-card:focus-visible { outline:3px solid #9ebcf2;outline-offset:4px }

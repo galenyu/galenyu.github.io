@@ -1,0 +1,110 @@
+{% assign program_path = '/assets/data/' | append: page.conference_slug | append: '-program.json' %}
+{% assign notes_path = '/assets/data/' | append: page.conference_slug | append: '-notes.json' %}
+{% assign method_path = '/docs/' | append: page.conference_slug | append: '-survey/' %}
+<div class="survey conference-survey conf-page-{{ page.conference_key }}" data-conference="{{ page.conference }}" data-source-url="{{ page.source_url }}" data-program-url="{{ program_path | relative_url }}" data-notes-url="{{ notes_path | relative_url }}">
+  <nav class="conf-breadcrumb" aria-label="面包屑"><a href="{{ '/research/' | relative_url }}">Research</a><span aria-hidden="true">/</span><span aria-current="page">{{ page.conference }}</span></nav>
+  <section class="survey-hero" aria-labelledby="survey-title">
+    <div class="survey-hero-copy">
+      <span class="survey-eyebrow"><span class="survey-dot" aria-hidden="true"></span> OPEN RESEARCH · {{ page.conference }}</span>
+      <h1 id="survey-title">{{ page.hero_title }}<br><span>论文总结与阅读笔记</span></h1>
+      <p class="survey-intro">{{ page.intro }}</p>
+      <div class="survey-hero-actions">
+        <a class="survey-primary" href="#papers">浏览论文索引 <span aria-hidden="true">↓</span></a>
+        <a class="survey-secondary" href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer">{{ page.conference_code }} 官方议程 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="survey-hero-meta"><span>会议 <strong>{{ page.edition }}</strong></span><span>地点 <strong>{{ page.location }}</strong></span></div>
+      {% include conference-switcher.html %}
+    </div>
+    <div class="survey-hero-art conf-hero-art" aria-hidden="true">
+      <div class="survey-art-grid"></div>
+      <span class="survey-art-caption">{{ page.art_caption }}</span>
+      <div class="conf-chip"><span class="conf-chip-core">{{ page.conference_code }}<span>2026</span></span><i></i><i></i><i></i><i></i></div>
+      <div class="survey-art-bits"><span>COMPUTE</span><i>↔</i><span>MEMORY</span></div>
+      <span class="survey-art-foot">A computer architecture research notebook</span>
+    </div>
+  </section>
+
+  <div id="conf-status" class="survey-status" role="status" aria-live="polite">
+    <span class="survey-status-symbol" aria-hidden="true">i</span>
+    <div><strong id="conf-status-title">正在载入官方议程索引</strong><p id="conf-status-message">论文数量、分类与解读进度将在数据载入后显示。</p></div>
+    <span id="conf-updated" class="survey-status-date"></span>
+  </div>
+
+  <div class="survey-body">
+    <aside class="survey-toc" aria-label="页面目录">
+      <span class="survey-small-label">本页导航</span>
+      <a href="#overview"><span>01</span> 会议概览</a>
+      <a href="#landscape"><span>02</span> 总结与选题</a>
+      <a href="#observations"><span>03</span> 代表论文</a>
+      <a href="#taxonomy"><span>04</span> 研究方向</a>
+      <a href="#papers"><span>05</span> 论文与笔记</a>
+      <a href="#method"><span>06</span> 来源与方法</a>
+      <div class="survey-toc-note">官方议程确认论文身份；公开摘要与原文支撑技术解读。每篇论文注明阅读依据。</div>
+    </aside>
+    <div class="survey-content">
+      <section id="overview" class="survey-section" aria-labelledby="overview-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">THE BIG PICTURE</span><h2 id="overview-heading">会议概览</h2></div><span class="survey-section-aside">{{ page.dates }}</span></div>
+        <div class="survey-stats">
+          <div><span>官方议程论文</span><strong id="conf-total">—</strong><small>有标题与作者的论文条目</small></div>
+          <div><span>官方论文场次</span><strong id="conf-session-count">—</strong><small>保留官方 Session 与轨道</small></div>
+          <div><span>研究方向</span><strong id="conf-direction-count">—</strong><small>按场次互斥归组</small></div>
+          <div><span>代表论文解读</span><strong id="conf-reviewed">—</strong><small id="conf-reading-depth">公开原文与摘要分别标明</small></div>
+        </div>
+        <p class="survey-overview-note">{{ page.scope_note }}</p>
+      </section>
+
+      <section id="landscape" class="survey-section" aria-labelledby="landscape-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">LANDSCAPE &amp; RESEARCH AGENDA</span><h2 id="landscape-heading">全景总结与研究建议</h2></div><a href="#papers" class="survey-text-link">回到论文索引 ↗</a></div>
+        <p class="survey-section-intro">先看整份议程的方向分布，再从代表论文理解设计取舍。方向统计覆盖全部索引；趋势与建议是对注明来源的论文所作的综合归纳。</p>
+        <div class="survey-landscape-table-wrap" role="region" aria-label="官方议程的研究方向分布" tabindex="0">
+          <table class="survey-landscape-table conf-landscape-table"><caption>按官方 Session 归组 · 每篇论文计入一个方向</caption><thead><tr><th scope="col">方向</th><th scope="col">论文数</th><th scope="col">有解读的代表作</th><th scope="col">官方 Session</th></tr></thead><tbody id="conf-directions"><tr><td colspan="4">正在载入方向统计。</td></tr></tbody></table>
+        </div>
+        <p class="survey-overview-note">有工业轨时保持独立分组，避免仅凭标题改写官方分类。方向数量反映本届议程分布，不等同于研究饱和度、论文质量或跨年增长。</p>
+        <div class="survey-landscape-subheading"><span class="survey-small-label">01 / TRENDS &amp; TRADEOFFS</span><h3>值得关注的研究主题</h3></div>
+        <div id="conf-trends" class="survey-landscape-trends"><p class="survey-section-intro">正在载入有来源的趋势总结。</p></div>
+        <div id="conf-consensus-section" class="survey-landscape-consensus" hidden><h4>从代表作中归纳的共同认识</h4><ol id="conf-consensus"></ol></div>
+        <div class="survey-landscape-subheading"><span class="survey-small-label">02 / WHAT TO WORK ON</span><h3>从论文走向可验证的选题</h3></div>
+        <div id="conf-recommendations" class="survey-landscape-recommendations"></div>
+      </section>
+
+      <section id="observations" class="survey-section" aria-labelledby="observations-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">READING &amp; INSIGHTS</span><h2 id="observations-heading">代表论文：问题与方法</h2></div><span id="conf-observation-count" class="survey-section-aside"></span></div>
+        <p class="survey-section-intro">跨方向选择代表作，关注它们如何定位瓶颈、划分软硬件职责和评估代价。公开原文解读表示已核对注明的正文重点段落；摘要解读未核对完整实验。点击论文可查看中文笔记及原始来源。</p>
+        <div id="conf-observations" class="conf-observations"><p class="survey-overview-note">正在载入代表论文。</p></div>
+      </section>
+
+      <section id="taxonomy" class="survey-section" aria-labelledby="taxonomy-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">RESEARCH MAP</span><h2 id="taxonomy-heading">沿着问题，阅读论文</h2></div><a href="#papers" class="survey-text-link">查看全部 ↗</a></div>
+        <p class="survey-section-intro">沿用会议的 Session 分类，把相近主题归组。点击方向可筛选对应论文，也可进一步按场次、轨道与阅读状态查找。</p>
+        <div id="conf-taxonomy" class="survey-taxonomy"></div>
+      </section>
+
+      <section id="papers" class="survey-section survey-paper-section" aria-labelledby="papers-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">PAPER EXPLORER</span><h2 id="papers-heading">论文索引与中文笔记</h2></div><span id="conf-result-count" class="survey-section-aside" aria-live="polite"></span></div>
+        <form id="conf-filters" class="survey-filters conf-filters" role="search">
+          <div class="survey-search"><label for="conf-query">搜索论文</label><input type="search" id="conf-query" placeholder="标题、作者、Session 或中文笔记…" autocomplete="off"></div>
+          <div class="survey-select"><label for="conf-category">研究方向</label><select id="conf-category"><option value="all">全部方向</option></select></div>
+          <div class="survey-select"><label for="conf-session">官方 Session</label><select id="conf-session"><option value="all">全部场次</option></select></div>
+          <div class="survey-select"><label for="conf-track">会议轨道</label><select id="conf-track"><option value="all">全部轨道</option><option value="main">研究轨</option><option value="industry">工业轨</option></select></div>
+          <div class="survey-select"><label for="conf-review">阅读状态</label><select id="conf-review"><option value="all">全部状态</option><option value="noted">已有中文解读</option><option value="fulltext">公开原文解读</option><option value="abstract">公开摘要解读</option><option value="unread">仅议程索引</option></select></div>
+          <div class="survey-select"><label for="conf-sort">排序方式</label><select id="conf-sort"><option value="noted">已有解读优先</option><option value="program">官方议程顺序</option><option value="title">标题字母序</option></select></div>
+          <button type="button" id="conf-reset" class="survey-reset">重置筛选</button>
+        </form>
+        <div id="conf-paper-list" class="survey-paper-list" aria-live="polite" aria-busy="true"><div class="survey-empty"><h3>正在载入论文索引</h3><p>读取官方议程快照与代表论文笔记。</p></div></div>
+        <nav id="conf-pagination" class="survey-pagination" aria-label="论文分页" hidden><button type="button" id="conf-prev">← 上一页</button><span id="conf-page-number"></span><button type="button" id="conf-next">下一页 →</button></nav>
+      </section>
+
+      <section id="method" class="survey-section" aria-labelledby="method-heading">
+        <div class="survey-section-heading"><div><span class="survey-small-label">SOURCES &amp; METHOD</span><h2 id="method-heading">来源与阅读方法</h2></div></div>
+        <div class="survey-method-grid">
+          <div><span class="survey-method-number">01 / CONFERENCE IDENTITY</span><h3>以官方议程确认论文</h3><p>标题、作者、场次与轨道来自 {{ page.conference }} 官方技术议程。保留来源地址和快照信息，公开可下载的结构化索引。</p></div>
+          <div><span class="survey-method-number">02 / READING DEPTH</span><h3>逐篇标明解读依据</h3><p>笔记链接可公开读取的摘要或作者原文，注明实际阅读范围与版本；议程中只有标题的论文保留索引状态，待补充技术解读。</p></div>
+          <div><span class="survey-method-number">03 / RESEARCH SYNTHESIS</span><h3>从取舍归纳研究方向</h3><p>趋势与选题建议链接到具体论文。性能与方法判断遵循对应来源；作者报告的实验结果不代表独立复现。</p></div>
+        </div>
+        <div class="survey-source-box"><div><strong>可核对、可追溯的研究笔记</strong><p id="conf-source-scope">论文索引与解读资料分别保存。来源、统计口径与更新方法见说明文档。</p><div class="survey-source-links"><a class="survey-text-link" href="{{ page.source_url }}" target="_blank" rel="noopener noreferrer">官方议程 ↗</a><a class="survey-text-link" href="{{ program_path | relative_url }}">论文索引 JSON ↗</a><a class="survey-text-link" href="{{ notes_path | relative_url }}">中文笔记 JSON ↗</a><a class="survey-text-link" href="{{ method_path | relative_url }}">来源与更新说明 ↗</a></div></div><span class="survey-source-badge">{{ page.conference_code }} / 2026<br><strong>OFFICIAL PROGRAM SNAPSHOT</strong></span></div>
+        <p class="survey-credit">本页沿用 ICLR 调研笔记的概览、方向全景、趋势、选题与阅读索引结构。官方 Session 分布、代表论文解读和调研者提出的研究建议分别注明依据。</p>
+      </section>
+    </div>
+  </div>
+  <noscript><p class="survey-noscript">启用 JavaScript 后可使用搜索、筛选与中文笔记。也可直接阅读 <a href="{{ page.source_url }}">官方完整议程</a>、<a href="{{ program_path | relative_url }}">论文索引 JSON</a>与<a href="{{ notes_path | relative_url }}">中文笔记 JSON</a>。</p></noscript>
+</div>

@@ -1,6 +1,6 @@
 # Galen Yu · Personal website
 
-A Jekyll personal website for research interests, writing, and conference research notebooks covering ICLR 2027 model quantization and ISCA 2026 computer architecture.
+A Jekyll personal website for research interests, writing, and conference research notebooks covering ICLR 2027 model quantization and ISCA, MICRO, ASPLOS, and HPCA 2026 architecture and systems.
 
 ## Local preview
 
@@ -17,7 +17,7 @@ Open http://localhost:4000. For a production build, run `bundle exec jekyll buil
 
 - `index.html`: homepage; `ABOUTME.md`: personal introduction.
 - `_posts/`: dated writing; `/writing/`: article index.
-- `research.html`: `/research/` conference notebook hub, with ICLR and ISCA child entries.
+- `research.html`: `/research/` conference notebook hub, with five conference collections: ICLR, ISCA, MICRO, ASPLOS, and HPCA.
 - `isca-2026.html`: `/isca-2026/` Chinese conference overview, direction counts, research synthesis, and searchable paper readings.
 - `assets/data/isca-2026-program.json`: 172 identifiable papers in 37 official sessions (161 research-track and 11 industry-track papers); one empty program slot is explicitly excluded.
 - `assets/data/isca-2026-notes.json`: sourced representative readings, trends, and experiment suggestions, matched to official titles. Reading depth and source version are stated per paper.
@@ -61,6 +61,37 @@ node scripts/test_isca2026.cjs _site
 ```
 
 The browser check requires the `playwright` package and Chromium. Set `PLAYWRIGHT_MODULE` to its installed module path or `PLAYWRIGHT_CHANNEL` to a browser channel when using a bundled runtime.
+
+## MICRO, ASPLOS, and HPCA 2026
+
+The three new notebooks follow the ICLR page's overview, research landscape, themes, shared lessons, research suggestions, representative readings, and searchable index. The shared `_includes/conference-survey.html`, `assets/css/conference.css`, and `assets/js/conference.js` render conference-specific data without changing the existing ICLR or ISCA renderer.
+
+| Notebook | Official program papers | Sessions | Scope |
+| --- | ---: | ---: | --- |
+| `/micro-2026/` | 220 | 34 | 213 research + 7 industry; pre-conference program snapshot |
+| `/asplos-2026/` | 168 | 36 | Detailed program entries; the overview separately states 167 |
+| `/hpca-2026/` | 122 | 31 | 119 research + 3 industry; excludes Best of CAL |
+
+Each `assets/data/<conference>-2026-program.json` retains official titles, authors, session identities, track, category, source URLs and a snapshot hash. Session groups are exclusive browsing categories, not exhaustive per-paper topic tags. The companion `-notes.json` binds named readings and their evidence to that source hash; technical conclusions apply only to the stated abstract or selected full-text sections. Notes include Chinese problem/method/takeaway/limitations fields, linked themes and shared lessons, and testable research suggestions. Performance claims are author-reported, not independent reproductions.
+
+Raw `-source.html` files stay in Git for audit and are excluded from the published site. Source and reading counts are checked before displaying statistics; unavailable or stale notes leave the complete index usable.
+
+Offline rebuild from the preserved official snapshots:
+
+```bash
+python3 scripts/sync_micro2026.py --input-html assets/data/micro-2026-source.html
+python3 scripts/sync_asplos2026.py --input-html assets/data/asplos-2026-source.html
+python3 scripts/sync_hpca2026.py --input-html assets/data/hpca-2026-source.html
+```
+
+See the corresponding `docs/<conference>-2026-survey.md` for source differences, exclusions and update instructions. After the Jekyll build, run the shared browser checks (same Playwright environment options as the ISCA check):
+
+```bash
+node scripts/test_conferences2026.cjs _site
+node scripts/test_isca2026.cjs _site
+```
+
+The checks cover the five Research entries, all category and session filters, track and reading depth, Chinese and title search, pagination, sorting, evidence/deep links, source and note failure handling, escaping, and 320–1440px layouts.
 
 ## Design and attribution
 

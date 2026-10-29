@@ -1,0 +1,59 @@
+@import url('./survey.css');
+
+.conf-breadcrumb { display:flex;gap:11px;align-items:center;font-size:12px;color:var(--sq-muted);margin:0 0 7px }
+.conf-hero-art { background:linear-gradient(140deg,#f4f8ff,#e8effd) }
+.conf-chip { position:relative;display:grid;place-items:center;width:148px;height:130px;margin:20px 0 24px }
+.conf-chip-core { position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:108px;height:108px;border:1px solid #adc1e1;border-radius:19px;background:linear-gradient(145deg,#fff,#e7effc);box-shadow:0 8px 24px #416ca822,inset 0 0 0 7px #f7faff;color:#315689;font-size:29px;font-weight:700;letter-spacing:.04em }
+.conf-chip-core span { font-size:15px;font-weight:400;letter-spacing:.22em;margin-top:3px }
+.conf-chip i { position:absolute;width:148px;height:62px;background:repeating-linear-gradient(0deg,transparent 0 9px,#97b0d5 9px 12px,transparent 12px 15px) }
+.conf-chip i:nth-of-type(2) { transform:rotate(90deg) }
+.conf-chip i:nth-of-type(n+3) { display:none }
+.conf-filters { grid-template-columns:repeat(3,minmax(0,1fr)) }
+.conf-filters .survey-search { grid-column:1/-1 }
+.conf-landscape-table th:first-child { width:19% }
+.conf-landscape-table th:nth-child(2) { width:9% }
+.conf-landscape-table th:nth-child(3) { width:38% }
+.conf-landscape-table th:nth-child(4) { width:34% }
+.conf-session-link { display:inline-block;margin:0 12px 5px 0;font-size:11px }
+.conf-observations { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px }
+.conf-observation { background:#fff;border:1px solid var(--sq-line);border-radius:10px;padding:19px;min-width:0 }
+.conf-observation h3 { font-size:14px;line-height:1.65;margin:11px 0 9px }
+.conf-observation p { font-size:12px;line-height:1.9;color:var(--sq-muted) }
+.conf-reading-basis { color:var(--sq-muted)!important;font-size:10px!important;line-height:1.8;margin-top:8px!important }
+.conf-note-grid { display:grid;gap:10px;margin:16px 0 4px }
+.conf-note-grid dt { color:#46699d;font-size:11px;font-weight:700 }
+.conf-note-grid dd { margin:3px 0 0;font-size:12px;line-height:1.9;color:#5e7088 }
+.conf-paper-meta { color:var(--sq-muted)!important;font-size:11px!important;margin-bottom:8px!important }
+.conf-paper-authors { overflow-wrap:anywhere }
+.conference-survey .survey-taxonomy-card-top>span:first-child { font-size:13px;font-weight:650;line-height:1.6 }
+.conf-paper-title { overflow-wrap:anywhere }
+.conf-jump-link { overflow-wrap:anywhere }
+.conf-evidence-links { display:flex;flex-wrap:wrap;gap:7px 15px }
+.conference-survey .survey-paper-top { flex-wrap:wrap }
+.conference-survey .survey-paper:focus { outline:3px solid #9ebcf2;outline-offset:3px }
+.conference-survey .survey-paper-links { flex-wrap:wrap }
+.conference-survey .survey-landscape-evidence { margin-top:13px }
+.conference-survey .survey-landscape-evidence li { overflow-wrap:anywhere }
+.conference-survey .survey-landscape-table { min-width:560px }
+@media(max-width:760px) {
+  .conf-observations { grid-template-columns:1fr }
+  .conf-filters { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .conf-filters .survey-select:last-of-type { grid-column:1/-1 }
+  .conf-hero-art { min-height:260px }
+  .conf-chip { margin:20px 0;height:130px }
+  .conference-survey .survey-hero-meta { flex-wrap:wrap }
+  .conference-survey .survey-section-heading { flex-wrap:wrap;align-items:flex-start }
+}
+
+.conf-table-paper + .conf-table-paper { margin-top:10px }
+.conf-reading-pending { color:var(--sq-muted);font-size:11px }
+.conference-switcher { display:flex;flex-wrap:wrap;gap:7px;margin:18px 0 0 }
+.conference-switcher a { border:1px solid var(--sq-line);border-radius:6px;padding:5px 10px;font-size:11px }
+.conference-switcher a[aria-current="page"] { background:var(--sq-blue);color:#fff;border-color:var(--sq-blue) }
+.conference-survey .survey-landscape-consensus li>p { margin:0 }
+.conference-survey .survey-landscape-consensus .survey-landscape-evidence { margin:7px 0 14px }
+.conf-page-micro .conf-hero-art { background:linear-gradient(140deg,#eff4ff,#e7f3ee) }
+.conf-page-asplos .conf-hero-art { background:linear-gradient(140deg,#f4f0ff,#eaf1ff) }
+.conf-page-hpca .conf-hero-art { background:linear-gradient(140deg,#eff8fb,#edf0ff) }
+.conf-page-asplos .conf-chip-core { font-size:22px }
+@media(max-width:760px) { .conf-landscape-table { min-width:720px!important } }

@@ -1,0 +1,614 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "conference": "MICRO 2026",
+    "checked_at": "2026-10-29",
+    "program_source_url": "https://www.microarch.org/micro59/program/",
+    "program_source_sha256": "f941b51bc35eb786cf4e5d407c8da138189e45a95e00d86c7bab7385b1c39634",
+    "program_count": 220,
+    "reading_count": 18,
+    "fulltext_count": 3,
+    "abstract_count": 15,
+    "scope": "会前公开论文版本的代表阅读，不是全部论文已读或会后报道。",
+    "selection_method": "按公开可读证据选择代表稿，覆盖 GPU、低比特、CPU、PIM、CXL、安全、可靠性、仿真、量子和工业界；不是排名或随机抽样。",
+    "analysis_method": "先按标题和作者核对官方场次，再读作者公开原文或 arXiv 指定版本摘要；三篇重点核对正文选段，趋势与建议为有来源的研究归纳。",
+    "limitations": [
+      "18 篇代表解读与 220 篇议程索引分开计数。",
+      "原文解读仅覆盖 reading_basis 指定章节，不表示通读或复现。",
+      "公开预印本可能不同于会议定稿，逐篇固定阅读版本。",
+      "作者报告与独立复现分开；选题建议是待验证假设。",
+      "方向计数按场次互斥分组，不能用于计算全会议所有主题的占比。"
+    ]
+  },
+  "papers": [
+    {
+      "title": "Caerus: Prefetching by Thinking Globally and Acting Locally",
+      "id": "micro26-c5a6fff09ea9",
+      "session_id": "2c",
+      "session": "Session 2C: Distinguished Papers I -- Memory Systems & Microarchitecture",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "作者公开 PDF：摘要、§I、§IV 实验配置与 §V 开头；重点段落解读，非逐页通读。",
+      "source_url": "https://samainsworth.github.io/Caerus-Prefetcher-Micro.pdf",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#iii-c"
+      ],
+      "summary": "联合全局偏移学习与 PC 局部过滤，在覆盖率、及时性和 DRAM 流量之间寻找平衡。",
+      "problem": "全局偏移忽略指令上下文，局部预取又会错过不同 PC 之间的访存规律。",
+      "method": "逐次学习互不重复覆盖的全局偏移，并按 PC 跟踪精度，过滤无效预取。",
+      "takeaway": "预取的学习范围与发射范围可以解耦；应同时报告命中覆盖、流量和硬件成本。",
+      "limitations": "§IV 用 ChampSim 轨迹仿真，不是实机加速；SPECspeed 2017 的 8.3% 相对无预取基线，不能理解为相对 Berti。",
+      "tags": [
+        "预取",
+        "CPU",
+        "全局学习",
+        "杰出论文"
+      ]
+    },
+    {
+      "title": "Exploring the Efficiency of 3D-Stacked AI Chip Architecture for LLM Inference with VOXEL",
+      "id": "micro26-40e65bfef863",
+      "session_id": "4c",
+      "session": "Session 4C: Thermal-Aware 3D-Stacked LLM Accelerators",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v1：摘要、§I、§3.4–3.5 及 §4 概述；未采用后续 v2 的未读内容。",
+      "source_url": "https://arxiv.org/html/2604.26821v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#v-c"
+      ],
+      "summary": "3D 堆叠的带宽优势能否兑现，取决于计算范式、tile 放置和 DRAM bank 映射的共同设计。",
+      "problem": "分布式计算核与堆叠内存让通信、行缓冲冲突和热约束相互影响。",
+      "method": "以编译器执行计划构建事件图，联合模拟计算、NoC、DRAM 和功率约束；用 IPU 仿真平台交叉验证。",
+      "takeaway": "先联合扫描映射与硬件参数，再判断增加带宽或计算核是否有效。",
+      "limitations": "§3.5 的验证基于 IPU SRAM 模拟 DRAM 并回放加入 DRAM 时延，不是量产 3D DRAM 芯片实测；热模型采用简化功率密度限制。",
+      "tags": [
+        "3D 堆叠",
+        "仿真",
+        "数据映射",
+        "热约束"
+      ],
+      "source_title": "Exploring the Efficiency of 3D-Stacked AI Chip Architecture for LLM Inference with VOXEL"
+    },
+    {
+      "title": "PEEK: Heterogeneous Parallelism for Privileged Error Detection in Safety-Critical Processors",
+      "id": "micro26-c65d43d5b287",
+      "session_id": "6b",
+      "session": "Session 6B: Energy-Constrained & Fault-Tolerant Systems",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v1：摘要、§III–IV、§VII.1–3、VII.6 与 VII.9；区分 FPGA 评估和最小流片配置。",
+      "source_url": "https://arxiv.org/html/2610.03045v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#vii-b"
+      ],
+      "summary": "把异构并行错误检测扩展到特权态，同时处理快照膨胀、异常重放和资源死锁。",
+      "problem": "仅检查用户态会遗漏内核错误，直接复制特权态执行又产生高同步成本。",
+      "method": "选择性保存实际使用的 CSR，重新设计小核重放和上下文切换，并提供死锁处理。",
+      "takeaway": "保护范围必须包含操作系统路径；性能、检测覆盖与面积需要一起比较。",
+      "limitations": "主要性能和故障注入在 RTL / FPGA 全系统上测得；28nm TinyPEEK 流片是缩小配置，不能把标准配置的全部指标当作芯片测量。",
+      "tags": [
+        "可靠性",
+        "特权态",
+        "异构检测",
+        "杰出论文"
+      ],
+      "source_title": "PEEK: Heterogeneous Parallelism for Privileged Error Detection in Safety-Critical Processors"
+    },
+    {
+      "title": "Bit-Accurate Modeling of GPU Matrix Multiply-Accumulate Units: Demystifying Numerical Discrepancy and Accuracy",
+      "id": "micro26-0c3cc95a871a",
+      "session_id": "1a",
+      "session": "Session 1A: GPU Microarchitecture & Numerical Precision",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v3 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2511.10909v3",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#ii-a"
+      ],
+      "summary": "以闭环特征探测重建 GPU MMA 的算术行为，解释同样输入为何产生跨架构数值差异。",
+      "problem": "Tensor Core 等矩阵单元的内部舍入和累加行为通常没有完整公开。",
+      "method": "系统探测十代 NVIDIA / AMD 架构的 MMA 指令，生成逐位精确模型并分析精度瓶颈。",
+      "takeaway": "性能可移植性还需要数值可移植性；比较低比特实现应控制真实累加与舍入语义。",
+      "limitations": "当前解读仅依据 v3 摘要；尚未检查全部边界输入、指令覆盖和跨平台误差实验。",
+      "tags": [
+        "GPU",
+        "MMA",
+        "数值精度",
+        "测量"
+      ],
+      "source_title": "Bit-Accurate Modeling of GPU Matrix Multiply-Accumulate Units: Demystifying Numerical Discrepancy and Accuracy"
+    },
+    {
+      "title": "SnakeCharmer: Orchestrating Utility, Timeliness, and Placement in GPU Prefetching",
+      "id": "micro26-74179d883036",
+      "session_id": "1a",
+      "session": "Session 1A: GPU Microarchitecture & Numerical Precision",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2610.30990v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#ii-a"
+      ],
+      "summary": "GPU 预取除了预测地址，还需要协同决定是否发射、何时发射和在哪里保留数据。",
+      "problem": "准确的地址预测可能因过早、过晚或缓存干扰而无法转化为性能收益。",
+      "method": "在预测器后加入效用过滤、反馈式距离调整和寄存器辅助预取缓冲，并接入 Snake 与 APOGEE。",
+      "takeaway": "预取器可以共享后端控制层；评估应区分地址预测准确率与实际有效预取。",
+      "limitations": "摘要的 12.8% 性能提升来自 A100 模型且相对 Snake；这不是 A100 实机或所有前端预测器的普遍增益。",
+      "tags": [
+        "GPU",
+        "预取",
+        "反馈控制"
+      ],
+      "source_title": "SnakeCharmer: Orchestrating Utility, Timeliness, and Placement in GPU Prefetching"
+    },
+    {
+      "title": "HBQ: Hierarchical Scaling Block Quantization with Hardware-Efficiency-Aware Design for Accurate LLM Inference",
+      "id": "micro26-9ee3ffd52d8a",
+      "session_id": "6c",
+      "session": "Session 6C: Low-Bit Quantization for LLM Inference",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v2 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2609.00450v2",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#vii-c"
+      ],
+      "summary": "用层次缩放补偿大块量化误差，把量化粒度与反量化、累加成本一起优化。",
+      "problem": "较大 block 可摊薄硬件开销，却会损害权重和激活的量化精度。",
+      "method": "在大块之上引入低开销 significand 缩放，并把权重、激活、KV cache 与部分和纳入设计。",
+      "takeaway": "量化选题需要将精度、格式元数据和实际数据通路面积能耗放进同一比较。",
+      "limitations": "依据 v2 摘要的 28nm ASIC 设计结果；未核对综合设置、模型集与定稿，不能当作已复现的通用吞吐提升。",
+      "tags": [
+        "LLM",
+        "量化",
+        "块缩放",
+        "软硬件协同"
+      ],
+      "source_title": "HBQ: Hierarchical Scaling Block Quantization with Hardware-Efficiency-Aware Design for Accurate LLM Inference"
+    },
+    {
+      "title": "NELSSA: A GPU–PNM Heterogeneous System for Mixed-Length LLM Serving via Length–based Request Placement",
+      "id": "micro26-395f92e14340",
+      "session_id": "8a",
+      "session": "Session 8A: PIM & Near-Memory Long-Context LLM Serving",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2607.26633v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#ix-a"
+      ],
+      "summary": "把混合长度请求分流到 GPU 和近存设备，并随上下文增长进行跨层迁移。",
+      "problem": "短请求和超长请求混合时，GPU 大 batch 受到内存容量和效率的双重限制。",
+      "method": "按长度放置请求，配合 PNM 稀疏注意力、GPU decode 内核及 CXL 基础设施上的运行时。",
+      "takeaway": "异构设备的价值可以来自请求分工；迁移路径与尾延迟应成为服务评估的一部分。",
+      "limitations": "摘要报告的是特定混合长度原型负载的最高收益；未核对迁移阈值、精度或 RPC / RDMA 网络配置。",
+      "tags": [
+        "LLM Serving",
+        "GPU–PNM",
+        "长上下文",
+        "CXL"
+      ],
+      "source_title": "NELSSA: A GPU-PNM Heterogeneous System for Mixed-Length LLM Serving via Length-based Request Placement"
+    },
+    {
+      "title": "GPU-Tile-Sim: A Tile-Centric GPU Simulation Framework for LLM Hardware-Software Co-Design",
+      "id": "micro26-2593985ff9fc",
+      "session_id": "3b",
+      "session": "Session 3B: Design Methodology: Simulation & Performance Modeling",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2607.11262v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#iv-b"
+      ],
+      "summary": "以 warp 级 tile 依赖图建模优化 GPU 内核，捕捉计算与访存重叠。",
+      "problem": "指令仿真适配成本高，而粗粒度解析模型难以保留现代 LLM 内核的调度结构。",
+      "method": "自动抽取 tile 图，以节点描述操作、边描述依赖，再由图驱动后端模拟执行。",
+      "takeaway": "模型抽象应保留决定性能的依赖，而非只加总指令时延。",
+      "limitations": "摘要在 A100 / H100 的所选负载上验证；Blackwell 仅初步验证，误差范围不应推广到任意 GPU 程序。",
+      "tags": [
+        "GPU",
+        "仿真",
+        "性能模型",
+        "tile 图"
+      ],
+      "source_title": "GPU-Tile-Sim: A Tile-Centric GPU Simulation Framework for LLM Hardware-Software Co-Design"
+    },
+    {
+      "title": "From Bit-Position Sensitivity to Unequal Error Protection for DNN Inference Memory",
+      "id": "micro26-6c50f4d54f8c",
+      "session_id": "2b",
+      "session": "Session 2B: Memory System Power, Refresh & Predictive Prefetching",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2607.19623v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#iii-b"
+      ],
+      "summary": "按浮点位位置和工作负载敏感性分配保护强度，降低 DNN 推理内存的 ECC 开销。",
+      "problem": "对所有位统一使用 SECDED，可能为对任务影响很小的低位支付过高成本。",
+      "method": "在 16 个工作负载与三种格式上分析位翻转，设计带数据类型标签的不等保护编解码器和双分区 SRAM。",
+      "takeaway": "可靠性预算可以关注任务输出，但需明确容错阈值和错误分布。",
+      "limitations": "摘要结论基于指定单比特及连续 2–3 比特注入；不等于任意多位故障安全，也不保证未测模型的任务质量。",
+      "tags": [
+        "ECC",
+        "DNN",
+        "容错",
+        "位敏感性"
+      ],
+      "source_title": "From Bit-Position Sensitivity to Unequal Error Protection for DNN Inference Memory"
+    },
+    {
+      "title": "MORDOR: Mitigating Overheads of Read Disturbance Preventive Operations via Elastic Refresh Scheduling",
+      "id": "micro26-d10f27e078e9",
+      "session_id": "2b",
+      "session": "Session 2B: Memory System Power, Refresh & Predictive Prefetching",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v2 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2610.11398v2",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#iii-b"
+      ],
+      "summary": "在保持读干扰防护约束的同时，把部分预防性刷新移出需求请求的关键路径。",
+      "problem": "紧急刷新通常优先于需求访问，引入长停顿和额外能耗。",
+      "method": "只要接下来的访问不触及相关 aggressor row，就延迟该预防性刷新；与六类控制器侧防护机制结合。",
+      "takeaway": "安全机制的性能成本也来自调度位置，不能只统计防护操作次数。",
+      "limitations": "仅核对 v2 摘要；具体安全证明、最坏访问序列与控制器参数仍需原文复核。",
+      "tags": [
+        "DRAM",
+        "RowHammer",
+        "刷新调度"
+      ],
+      "source_title": "MORDOR: Mitigating Overheads of Read Disturbance Preventive Operations via Elastic Refresh Scheduling"
+    },
+    {
+      "title": "Terracotta: Enabling the Adoption of New DRAM Techniques via a Flexible DRAM Interface and Memory Controller",
+      "id": "micro26-985dcda2f6b4",
+      "session_id": "6d",
+      "session": "Session 6D: CXL-Based Tiered Memory & Storage",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v2 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2610.06475v2",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#vii-d"
+      ],
+      "summary": "以可扩展命令和可编程内存控制器，减少新 DRAM 技术反复改接口的成本。",
+      "problem": "PUD、低延迟访问和维护优化经常各自要求定制控制器，难以组合部署。",
+      "method": "抽取共享命令与控制结构原语，让系统通过配置支持新技术，并评估 DDR5 下四个领域的方案。",
+      "takeaway": "架构接口的可组合性本身值得研究；单项理想收益之外还应测组合开销。",
+      "limitations": "摘要称保留定制实现的大部分性能收益；尚未核对命令兼容性、验证成本和未来 DRAM 器件可实现性。",
+      "tags": [
+        "DRAM",
+        "可编程控制器",
+        "接口",
+        "可组合性"
+      ],
+      "source_title": "Terracotta: Enabling the Adoption of New DRAM Techniques via a Flexible DRAM Interface and Memory Controller"
+    },
+    {
+      "title": "DIKTAMO: Extending CXL for Resilience to CPU Failures",
+      "id": "micro26-2688750255a5",
+      "session_id": "6d",
+      "session": "Session 6D: CXL-Based Tiered Memory & Storage",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v2 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2602.08271v2",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#vii-d"
+      ],
+      "summary": "为多主机 CXL 共享内存加入写更新副本和日志，使 CPU 节点失败后仍能恢复一致状态。",
+      "problem": "失效节点缓存中的脏数据丢失会破坏共享程序状态，仅隔离故障组件并不足够。",
+      "method": "扩展一致性写事务，将更新送入副本节点的硬件日志单元，再以日志修复目录和内存。",
+      "takeaway": "共享内存互连需要同时考虑正常一致性和故障恢复。",
+      "limitations": "摘要的 16 个四核节点评估中，三副本仍有约 30% 慢化；不是无成本的容错，也不能直接推广到任意故障模型。",
+      "tags": [
+        "CXL",
+        "共享内存",
+        "容错",
+        "日志"
+      ],
+      "source_title": "DIKTAMO: Extending CXL for Resilience to CPU Failures"
+    },
+    {
+      "title": "ITHICA: Intra-Thread Instruction Checking Approach for Defect-Induced Silent Data Corruptions",
+      "id": "micro26-c6ce9b4f65f3",
+      "session_id": "5b",
+      "session": "Session 5B: Emerging Technologies and Reliability",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v2 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2605.15638v2",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#vi-b"
+      ],
+      "summary": "把真实程序自动变为指令级检查测试，定位依赖执行上下文的静默数据损坏。",
+      "problem": "某些制造缺陷只有在特定上下文才出错，常规功能测试可能漏检。",
+      "method": "在线程内复制指令并比较输出，把生产测试、数据中心程序及库转化为可定位的错误检测器。",
+      "takeaway": "可靠性评估需要真实程序上下文；同一输入执行两次也可能暴露隐藏缺陷。",
+      "limitations": "v2 摘要报告在 3,000 多台服务器上检测到更多缺陷机器；这不是全体硬件缺陷的召回率，尚未核对采样与开销。",
+      "tags": [
+        "CPU",
+        "静默错误",
+        "实机测试"
+      ],
+      "source_title": "ITHICA: Intra-Thread Instruction Checking Approach for Defect-Induced Silent Data Corruptions"
+    },
+    {
+      "title": "CuLifter: Lifting GPU Binaries to Typed IR",
+      "id": "micro26-f82d68f9ed4e",
+      "session_id": "6a",
+      "session": "Session 6A: Microarchitecture & Compilers",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v2 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2604.27486v2",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#vii-a"
+      ],
+      "summary": "从无类型 GPU 寄存器恢复类型，将 SASS 二进制提升到可分析的 LLVM IR。",
+      "problem": "统一寄存器文件抹除了二进制分析工具需要的类型信息。",
+      "method": "用约束传播和冲突检测恢复类型，重建控制流并识别跨指令模式。",
+      "takeaway": "生成合法 IR 与执行正确是两种不同门槛，工具评估应分别报告。",
+      "limitations": "摘要中的 11,977 个内核均生成合法 IR；超过 90% 执行正确仅针对可测试子集，不能写成所有内核全部正确。",
+      "tags": [
+        "GPU",
+        "二进制提升",
+        "编译",
+        "LLVM"
+      ],
+      "source_title": "CuLifter: Lifting GPU Binaries to Typed IR"
+    },
+    {
+      "title": "NAQsim: Full-Stack Architecture Simulation Framework for Fast and Space-Efficient Neutral Atom Quantum Computing",
+      "id": "micro26-394496f88715",
+      "session_id": "3d",
+      "session": "Session 3D: Quantum",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2609.14478v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#iv-d"
+      ],
+      "summary": "用跨软件、经典硬件与量子器件的仿真，暴露中性原子容错计算中的 patch rotation 开销。",
+      "problem": "中性原子物理操作较慢，局部电路优化可能遗漏全系统执行瓶颈。",
+      "method": "为基于 transversal gate 的架构建模，进一步提出减少旋转的 D3-ROT。",
+      "takeaway": "量子架构选题需要将编译、纠错布局与物理操作时延联动。",
+      "limitations": "摘要中的 2.27× 是指定容错基准与架构模型结果；未核对器件参数或实验硬件，不等于量子设备实测。",
+      "tags": [
+        "量子计算",
+        "中性原子",
+        "全栈建模"
+      ],
+      "source_title": "NAQsim: Full-Stack Architecture Simulation Framework for Fast and Space-Efficient Neutral Atom Quantum Computing"
+    },
+    {
+      "title": "OptiPrime: Optimizing Private Inference through protocol-hardware codesign",
+      "id": "micro26-8bd86082e9c2",
+      "session_id": "4b",
+      "session": "Session 4B: Side-Channel Attacks & Confidential Computing",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2609.16898v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#v-b"
+      ],
+      "summary": "联合私有推理协议与硬件数据流，避免 HE 算子加速后通信成为主瓶颈。",
+      "problem": "单独加快同态加密运算，仍可能被每次输入输出密文传输拖慢端到端推理。",
+      "method": "改造卷积协议减少输出密文，同时压缩权重明文并复用片上中间密文。",
+      "takeaway": "密码加速应同时优化协议通信量和片上数据复用。",
+      "limitations": "摘要仅报告相对 Cheetah 的特定最大收益；未核对安全参数、网络条件与各模型覆盖，不能跨协议直接比较。",
+      "tags": [
+        "私有推理",
+        "HE / MPC",
+        "通信",
+        "数据流"
+      ],
+      "source_title": "OptiPrime: Optimizing Private Inference through Protocol-Hardware Co-design"
+    },
+    {
+      "title": "D-NOVA: In-Storage Retrieval Accelerator via Dual-Bound 3D NAND-Optimized Similarity Search with Vector Adaptation",
+      "id": "micro26-e356e226e374",
+      "session_id": "9b",
+      "session": "Session 9B: Near-Memory & In-Storage Search Acceleration",
+      "track": "main",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2607.17538v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#x-b"
+      ],
+      "summary": "把分层向量检索深入 NAND 阵列，并通过向量适配器兼顾硬件友好距离与召回率。",
+      "problem": "仅在 SSD 旁增加处理器仍会遭遇存储带宽与主机交互瓶颈。",
+      "method": "结合 IVF 检索、NAND string 内的双界相似度感知和轻量对比学习适配器。",
+      "takeaway": "检索加速需联动距离度量、索引结构和存储器物理操作。",
+      "limitations": "摘要的最高加速与 CPU 及指定存内基线相关；未核对召回门槛、器件假设或端到端生成占比。",
+      "tags": [
+        "RAG",
+        "向量检索",
+        "NAND",
+        "存内计算"
+      ],
+      "source_title": "D-NOVA: In-Storage Retrieval Accelerator via Dual-Bound 3D NAND-Optimized Similarity Search with Vector Adaptation"
+    },
+    {
+      "title": "Architecting for Hardware Diversity: Meta's End-to-End Co-Design for High-Performance AI Training on AMD GPUs",
+      "id": "micro26-9277d7edd226",
+      "session_id": "1c",
+      "session": "Session 1C: Industry Session",
+      "track": "industry",
+      "venue_verified": true,
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 公开摘要，2026-10-29 核对；未核对完整实验与定稿。",
+      "source_url": "https://arxiv.org/abs/2610.22230v1",
+      "evidence_urls": [
+        "https://www.microarch.org/micro59/program/#ii-c"
+      ],
+      "summary": "通过模型结构、性能模型和内核工具协同优化，改善训练在 AMD GPU 上的性能可移植性。",
+      "problem": "长期围绕 NVIDIA 的软件优化，可能使直接移植无法用好其他硬件的容量与执行特点。",
+      "method": "以 MI350X / B200 推荐模型训练案例，联合修改软件方案、解析选核及面向微架构的自动优化流程。",
+      "takeaway": "跨平台评估需要允许等价工作负载利用各自硬件优势，同时明确移植基线。",
+      "limitations": "摘要中最高 1.5× 相对直接移植方案；不是 AMD 对 NVIDIA 的通用性能排名，也不代表所有模型的收益。",
+      "tags": [
+        "Industry Track",
+        "性能可移植性",
+        "训练",
+        "AMD"
+      ],
+      "source_title": "Architecting for Hardware Diversity: Meta's End-to-End Co-Design for High-Performance AI Training on AMD GPUs"
+    }
+  ],
+  "trends": [
+    {
+      "title": "从峰值带宽转向有效数据路径",
+      "summary": "VOXEL 研究映射与 bank 冲突，NELSSA 按请求长度分工，D-NOVA 将检索深入 NAND。代表作共同关注数据在何处、何时、以何种粒度被消费；这是阅读归纳，未做跨年增长统计。",
+      "paper_titles": [
+        "Exploring the Efficiency of 3D-Stacked AI Chip Architecture for LLM Inference with VOXEL",
+        "NELSSA: A GPU–PNM Heterogeneous System for Mixed-Length LLM Serving via Length–based Request Placement",
+        "D-NOVA: In-Storage Retrieval Accelerator via Dual-Bound 3D NAND-Optimized Similarity Search with Vector Adaptation"
+      ]
+    },
+    {
+      "title": "低比特设计需要数值语义与保护机制配套",
+      "summary": "HBQ 联动 block 粒度和硬件开销，MMA 行为建模解释真实算术差异，不等错误保护把位敏感性引入内存。由此可提出“精度—计算—可靠性”联合预算，而不只比较名义位宽。",
+      "paper_titles": [
+        "HBQ: Hierarchical Scaling Block Quantization with Hardware-Efficiency-Aware Design for Accurate LLM Inference",
+        "Bit-Accurate Modeling of GPU Matrix Multiply-Accumulate Units: Demystifying Numerical Discrepancy and Accuracy",
+        "From Bit-Position Sensitivity to Unequal Error Protection for DNN Inference Memory"
+      ]
+    },
+    {
+      "title": "预测只有经过控制才能兑现收益",
+      "summary": "Caerus 用局部精度过滤全局偏移，SnakeCharmer 联动效用、及时性与放置，MORDOR 重新安排保护操作。它们说明学习或预测之外，发射时机、队列与共享资源同样决定收益。",
+      "paper_titles": [
+        "Caerus: Prefetching by Thinking Globally and Acting Locally",
+        "SnakeCharmer: Orchestrating Utility, Timeliness, and Placement in GPU Prefetching",
+        "MORDOR: Mitigating Overheads of Read Disturbance Preventive Operations via Elastic Refresh Scheduling"
+      ]
+    },
+    {
+      "title": "工具抽象逐渐贴近实际执行结构",
+      "summary": "GPU-Tile-Sim 保留 tile 依赖，CuLifter 恢复二进制类型，NAQsim 跨栈建模量子执行。代表作的共同方法是选择能解释瓶颈的中间表示，再明确其验证范围。",
+      "paper_titles": [
+        "GPU-Tile-Sim: A Tile-Centric GPU Simulation Framework for LLM Hardware-Software Co-Design",
+        "CuLifter: Lifting GPU Binaries to Typed IR",
+        "NAQsim: Full-Stack Architecture Simulation Framework for Fast and Space-Efficient Neutral Atom Quantum Computing"
+      ]
+    },
+    {
+      "title": "可靠性从局部检测扩展到完整系统状态",
+      "summary": "PEEK 纳入内核和特权状态，ITHICA 利用真实上下文激活缺陷，DIKTAMO 处理跨节点脏数据丢失。覆盖范围、可检测性和可恢复性是不同问题，应分别建模和测量。",
+      "paper_titles": [
+        "PEEK: Heterogeneous Parallelism for Privileged Error Detection in Safety-Critical Processors",
+        "ITHICA: Intra-Thread Instruction Checking Approach for Defect-Induced Silent Data Corruptions",
+        "DIKTAMO: Extending CXL for Resilience to CPU Failures"
+      ]
+    },
+    {
+      "title": "部署成本推动接口与软硬件协同",
+      "summary": "Terracotta 让 DRAM 技术通过可编程接口组合，Meta 案例联合修改模型和软件以适配不同 GPU，OptiPrime 则同时改协议和数据流。这里关注的是优化如何进入真实执行路径，而不是单个模块的理想上界。",
+      "paper_titles": [
+        "Terracotta: Enabling the Adoption of New DRAM Techniques via a Flexible DRAM Interface and Memory Controller",
+        "Architecting for Hardware Diversity: Meta's End-to-End Co-Design for High-Performance AI Training on AMD GPUs",
+        "OptiPrime: Optimizing Private Inference through protocol-hardware codesign"
+      ]
+    }
+  ],
+  "consensus": [
+    {
+      "summary": "有效带宽由放置、调度与数据表示共同决定；峰值规格不足以解释端到端收益。",
+      "paper_titles": [
+        "Exploring the Efficiency of 3D-Stacked AI Chip Architecture for LLM Inference with VOXEL",
+        "NELSSA: A GPU–PNM Heterogeneous System for Mixed-Length LLM Serving via Length–based Request Placement",
+        "HBQ: Hierarchical Scaling Block Quantization with Hardware-Efficiency-Aware Design for Accurate LLM Inference"
+      ]
+    },
+    {
+      "summary": "预测精度、生成合法表示和检测覆盖都只是中间指标，需要核对最终执行收益或正确性。",
+      "paper_titles": [
+        "SnakeCharmer: Orchestrating Utility, Timeliness, and Placement in GPU Prefetching",
+        "CuLifter: Lifting GPU Binaries to Typed IR",
+        "PEEK: Heterogeneous Parallelism for Privileged Error Detection in Safety-Critical Processors"
+      ]
+    },
+    {
+      "summary": "模型、原型、流片与生产部署提供不同强度的证据，比较时应固定对应的基线和边界。",
+      "paper_titles": [
+        "Exploring the Efficiency of 3D-Stacked AI Chip Architecture for LLM Inference with VOXEL",
+        "PEEK: Heterogeneous Parallelism for Privileged Error Detection in Safety-Critical Processors",
+        "Architecting for Hardware Diversity: Meta's End-to-End Co-Design for High-Performance AI Training on AMD GPUs"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "把量化格式放进真实数值与可靠性闭环",
+      "priority": "数值与架构协同",
+      "question": "低比特格式的缩放、累加语义与保护粒度如何共同影响任务质量和系统成本？",
+      "experiment": "固定任务质量门槛，对比不同 block / 缩放方案；用真实 MMA 行为模型检查误差，再注入同样分布的位故障，报告精度、吞吐、面积与未检出错误。",
+      "paper_titles": [
+        "HBQ: Hierarchical Scaling Block Quantization with Hardware-Efficiency-Aware Design for Accurate LLM Inference",
+        "Bit-Accurate Modeling of GPU Matrix Multiply-Accumulate Units: Demystifying Numerical Discrepancy and Accuracy",
+        "From Bit-Position Sensitivity to Unequal Error Protection for DNN Inference Memory"
+      ]
+    },
+    {
+      "title": "做迁移与拥塞成本可见的异构长上下文服务",
+      "priority": "系统原型",
+      "question": "长度分流何时因跨层迁移、NoC 或 bank 冲突而失去优势？",
+      "experiment": "扫描混合长度、请求率和上下文增长，分别关闭迁移与放置优化；统计 TTFT、TPOT、P99、迁移流量和带宽利用，再对照联合映射模型。",
+      "paper_titles": [
+        "NELSSA: A GPU–PNM Heterogeneous System for Mixed-Length LLM Serving via Length–based Request Placement",
+        "Exploring the Efficiency of 3D-Stacked AI Chip Architecture for LLM Inference with VOXEL"
+      ]
+    },
+    {
+      "title": "在固定资源预算下比较预取控制策略",
+      "priority": "可先仿真",
+      "question": "全局规律与局部反馈如何在带宽饱和或邻居干扰下保持收益？",
+      "experiment": "固定存储预算和预取队列，比较单独预测、局部过滤与联合后端控制；扫描内存带宽、负载混合，记录速度、流量、及时性与污染。",
+      "paper_titles": [
+        "Caerus: Prefetching by Thinking Globally and Acting Locally",
+        "SnakeCharmer: Orchestrating Utility, Timeliness, and Placement in GPU Prefetching"
+      ]
+    },
+    {
+      "title": "以故障传播链设计可恢复系统评估",
+      "priority": "可靠性与共享内存",
+      "question": "检测到核心内部错误后，跨节点脏数据是否仍能恢复到一致状态？",
+      "experiment": "把瞬态执行错误与节点掉电分开注入，比较仅检测、仅副本和联合方案；报告未检出损坏、检测时延、恢复时间、日志带宽与稳态性能开销。",
+      "paper_titles": [
+        "PEEK: Heterogeneous Parallelism for Privileged Error Detection in Safety-Critical Processors",
+        "ITHICA: Intra-Thread Instruction Checking Approach for Defect-Induced Silent Data Corruptions",
+        "DIKTAMO: Extending CXL for Resilience to CPU Failures"
+      ]
+    }
+  ]
+}

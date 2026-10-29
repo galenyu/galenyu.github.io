@@ -1,0 +1,10 @@
+<nav class="conference-switcher" aria-label="会议调研切换">
+  <a href="{{ '/iclr-2027-quantization/' | relative_url }}">ICLR 2027</a>
+  <a href="{{ '/isca-2026/' | relative_url }}">ISCA 2026</a>
+  {% assign conferences = 'MICRO,ASPLOS,HPCA' | split: ',' %}
+  {% for conference in conferences %}
+    {% assign slug = conference | downcase | append: '-2026' %}
+    {% assign conference_path = '/' | append: slug | append: '/' %}
+    <a href="{{ conference_path | relative_url }}"{% if page.conference_slug == slug %} aria-current="page"{% endif %}>{{ conference }} 2026</a>
+  {% endfor %}
+</nav>

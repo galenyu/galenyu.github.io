@@ -38,3 +38,6 @@ exclude:
   - assets/data/iclr-2027-reading-notes.json
   - assets/data/iclr-2027-mirror-exclusions.json
   - assets/data/isca-2026-source.html
+  - assets/data/micro-2026-source.html
+  - assets/data/asplos-2026-source.html
+  - assets/data/hpca-2026-source.html

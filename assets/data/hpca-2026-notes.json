@@ -1,0 +1,584 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "conference": "HPCA 2026",
+    "checked_at": "2026-10-29",
+    "program_source_url": "https://2026.hpca-conf.org/program/program-hpca-2026/",
+    "program_source_sha256": "158c9022856dad097edca895d68bf89991637e1915f10c8a87ef3772b35b27d2",
+    "program_count": 122,
+    "reading_count": 17,
+    "fulltext_count": 3,
+    "abstract_count": 14,
+    "scope": "17篇有来源的代表论文中文解读；全量122篇议程另行索引。",
+    "selection_method": "按公开可读材料与研究问题选择，覆盖大模型、PIM、CPU、CXL、GPU共享、量子、安全、可靠性、成本建模、生物信息与可持续性；不是论文排名。",
+    "analysis_method": "论文身份以官方节目单为准；14篇读取官方Abstract，3篇额外核对作者公开原文中注明章节；趋势和选题是调研者综合判断。",
+    "limitations": [
+      "公开原文解读仅表示实际核对所列章节，不表示通读全文。",
+      "摘要解读未审计完整实验设置；作者报告与独立复现分开，本次未做复现。",
+      "公开稿可能与会议定稿不同；各卡片标明材料来源。",
+      "方向统计按官方场次分组；代表阅读不能推断全会议共识、创新性或跨年增长。"
+    ]
+  },
+  "papers": [
+    {
+      "title": "Focus: A Streaming Concentration Architecture for Efficient Vision-Language Models",
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v1：摘要、§VII-A～C 的方法与精度表、§VIII-B 最坏情形重点核对；并非通读。",
+      "source_url": "https://arxiv.org/html/2512.14661v1",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/1/Focus-A-Streaming-Concentration-Architecture-for-Efficient-Vision-Language-Models",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "把提示相关性与时空相似性转换成可在片上流式执行的多级压缩。",
+      "problem": "视频视觉语言输入冗余很高，粗粒度剪枝的全局处理又引入运行开销。",
+      "method": "结合语义剪枝、局部块匹配与向量去重，并为脉动阵列安排数据布局和稀疏执行。",
+      "takeaway": "删除计算需要同时保住精度和硬件利用率；局部可执行的冗余比理论稀疏度更有价值。",
+      "limitations": "§VII 的硬件性能来自周期仿真，面积功耗来自综合及DRAM模型；不能当作流片实测，原始模型仍有精度损失。",
+      "tags": [
+        "VLM",
+        "视频",
+        "流式执行",
+        "算法架构协同"
+      ],
+      "id": "hpca26-43c45a69c2bf",
+      "session_id": "s47b869501b",
+      "session": "Best Paper Candidates",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "LoCaLUT: Harnessing Capacity–Computation Tradeoffs for LUT-Based Inference in DRAM-PIM",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/114/LoCaLUT-Harnessing-Capacity-Computation-Tradeoffs-for-LUT-Based-Inference-in-DRAM-PI",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/114/LoCaLUT-Harnessing-Capacity-Computation-Tradeoffs-for-LUT-Based-Inference-in-DRAM-PI",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "用 DRAM 的容量换取低比特推理中的计算吞吐，并压缩查表冗余。",
+      "problem": "DRAM-PIM 逻辑面积有限，但内存容量与带宽丰富。",
+      "method": "将多个MAC打包入LUT，通过规范化去重、重排辅助表及按列流式读取复用数据。",
+      "takeaway": "摘要报告真实UPMEM系统的跨精度几何平均1.90×加速，体现容量与计算的交换。",
+      "limitations": "摘要未展开模型、精度和内存预算；1.90×是论文所选配置的相对值，未独立复现。",
+      "tags": [
+        "DRAM-PIM",
+        "LUT",
+        "低比特推理"
+      ],
+      "id": "hpca26-4d7052d3755f",
+      "session_id": "s47b869501b",
+      "session": "Best Paper Candidates",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "RPU - A Reasoning Processing Unit",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/99/RPU-A-Reasoning-Processing-Unit",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/99/RPU-A-Reasoning-Processing-Unit",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "面向长输出推理，以带宽为中心重新分配存储、计算与通信资源。",
+      "problem": "推理型LLM的低算术强度使扩展算力难以转为吞吐，长输出放大访存压力。",
+      "method": "用容量优化HBM、Chiplet扩展与解耦的访存/计算/通信流水线维持带宽利用。",
+      "takeaway": "架构应匹配推理的字节需求与延迟目标，不能只提高峰值算力。",
+      "limitations": "摘要最高45.3×延迟改善与18.6×吞吐来自等TDP仿真和指定Llama3-405B配置，并非实机端到端普遍收益。",
+      "tags": [
+        "推理模型",
+        "HBM",
+        "Chiplet",
+        "带宽"
+      ],
+      "id": "hpca26-f0a5e39276de",
+      "session_id": "s47b869501b",
+      "session": "Best Paper Candidates",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "PinDrop: Breaking the Silence on SDCs in a Large-Scale Fleet",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/74/PinDrop-Breaking-the-Silence-on-SDCs-in-a-Large-Scale-Fleet",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/74/PinDrop-Breaking-the-Silence-on-SDCs-in-a-Large-Scale-Fleet",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "用跨百万服务器、长期持续测试刻画静默数据损坏的出现与演化。",
+      "problem": "SDC间歇发生，单次上线测试难以覆盖硬件和工作负载的多样性。",
+      "method": "分析超过五亿次测试执行，按架构、测试族、核心与输出行为分解故障。",
+      "takeaway": "烧机后仍有新故障出现；可靠性评估需要生命周期观测，而非只看首次部署。",
+      "limitations": "摘要中的0.035%是所测机器生命周期内至少一次SDC的比例，不是通用年失效率；检测覆盖取决于测试集。",
+      "tags": [
+        "SDC",
+        "生产集群",
+        "长期测试"
+      ],
+      "id": "hpca26-bef50672cbe0",
+      "session_id": "s47b869501b",
+      "session": "Best Paper Candidates",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "VectorLiteRAG: Latency-Aware and Fine-Grained Resource Partitioning for Efficient RAG",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/77/VectorLiteRAG-Latency-Aware-and-Fine-Grained-Resource-Partitioning-for-Efficient-RAG",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/77/VectorLiteRAG-Latency-Aware-and-Fine-Grained-Resource-Partitioning-for-Efficient-RAG",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "联合安排检索与生成资源，以端到端延迟约束控制RAG共置干扰。",
+      "problem": "向量检索的I/O和内存需求与LLM计算、KV缓存争用GPU资源。",
+      "method": "建立搜索延迟和命中率分布模型，细粒度分配GPU，并选择CPU/GPU索引分界。",
+      "takeaway": "局部检索加速不必然改善服务；应以符合SLO的请求吞吐衡量共享策略。",
+      "limitations": "摘要报告最佳1.5× SLO吞吐；具体SLO、索引分布与对比基线需查正文，不能外推所有数据库。",
+      "tags": [
+        "RAG",
+        "资源分配",
+        "SLO",
+        "CPU/GPU"
+      ],
+      "id": "hpca26-378bcebfee1a",
+      "session_id": "s1466bd41e2",
+      "session": "Graph Neural Networks and Retrieval Systems",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "TraceRTL: Agile Performance Evaluation for Microarchitecture Exploration",
+      "reading_depth": "fulltext",
+      "reading_basis": "作者公开论文PDF：§V工作流、§VI-A实验设置、§VII-A轨迹转换和§VII-C敏感性重点核对；并非通读。",
+      "source_url": "https://tutorial.xiangshan.cc/hpca26/slides/tracertl_hpca2026.pdf",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/27/TraceRTL-Agile-Performance-Evaluation-for-Microarchitecture-Exploration",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "从真实RTL导出轨迹驱动模型，在完整功能实现前评估微架构改动。",
+      "problem": "RTL性能探索被功能依赖、工作负载移植与长预热阶段拖慢。",
+      "method": "保留性能敏感接口，用TraceBridge转换轨迹，TraceDedup删去冗余预热指令。",
+      "takeaway": "既要验证绝对性能，也要验证设计改动的性能趋势；最后仍需功能验证。",
+      "limitations": "§VII-A承认跨ISA转换会膨胀指令，缺失opcode的重映射产生额外误差；不能把SPEC精度推广到任意轨迹。",
+      "tags": [
+        "RTL",
+        "轨迹仿真",
+        "性能建模",
+        "香山"
+      ],
+      "id": "hpca26-a69b62ed02ca",
+      "session_id": "s6f3aba055e",
+      "session": "LLM Systems and Microarchitecture Tools",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "$C^3$ : CXL Coherence Controllers for Heterogeneous Architectures",
+      "reading_depth": "fulltext",
+      "reading_basis": "作者公开论文PDF：§I设计规则、§V实现与仿真假设、§VI-A正确性测试重点核对；并非通读。",
+      "source_url": "https://anatolelefort.net/papers/c3-hpca26.pdf",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/5/-C-3-CXL-Coherence-Controllers-for-Heterogeneous-Architectures",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "在CXL连接的异构一致性域间保留各自主机的内存语义。",
+      "problem": "设备即使共享一致内存，协议与内存一致性模型差异仍可能破坏正确性。",
+      "method": "以跨域操作委托和域边界原子性为规则生成桥接控制器，并用形式方法和litmus测试验证。",
+      "takeaway": "互连性能之前先界定合法行为；正确性规则也应进入系统设计空间。",
+      "limitations": "§V使用gem5 SE模式及Garnet网络，不是PCIe/CXL实机；生成工具暂不支持分离指令/数据缓存，评估采用缩小工作集。",
+      "tags": [
+        "CXL",
+        "一致性",
+        "形式验证",
+        "异构内存"
+      ],
+      "id": "hpca26-ffe7597cfb7b",
+      "session_id": "s016852ba39",
+      "session": "Cache Coherence and Chiplet Interconnects",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "BitDecoding: Unlocking Tensor Cores for Long-Context LLMs with Low-Bit KV Cache",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/92/BitDecoding-Unlocking-Tensor-Cores-for-Long-Context-LLMs-with-Low-Bit-KV-Cache",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/92/BitDecoding-Unlocking-Tensor-Cores-for-Long-Context-LLMs-with-Low-Bit-KV-Cache",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "让低比特KV缓存解码同时使用CUDA Cores与Tensor Cores。",
+      "problem": "KV量化节省容量，但反量化与布局不匹配会使解码留在低吞吐执行路径。",
+      "method": "联合优化数据布局、warp并行反量化、query变换和软流水线，支持不同缩放方式。",
+      "takeaway": "压缩格式是否有用，取决于硬件执行单元与转换开销能否配合。",
+      "limitations": "摘要最高值随4090/A100/H100和基线变化；128K单batch延迟结果不能当作所有线上服务吞吐。",
+      "tags": [
+        "KV Cache",
+        "量化",
+        "Tensor Cores",
+        "长上下文"
+      ],
+      "id": "hpca26-08f185fec580",
+      "session_id": "s0f58ddb6fb",
+      "session": "Efficient LLM Inference Techniques",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "SALT: Track-and-Mitigate Subarrays, Not Rows, for Blast-Radius-Free Rowhammer Defense",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/12/SALT-Track-and-Mitigate-Subarrays-Not-Rows-for-Blast-Radius-Free-Rowhammer-Defense",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/12/SALT-Track-and-Mitigate-Subarrays-Not-Rows-for-Blast-Radius-Free-Rowhammer-Defense",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "把Rowhammer防护的跟踪与刷新单元从行提高到子阵列。",
+      "problem": "仅刷新攻击行附近固定范围依赖Blast Radius假设，远距离微小泄漏仍可累积。",
+      "method": "对子阵列累计激活次数并分段刷新，SALT-C再协调需求刷新以减少Alert Back-Off。",
+      "takeaway": "防御的空间假设决定可证明边界；改粒度可同时改变安全性和元数据成本。",
+      "limitations": "结论依赖子阵列间隔离与指定刷新模型；本次只读官方摘要，未核对芯片组织和攻击参数。",
+      "tags": [
+        "Rowhammer",
+        "DRAM",
+        "安全边界"
+      ],
+      "id": "hpca26-8dffa99dbc32",
+      "session_id": "seeef9dbe4a",
+      "session": "DRAM Security and Reliability",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "LowCarb: Carbon-Aware Scheduling of Serverless Functions",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/116/LowCarb-Carbon-Aware-Scheduling-of-Serverless-Functions",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/116/LowCarb-Carbon-Aware-Scheduling-of-Serverless-Functions",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "把函数保活带来的延迟收益与碳排放成本放入同一调度目标。",
+      "problem": "长期保留函数减少冷启动，却可能增加内存和系统碳足迹。",
+      "method": "用强化学习联合优化serverless性能与碳足迹。",
+      "takeaway": "资源保活策略需要显式可持续性目标，而非仅以平均响应时间决策。",
+      "limitations": "官方摘要很短；最优性差距的口径、电网碳强度、训练成本和函数轨迹需查全文，未据此承诺减排比例。",
+      "tags": [
+        "可持续计算",
+        "Serverless",
+        "强化学习"
+      ],
+      "id": "hpca26-fee308fe0847",
+      "session_id": "s0f13a054af",
+      "session": "Efficient Serving and Resource Management",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "eGPU: Production-Scale Elastic Sharing over 10,000 GPUs",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-industry-track/3/eGPU-Production-Scale-Elastic-Sharing-over-10-000-GPUs",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-industry-track/3/eGPU-Production-Scale-Elastic-Sharing-over-10-000-GPUs",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "在大规模生产GPU集群中实现运行时可调的训练与推理共享。",
+      "problem": "异构任务动态变化，隔离与跨实例通信使细粒度共享难以稳定部署。",
+      "method": "支持弹性实例、NVLink/NCCL原生通信，并接入Kubernetes编排。",
+      "takeaway": "摘要提供超过万卡、五年生产运行经验，强调共享机制必须与通信和运维一起设计。",
+      "limitations": "摘要中的利用率、GPU节省与效率收益来自不同对比口径，不能相乘；故障隔离细节尚未核对。",
+      "tags": [
+        "工业界",
+        "GPU共享",
+        "Kubernetes",
+        "NCCL"
+      ],
+      "id": "hpca26-0c5089f2cdc3",
+      "session_id": "sf3ac14c64f",
+      "session": "Industry Track",
+      "track": "industry",
+      "venue_verified": true
+    },
+    {
+      "title": "NPUWattch: ML-based Power, Area, and Timing Modeling for Neural Accelerators",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/78/NPUWattch-ML-based-Power-Area-and-Timing-Modeling-for-Neural-Accelerators",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/78/NPUWattch-ML-based-Power-Area-and-Timing-Modeling-for-Neural-Accelerators",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "用统一工艺库的逻辑与SRAM布局后数据训练加速器功耗、面积与时序模型。",
+      "problem": "静态缩放因子难以描述先进工艺和复杂设计中的非线性变化。",
+      "method": "构建65nm到2nm数据集，训练神经网络回归，并用自适应损失照顾稀疏设计区域。",
+      "takeaway": "设计空间探索的可信度首先取决于成本模型的工艺和组件一致性。",
+      "limitations": "摘要报告平均2.7%误差，限于被评估开源加速器与布局数据；未说明全部外推条件，非所有电路精度保证。",
+      "tags": [
+        "PAT建模",
+        "设计空间",
+        "先进工艺"
+      ],
+      "id": "hpca26-dd3ec85752aa",
+      "session_id": "s5bc3f151e9",
+      "session": "Accelerator Design and Modeling",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Cyclone: Designing Efficient and Highly Parallel QCCD Architectural Codesigns for Fault Tolerant Quantum Memory",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/86/Cyclone-Designing-Efficient-and-Highly-Parallel-QCCD-Architectural-Codesigns-for-Fau",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/86/Cyclone-Designing-Efficient-and-Highly-Parallel-QCCD-Architectural-Codesigns-for-Fau",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "用环形离子阱布局和同步移动调度恢复高码率量子纠错的并行性。",
+      "problem": "传统二维QCCD布局的迁移路障使可并行纠错操作串行化。",
+      "method": "协同设计环形拓扑与辅助量子比特步调一致的迁移，减少路障和控制资源。",
+      "takeaway": "量子纠错收益由码、移动拓扑与调度共同决定，而非只由物理比特数决定。",
+      "limitations": "摘要结果依赖所选CSS码和现实硬件噪声模型；未核对完整噪声参数，不能解释为已建成量子处理器。",
+      "tags": [
+        "量子纠错",
+        "QCCD",
+        "拓扑调度"
+      ],
+      "id": "hpca26-84ce7e137101",
+      "session_id": "s3c7226c706",
+      "session": "Quantum Computing Architecture",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "μShare: Non-Intrusive Kernel Co-Locating on NVIDIA GPUs",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/10/-Share-Non-Intrusive-Kernel-Co-Locating-on-NVIDIA-GPUs",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/10/-Share-Non-Intrusive-Kernel-Co-Locating-on-NVIDIA-GPUs",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "通过线程块形状和启动时间控制NVIDIA GPU内核共置。",
+      "problem": "调度器看见的块资源形状难以直接表达内核的互补资源需求。",
+      "method": "采用略大于半个SM线程容量的blocksize shaping分散同类块，并错峰启动降低竞争。",
+      "takeaway": "软件可见的调度粒度本身就是优化接口；共享需要同时考虑空间和时间。",
+      "limitations": "摘要宣称无需侵入修改硬件或内核代码；适用内核形状、正确性保持方式与共置公平性仍需核对正文。",
+      "tags": [
+        "GPU",
+        "内核共置",
+        "资源利用"
+      ],
+      "id": "hpca26-9c9fc92fab35",
+      "session_id": "sb7d209cf15",
+      "session": "GPU Kernel Optimization and Resource Sharing",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "COMET: Communication and Memory Co-Design for Fine-Grained AI Inference in MCM Accelerators",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/47/COMET-Communication-and-Memory-Co-Design-for-Fine-Grained-AI-Inference-in-MCM-Accele",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/47/COMET-Communication-and-Memory-Co-Design-for-Fine-Grained-AI-Inference-in-MCM-Accele",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "把细粒度突发DMA纳入Chiplet建模，联合优化请求聚合和地址映射。",
+      "problem": "忽略细粒度通信会误判带宽效率，也会错估AI推理的同步开销。",
+      "method": "按工作负载数据流搜索DMA聚合与片上存储映射方案，合并小传输。",
+      "takeaway": "通信粒度和数据放置需要共同评估，平均带宽不足以描述突发开销。",
+      "limitations": "摘要的1.7～2.5×加速针对所测通信基线和DNN/LLM负载；模型校准与面积代价未在本次阅读中核对。",
+      "tags": [
+        "Chiplet",
+        "DMA",
+        "通信建模"
+      ],
+      "id": "hpca26-1cb8ffde2281",
+      "session_id": "s5bc3f151e9",
+      "session": "Accelerator Design and Modeling",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "GenPairX: A Hardware-Algorithm Co-Designed Accelerator for Paired-End Read Mapping",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/80/GenPairX-A-Hardware-Algorithm-Co-Designed-Accelerator-for-Paired-End-Read-Mapping",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/80/GenPairX-A-Hardware-Algorithm-Co-Designed-Accelerator-for-Paired-End-Read-Mapping",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "针对双端测序读段，联合重设过滤算法与硬件对齐路径。",
+      "problem": "已有过滤和加速器结合后瓶颈转向内存，且双端读段未被有效处理。",
+      "method": "使用节省内存的map-based过滤与适合硬件的轻量对齐算法减少计算量。",
+      "takeaway": "先识别组合后的瓶颈迁移，再决定加速哪些步骤，比孤立堆算力更关键。",
+      "limitations": "摘要同时比较CPU与专用硬件，其吞吐功耗比基线不同；未核对读段分布、准确率定义和工艺归一化。",
+      "tags": [
+        "生物信息",
+        "读段映射",
+        "算法硬件协同"
+      ],
+      "id": "hpca26-e3860259a51f",
+      "session_id": "s7ad7fe9e49",
+      "session": "Genomics and Bioinformatics",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "The Last-Level Branch Predictor Revisited",
+      "reading_depth": "abstract",
+      "reading_basis": "HPCA 2026 官方论文详情页 Abstract；未核对完整实验章节。",
+      "source_url": "https://2026.hpca-conf.org/details/hpca-2026-main-conference/7/The-Last-Level-Branch-Predictor-Revisited",
+      "evidence_urls": [
+        "https://2026.hpca-conf.org/details/hpca-2026-main-conference/7/The-Last-Level-Branch-Predictor-Revisited",
+        "https://2026.hpca-conf.org/program/program-hpca-2026/"
+      ],
+      "summary": "通过动态调整上下文深度，降低大容量分支预测元数据的竞争与重复。",
+      "problem": "LLBP增加存储后仍未兑现同等容量预测器的准确率，难预测分支的集合冲突突出。",
+      "method": "分析LLBP精度损失来源，动态改变上下文深度以分散模式并缩短重复训练。",
+      "takeaway": "容量增加的收益需要由映射和训练效率兑现，不能只按总表容量推断。",
+      "limitations": "摘要报告预测准确率提升范围，不等同端到端IPC增幅；延迟、功耗与工作负载详情需看全文。",
+      "tags": [
+        "分支预测",
+        "CPU",
+        "LLBP"
+      ],
+      "id": "hpca26-838cc86937e4",
+      "session_id": "s3d28976efa",
+      "session": "CPU Microarchitecture Optimization",
+      "track": "main",
+      "venue_verified": true
+    }
+  ],
+  "trends": [
+    {
+      "title": "模型压缩开始由执行路径决定收益",
+      "summary": "Focus把冗余转成片上稀疏执行，LoCaLUT用容量换逻辑，BitDecoding把低比特KV映射到Tensor Cores。代表作共同强调：压缩率之外，还要计算转换、布局与复用成本。",
+      "paper_titles": [
+        "Focus: A Streaming Concentration Architecture for Efficient Vision-Language Models",
+        "LoCaLUT: Harnessing Capacity–Computation Tradeoffs for LUT-Based Inference in DRAM-PIM",
+        "BitDecoding: Unlocking Tensor Cores for Long-Context LLMs with Low-Bit KV Cache"
+      ]
+    },
+    {
+      "title": "带宽、通信粒度与存储组织一起设计",
+      "summary": "RPU从带宽出发配置Chiplet，COMET显式建模小DMA。两者提示，峰值带宽之外的流水线和请求形状同样决定系统能否持续供数。",
+      "paper_titles": [
+        "RPU - A Reasoning Processing Unit",
+        "COMET: Communication and Memory Co-Design for Fine-Grained AI Inference in MCM Accelerators"
+      ]
+    },
+    {
+      "title": "共享服务优化走向端到端与生产约束",
+      "summary": "VectorLiteRAG关注检索和生成的共同SLO，μShare控制SM内共置，eGPU处理跨实例通信和集群编排。应同时观察单任务收益、邻居干扰与运维可行性。",
+      "paper_titles": [
+        "VectorLiteRAG: Latency-Aware and Fine-Grained Resource Partitioning for Efficient RAG",
+        "μShare: Non-Intrusive Kernel Co-Locating on NVIDIA GPUs",
+        "eGPU: Production-Scale Elastic Sharing over 10,000 GPUs"
+      ]
+    },
+    {
+      "title": "可靠性与安全需要明确观测和假设边界",
+      "summary": "PinDrop用长期数据发现烧机后的SDC，SALT重新检视固定攻击半径假设，C³验证跨域内存语义。代表作关注的都是单次理想测试容易遗漏的系统边界。",
+      "paper_titles": [
+        "PinDrop: Breaking the Silence on SDCs in a Large-Scale Fleet",
+        "SALT: Track-and-Mitigate Subarrays, Not Rows, for Blast-Radius-Free Rowhammer Defense",
+        "$C^3$ : CXL Coherence Controllers for Heterogeneous Architectures"
+      ]
+    },
+    {
+      "title": "评估工具成为架构研究的基础贡献",
+      "summary": "TraceRTL缩短RTL性能探索流程，NPUWattch改进跨工艺成本建模，LLBP分析则解释容量无法兑现的原因。准确的误差分解和敏感性验证能帮助选择真正有效的改动。",
+      "paper_titles": [
+        "TraceRTL: Agile Performance Evaluation for Microarchitecture Exploration",
+        "NPUWattch: ML-based Power, Area, and Timing Modeling for Neural Accelerators",
+        "The Last-Level Branch Predictor Revisited"
+      ]
+    },
+    {
+      "title": "专用设计的目标扩展到数据、物理和环境成本",
+      "summary": "GenPairX处理算法组合后的内存瓶颈，Cyclone把量子移动拓扑纳入纠错调度，LowCarb将碳足迹纳入函数保活。这里归纳的是代表稿的多目标方法，不是跨年增长统计。",
+      "paper_titles": [
+        "GenPairX: A Hardware-Algorithm Co-Designed Accelerator for Paired-End Read Mapping",
+        "Cyclone: Designing Efficient and Highly Parallel QCCD Architectural Codesigns for Fault Tolerant Quantum Memory",
+        "LowCarb: Carbon-Aware Scheduling of Serverless Functions"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "评估低比特KV与检索共置的联合收益",
+      "priority": "可先软件实验",
+      "summary": "把节约出的显存用于检索或batch之前，先检查完整请求的延迟。",
+      "question": "低比特KV释放的资源，是否足以抵消反量化和检索竞争？",
+      "experiment": "固定模型和GPU预算，比较FP16/低比特KV与CPU/GPU检索分区的组合；扫描上下文、索引规模、请求率，记录精度、TTFT、TPOT、端到端P99和SLO吞吐。",
+      "paper_titles": [
+        "BitDecoding: Unlocking Tensor Cores for Long-Context LLMs with Low-Bit KV Cache",
+        "VectorLiteRAG: Latency-Aware and Fine-Grained Resource Partitioning for Efficient RAG"
+      ]
+    },
+    {
+      "title": "用公平性与通信约束检查GPU共享",
+      "priority": "系统与调度",
+      "summary": "先区分内核共置和集群弹性两个层面的作用。",
+      "question": "提升整体利用率时，长任务或通信密集任务的尾延迟是否恶化？",
+      "experiment": "在可用GPU上搭配计算/访存/通信不同的任务，比较独占、固定分区和动态共享；报告每任务slowdown、吞吐、公平性、NCCL性能和重配置成本。",
+      "paper_titles": [
+        "μShare: Non-Intrusive Kernel Co-Locating on NVIDIA GPUs",
+        "eGPU: Production-Scale Elastic Sharing over 10,000 GPUs"
+      ]
+    },
+    {
+      "title": "建立能解释失真的架构评估链",
+      "priority": "工具与方法",
+      "summary": "把性能、面积和工艺预测误差作为实验对象。",
+      "question": "简化模型在哪些设计改动上会选错方案？",
+      "experiment": "选择公开RTL或加速器，在训练外配置上比较快速模型、RTL/布局结果；分别报告绝对误差、方案排序、改动趋势和建模总成本。",
+      "paper_titles": [
+        "TraceRTL: Agile Performance Evaluation for Microarchitecture Exploration",
+        "NPUWattch: ML-based Power, Area, and Timing Modeling for Neural Accelerators"
+      ]
+    },
+    {
+      "title": "联合验证跨域内存的正确性和防护代价",
+      "priority": "内存与可靠性",
+      "summary": "先定义威胁、故障和一致性条件，再讨论快慢。",
+      "question": "引入远端内存及防护后，协议语义与连续运行检测还能否保持？",
+      "experiment": "在模拟环境中增加内存域及故障/干扰注入，使用litmus与负面控制验证语义，统计未检出错误、误报、刷新/检测开销和尾延迟；避免将SDC和Rowhammer混成同一故障模型。",
+      "paper_titles": [
+        "$C^3$ : CXL Coherence Controllers for Heterogeneous Architectures",
+        "SALT: Track-and-Mitigate Subarrays, Not Rows, for Blast-Radius-Free Rowhammer Defense",
+        "PinDrop: Breaking the Silence on SDCs in a Large-Scale Fleet"
+      ]
+    }
+  ],
+  "consensus": [
+    {
+      "summary": "容量、带宽和算力需要一起按真实访问路径分配；单一压缩率或峰值指标不足以预测收益。",
+      "paper_titles": [
+        "RPU - A Reasoning Processing Unit",
+        "BitDecoding: Unlocking Tensor Cores for Long-Context LLMs with Low-Bit KV Cache",
+        "COMET: Communication and Memory Co-Design for Fine-Grained AI Inference in MCM Accelerators"
+      ]
+    },
+    {
+      "summary": "共享资源优化必须报告每个任务与端到端目标，整体利用率提高并不能替代SLO与隔离评估。",
+      "paper_titles": [
+        "VectorLiteRAG: Latency-Aware and Fine-Grained Resource Partitioning for Efficient RAG",
+        "μShare: Non-Intrusive Kernel Co-Locating on NVIDIA GPUs",
+        "eGPU: Production-Scale Elastic Sharing over 10,000 GPUs"
+      ]
+    },
+    {
+      "summary": "研究结论需要附上仿真、真实平台、测试覆盖和物理假设的边界，才能判断是否适用于新系统。",
+      "paper_titles": [
+        "TraceRTL: Agile Performance Evaluation for Microarchitecture Exploration",
+        "PinDrop: Breaking the Silence on SDCs in a Large-Scale Fleet",
+        "SALT: Track-and-Mitigate Subarrays, Not Rows, for Blast-Radius-Free Rowhammer Defense"
+      ]
+    }
+  ]
+}
