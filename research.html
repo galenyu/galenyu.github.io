@@ -1,0 +1,55 @@
+---
+layout: default
+title: Research
+description: 按会议整理的论文调研、研究方向总结与中文阅读笔记，覆盖模型效率与计算机体系结构。
+lang: zh-CN
+nav_section: research
+page_class: research-page
+stylesheet: /assets/css/research.css
+permalink: /research/
+---
+
+<div class="research site-container">
+  <section class="research-hero" aria-labelledby="research-title">
+    <div class="research-hero-copy">
+      <p class="research-eyebrow"><span aria-hidden="true"></span> OPEN RESEARCH · READING NOTES</p>
+      <h1 id="research-title">Research<span>从论文到研究思路。</span></h1>
+      <p class="research-intro">按会议整理研究方向、论文方法与阅读笔记。从模型量化到计算机体系结构，沿着问题理解算法效率与硬件系统。</p>
+      <a class="button button-primary" href="#collections">选择一份调研 <span aria-hidden="true">↓</span></a>
+    </div>
+    <div class="research-hero-map" aria-hidden="true">
+      <span class="research-map-label">THE RESEARCH NOTEBOOK</span>
+      <div class="research-map-row"><span>01</span><div><strong>Models</strong><small>Precision · Efficiency</small></div><span>ICLR</span></div>
+      <div class="research-map-connector"></div>
+      <div class="research-map-row"><span>02</span><div><strong>Systems</strong><small>Architecture · Deployment</small></div><span>ISCA</span></div>
+      <p class="research-map-foot">Read the work. Connect the ideas.</p>
+    </div>
+  </section>
+
+  <section id="collections" class="research-collections" aria-labelledby="collections-heading">
+    <div class="research-section-heading">
+      <div><p class="research-eyebrow">CONFERENCE COLLECTIONS</p><h2 id="collections-heading">论文调研</h2></div>
+      <p>选择会议，进入完整总结与论文索引。</p>
+    </div>
+    <div class="research-grid">
+      <a class="research-card" href="{{ '/iclr-2027-quantization/' | relative_url }}" aria-labelledby="iclr-card-title">
+        <div class="research-card-top"><span class="research-card-badge">ICLR / 2027</span><span class="research-card-arrow" aria-hidden="true">↗</span></div>
+        <p class="research-card-kicker">MODEL EFFICIENCY</p>
+        <h3 id="iclr-card-title">模型量化<span>投稿调研与阅读笔记</span></h3>
+        <p class="research-card-description">从 OpenReview 公开投稿出发，梳理低比特模型、量化方法与高效推理，结合论文解读总结研究趋势与选题思路。</p>
+        <div class="research-card-tags"><span>PTQ / QAT</span><span>低比特计算</span><span>推理效率</span></div>
+        <div class="research-card-bottom"><span>公开投稿 · 区分摘要与全文阅读</span><strong>进入调研 <span aria-hidden="true">→</span></strong></div>
+      </a>
+      <a class="research-card research-card-systems" href="{{ '/isca-2026/' | relative_url }}" aria-labelledby="isca-card-title">
+        <div class="research-card-top"><span class="research-card-badge">ISCA / 2026</span><span class="research-card-arrow" aria-hidden="true">↗</span></div>
+        <p class="research-card-kicker">COMPUTER ARCHITECTURE</p>
+        <h3 id="isca-card-title">计算机体系结构<span>论文综述与研究方向</span></h3>
+        <p class="research-card-description">沿着会议论文梳理计算、存储与系统设计，比较 AI 加速、数据移动和硬件效率中的关键问题、方法与研究机会。</p>
+        <div class="research-card-tags"><span>AI 加速</span><span>存储与互连</span><span>系统效率</span></div>
+        <div class="research-card-bottom"><span>会议论文 · 总结与分类索引</span><strong>进入综述 <span aria-hidden="true">→</span></strong></div>
+      </a>
+    </div>
+  </section>
+
+  <div class="research-reading-note"><span aria-hidden="true">↗</span><p>每份调研保留论文来源与阅读依据。可以先看方向总结，再通过分类索引找到感兴趣的论文。</p></div>
+</div>

@@ -1,0 +1,562 @@
+{
+  "metadata": {
+    "schema_version": 1,
+    "conference": "ISCA 2026",
+    "checked_at": "2026-10-09",
+    "program_source_url": "https://www.iscaconf.org/isca2026/program/",
+    "reading_count": 17,
+    "fulltext_count": 6,
+    "abstract_count": 11,
+    "scope": "代表论文的中文阅读笔记；全量议程另见官方索引。",
+    "selection_method": "按问题与证据选择公开可读代表稿，覆盖大模型推理、编译器、PIM、CPU、CXL、可靠性、安全、量子计算与数据中心生命周期；不是排名或随机样本。",
+    "analysis_method": "逐篇核对官方议程关联，读取作者预印本、公开原稿或机构发布的摘要；六篇进一步核对指定正文段落。跨论文趋势为本次阅读的归纳。",
+    "limitations": [
+      "17 篇是本次有内容阅读依据的代表稿，不能等同全会议已读数量。",
+      "公开原文解读仅指 reading_basis 中列出的重点段落，不表示通读每一页；摘要解读未核对完整实验设置。",
+      "预印本与会议定稿可能存在版本差异；来源和读取版本逐篇记录。",
+      "实验结果为作者报告，未独立复现；建议是待验证假设，未作新颖性保证。",
+      "摘要解读中的阅读边界用于说明证据范围，不冒充作者自述的论文缺陷。"
+    ],
+    "program_source_sha256": "2e460a2b4f7a441be75b2206045242e42660ad4e604704493910aefc67f6abe6",
+    "program_count": 172
+  },
+  "papers": [
+    {
+      "title": "Patterns Behind Chaos: Forecasting Data Movement for Efficient Large-Scale MoE LLM Inference",
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v5：摘要、§III、§VI–VII 重点核对；晶圆级设计来自仿真，实机研究只测 MoE 计算时间。",
+      "source_url": "https://arxiv.org/html/2510.05497v5",
+      "evidence_urls": [
+        "https://arxiv.org/abs/2510.05497v5",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "专家路由存在可利用的时空规律，prefill 观测能够指导 decode 的专家放置。",
+      "problem": "大规模 MoE 的数据搬运和负载偏斜限制多单元推理效率。",
+      "method": "分析四个大模型的路由轨迹；用 prefill 频率重映射或复制热门专家，并设计分层缓存。",
+      "takeaway": "先测路由规律，再决定缓存与放置；真实 GPU 案例支持这一设计路径。",
+      "limitations": "实机计时排除了 attention、all-to-all 与 top-k；晶圆级 6.6× 为仿真结果，不能当作现有集群端到端加速。",
+      "tags": [
+        "MoE",
+        "数据搬运",
+        "专家放置",
+        "最佳论文候选"
+      ],
+      "id": "isca26-b7148118f3f1",
+      "session_id": "1a",
+      "session": "Session 1A: Best Paper Candidate Session (Plenary)",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Cerberus: Cross-Layer ECC Co-Design for Robust and Efficient Memory Protection",
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v1：摘要、§I、§VI 及硬件实现段落重点核对；包含故障注入、逻辑综合和性能仿真。",
+      "source_url": "https://arxiv.org/html/2605.02220v1",
+      "evidence_urls": [
+        "https://arxiv.org/abs/2605.02220",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "让片内、链路与系统 ECC 共用一次编码产生的冗余，同时约束层间误纠扩散。",
+      "problem": "独立演进的三层 ECC 会重复保护、留下空隙，甚至互相放大错误。",
+      "method": "协同设计校验矩阵、解码顺序与纠错预算，形成 Encode-Once, Decode-Many。",
+      "takeaway": "纠错能力取决于层间组合；减少冗余不必然意味着降低可靠性。",
+      "limitations": "可靠性来自设定故障模式的 Monte Carlo 注入；性能来自 GPU 仿真，计时只计检测延迟，非量产 HBM 实测。",
+      "tags": [
+        "ECC",
+        "HBM",
+        "可靠性",
+        "最佳论文候选"
+      ],
+      "id": "isca26-73d7b00deaf8",
+      "session_id": "1a",
+      "session": "Session 1A: Best Paper Candidate Session (Plenary)",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Combating the Memory Walls: Optimization Pathways for Long-Context Agentic LLM Inference",
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v3 作者摘要；已核对官方 Session 2A 同标题，未逐项核对完整实验。",
+      "source_url": "https://arxiv.org/abs/2509.09505v3",
+      "evidence_urls": [
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "PLENA 把长上下文 Agent 推理的容量墙与带宽墙作为联合设计目标。",
+      "problem": "工具轨迹与网页等长输入增加片外流量，使计算单元难以满载。",
+      "method": "组合展平脉动阵列、非对称量化与原生 FlashAttention，并配套 ISA、编译器和模拟器。",
+      "takeaway": "摘要报告等乘法器数量、等内存配置下相对 A100 最高 2.23× 吞吐；需保留比较条件。",
+      "limitations": "阅读边界：只核对 v3 摘要，尚未验证各路径消融、模型质量与面积功耗假设。",
+      "tags": [
+        "长上下文",
+        "Agent",
+        "AI 加速器",
+        "内存墙"
+      ],
+      "id": "isca26-2a05cada990d",
+      "session_id": "2a",
+      "session": "Session 2A: LLM 1",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Approaching Shannon Bound with Lossless LLM Weight Compression",
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v1：摘要、§V-D、§VI-A/C/D 与 Table II 重点核对；摘要与表格的 Qwen batch 值不一致，未引用该数字。",
+      "source_url": "https://arxiv.org/html/2606.15789v1",
+      "evidence_urls": [
+        "https://arxiv.org/abs/2606.15789",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "把无损熵解码嵌进 GPU GEMM 的 tile 流水，压缩权重为更大 batch 腾出显存。",
+      "problem": "先解压整个层再计算会增加流量与同步，难以兑现压缩收益。",
+      "method": "采用 ANS、并行子流与共享内存缓冲，重叠解码和 Tensor Core 计算。",
+      "takeaway": "四张 A100、Mixtral、长度 1024：最大 batch 条件下吞吐 241→391 token/s，但 TPOT 110→170 ms。",
+      "limitations": "面向吞吐的收益伴随延迟代价；小 batch 可能受解码限制，理论熵上限不能等同端到端加速。",
+      "tags": [
+        "无损压缩",
+        "GEMM",
+        "GPU",
+        "吞吐与延迟"
+      ],
+      "id": "isca26-3641efcac3a7",
+      "session_id": "2a",
+      "session": "Session 2A: LLM 1",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "P3-LLM: An Integrated NPU-PIM Accelerator for Edge LLM Inference Using Hybrid Numerical Formats",
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v4 作者摘要与 ISCA 录用声明；官方 Session 4A 同标题，未核对全文评估。",
+      "source_url": "https://arxiv.org/abs/2511.06838v4",
+      "evidence_urls": [
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "混合数值格式同时服务于精度保留和低开销 PIM 运算单元设计。",
+      "problem": "DRAM 工艺上的高精度运算单元占面积、耗电，限制 NPU-PIM 系统吞吐。",
+      "method": "对不同操作数选择格式，协同设计低精度 PIM 单元，并融合算子降低反量化代价。",
+      "takeaway": "量化方案应与计算单元和数据流一起评估，不能只比较离线精度。",
+      "limitations": "阅读边界：摘要未充分展开工艺、面积和基线设置；不将摘要加速比解释为手机端实机收益。",
+      "tags": [
+        "端侧 LLM",
+        "NPU-PIM",
+        "混合精度",
+        "协同设计"
+      ],
+      "id": "isca26-32a1e16b9c69",
+      "session_id": "4a",
+      "session": "Session 4A: LLM 2",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "COSM: A Cooperative Scheduling Framework for Concurrent PIM and CPU Execution on Mobile Devices",
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v2 作者摘要；官方最佳论文候选场次同标题，未核对全文评估。",
+      "source_url": "https://arxiv.org/abs/2606.30553v2",
+      "evidence_urls": [
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "把 PIM 命令插入 CPU 访存的空闲窗口，使共享内存上的并发执行可控。",
+      "problem": "移动设备 CPU 与 PIM 共用内存，bank 冲突和总线拥塞会抵消 PIM 优势。",
+      "method": "设计低干扰控制接口与感知空闲的调度，重叠 PIM 计算和数据传输。",
+      "takeaway": "摘要报告 PIM 吞吐最高 2.8×、CPU 性能损失低于 2%；评价必须同时看两类任务。",
+      "limitations": "阅读边界：只读摘要；共享内存配置、并发压力和具体基线仍需正文核对。",
+      "tags": [
+        "PIM",
+        "CPU",
+        "共享内存",
+        "并发调度"
+      ],
+      "id": "isca26-66fcdeabce3b",
+      "session_id": "1a",
+      "session": "Session 1A: Best Paper Candidate Session (Plenary)",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "CODO: An Automated Compiler for Comprehensive Dataflow Optimization",
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 作者摘要与 ISCA 录用声明；摘要区分综合预测和上板结果。",
+      "source_url": "https://arxiv.org/abs/2604.12618v1",
+      "evidence_urls": [
+        "https://github.com/sjtu-zhao-lab/codo-artifact",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "自动修正数据流违例，联合优化片上与片外搬运及资源调度。",
+      "problem": "HLS 降低编码门槛，但高效的大规模 FPGA 数据流仍需要人工设计。",
+      "method": "检测粗细粒度数据流问题，接着优化通信与自动调度，平衡性能和资源。",
+      "takeaway": "摘要报告 GPT-2 上板平均 2.07× 加速；开放编译器使这种端到端路径可进一步复核。",
+      "limitations": "阅读边界：综合与上板数字不能混用；尚未核对输入语言支持范围、编译成本和违例处理边界。",
+      "tags": [
+        "FPGA",
+        "编译器",
+        "数据流",
+        "自动化"
+      ],
+      "id": "isca26-cddc567c3a5d",
+      "session_id": "1a",
+      "session": "Session 1A: Best Paper Candidate Session (Plenary)",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Tetris: Efﬁcient Long-context LLM Serving with Chunkwise Dynamic Sequence Parallelism",
+      "reading_depth": "abstract",
+      "reading_basis": "IEEE 会议论文公开摘要；官方 Session 6A 标题保留 Efﬁcient 原文连字，未读取付费正文。",
+      "source_url": "https://doi.org/10.1109/ISCA66397.2026.00098",
+      "evidence_urls": [
+        "https://arxiv.org/abs/2511.06247",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "将序列并行度细化到请求内部的 token 分块，并按负载动态分配。",
+      "problem": "按整请求分配并行度难以适应不同推理阶段，还会造成全局拥塞和资源碎片。",
+      "method": "提出 chunkwise dynamic sequence parallelism，配合分离式集群、实时负载调节和分块搜索。",
+      "takeaway": "并行度增大并不总让在线服务更快；应同时测 TTFT、TBT 和最大可持续负载。",
+      "limitations": "阅读边界：只核对公开摘要；预印本标题不同，正文配置与调度开销尚未核对。",
+      "tags": [
+        "长上下文",
+        "序列并行",
+        "在线服务",
+        "SLO"
+      ],
+      "id": "isca26-dc348d8d5fe6",
+      "session_id": "6a",
+      "session": "Session 6A: LLM 4",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Vistara: Making CXL Real—Full Path from ASIC Design and OS Support to Hyperscale Deployment",
+      "reading_depth": "fulltext",
+      "reading_basis": "作者公开会议原稿：摘要、§I、生产参数服务器结果、§V-F/G/H 重点核对；含容量比例与多租户实验。",
+      "source_url": "https://aisystemcodesign.github.io/papers/isca26/vistara_camera_ready.pdf",
+      "evidence_urls": [
+        "https://computeexpresslink.org/event/scaling-cxl-to-millions-of-servers-vistara-for-hyperscale-efficiency/",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "通过自研 CXL ASIC、退役 DDR4 和 Linux 页分层，减少容量不足造成的资源闲置。",
+      "problem": "内存容量不足导致服务分片扩张，而可复用 DIMM 的寿命长于服务器。",
+      "method": "联合设计硬件、TPP 页放置和逐工作负载配置，并加入容器级内存分层公平性。",
+      "takeaway": "生产收益依赖冷热分离与合适比例；容量扩展也能减少机器数和通信开销。",
+      "limitations": "1:1 本地:CXL 比例出现明显回退；多租户需公平性控制。证据集中在主机扩展，不能直接证明共享内存池收益。",
+      "tags": [
+        "CXL",
+        "内存分层",
+        "工业实践",
+        "DIMM 复用"
+      ],
+      "id": "isca26-5b24e3eaf472",
+      "session_id": "4b",
+      "session": "Session 4B: Industry Track 1",
+      "track": "industry",
+      "venue_verified": true
+    },
+    {
+      "title": "KernelEvolve: Scaling Agentic Kernel Coding for Heterogeneous AI Accelerators at Meta",
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v4 作者摘要；官方 Industry Track 1 同标题。v4 为会后修订，未核对完整生产评估。",
+      "source_url": "https://arxiv.org/abs/2512.23236v4",
+      "evidence_urls": [
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "用 Agent 图搜索与检索增强上下文，自动生成和优化多平台推荐模型内核。",
+      "problem": "模型结构、算子与硬件代际的多样性使手工优化难以规模化。",
+      "method": "从内核规格出发，跨 Triton、CuTe 等抽象层生成候选，以测试与性能反馈推进搜索。",
+      "takeaway": "可编程性本身成为系统贡献；摘要报告覆盖 NVIDIA、AMD 和 Meta 加速器的生产部署。",
+      "limitations": "阅读边界：公开基准上的通过率不能证明任意输入正确；搜索成本、稳定性和跨平台收益尚未核对全文。",
+      "tags": [
+        "Agent",
+        "内核生成",
+        "异构硬件",
+        "工业实践"
+      ],
+      "id": "isca26-164c10268afb",
+      "session_id": "4b",
+      "session": "Session 4B: Industry Track 1",
+      "track": "industry",
+      "venue_verified": true
+    },
+    {
+      "title": "Dorado: Clustered Hardware Cache Coherence for 1,000+ Cores",
+      "reading_depth": "abstract",
+      "reading_basis": "Illinois 作者所在机构的会议论文摘要；明确为 1024 核仿真，未读取协议全文。",
+      "source_url": "https://experts.illinois.edu/en/publications/dorado-clustered-hardware-cache-coherence-for-1000-cores/",
+      "evidence_urls": [
+        "https://doi.org/10.1109/ISCA66397.2026.00049",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "让临时 home directory 靠近使用者，并按共享模式动态分配目录空间。",
+      "problem": "千核系统的一致性流量、远程访问与 sharer 记录开销同步增长。",
+      "method": "组合全局与簇内临时 home、多种目录项共享存储及多共享者扩展机制。",
+      "takeaway": "摘要报告相对等面积有限指针协议平均 1.36× 加速；存储预算与性能需联合比较。",
+      "limitations": "阅读边界：结果为仿真；协议状态机、正确性与实际互连代价未在本次全文核对。",
+      "tags": [
+        "CPU",
+        "缓存一致性",
+        "千核",
+        "目录协议"
+      ],
+      "id": "isca26-953e250005cc",
+      "session_id": "3d",
+      "session": "Session 3D: Microarchitecture",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "PuDGhost: Experimental Analysis of Computation Result Corruption in Processing-using-DRAM Operations on Real DRAM Chips and Implications for Future Systems",
+      "reading_depth": "abstract",
+      "reading_basis": "arXiv v1 作者摘要；官方 Session 3B 同标题，明确为真实 DDR4 芯片实验。",
+      "source_url": "https://arxiv.org/abs/2606.19119v1",
+      "evidence_urls": [
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "实测发现，未激活行与同时计算的其他列也会改变 DRAM 内计算结果。",
+      "problem": "将每一列视作独立计算引擎的理想假设可能被物理干扰破坏。",
+      "method": "表征 96 颗 DDR4 芯片，评估稳健列筛选及计算行之间的专用隔离行。",
+      "takeaway": "PIM 的吞吐模型必须加入数据相关干扰与筛选成本，先证明可靠计算。",
+      "limitations": "阅读边界：只读摘要；结论来自所测 DDR4 样本，不直接外推为所有 DRAM 或所有 PIM 路径的故障率。",
+      "tags": [
+        "DRAM",
+        "存内计算",
+        "真实芯片",
+        "可靠性"
+      ],
+      "id": "isca26-4d9976327b65",
+      "session_id": "3b",
+      "session": "Session 3B: DRAM and SRAM PIM/PNM",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "SSBench: Automated Characterization of Memory Dependence Predictors on Modern CPUs",
+      "reading_depth": "abstract",
+      "reading_basis": "作者公开会议 PDF 摘要与引言；官方 Session 7B 同标题，未核对全部逆向及攻击实验。",
+      "source_url": "https://www.comp.nus.edu.sg/~tcarlson/pdfs/liu2026sacomdpomc.pdf",
+      "evidence_urls": [
+        "https://github.com/CPU-Security/SSBench",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "把未公开的内存依赖预测器，从人工逆向对象变成可跨平台自动表征的结构。",
+      "problem": "MDP 改善乱序并行，却可能泄漏信息，其设计又缺乏公开文档。",
+      "method": "采用工作流分类、状态机求解与 store-load bounce，识别预测器组织并检查安全边界。",
+      "takeaway": "摘要报告跨三十余款 CPU 识别十四种配置；安全评估应覆盖预测器本身。",
+      "limitations": "阅读边界：平台差异与计时噪声需要复核；所测 CPU 的结果不等同所有型号或固件版本。",
+      "tags": [
+        "CPU",
+        "MDP",
+        "自动表征",
+        "侧信道"
+      ],
+      "id": "isca26-c4ed0880dcf9",
+      "session_id": "7b",
+      "session": "Session 7B: Performance Modeling / Datacenter",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "LÆGIS: Pinpointing and Addressing Performance Overheads of GPU-based Confidential Computing",
+      "reading_depth": "fulltext",
+      "reading_basis": "作者公开会议原稿：摘要、§I、§II-C/D 重点核对；实机瓶颈表征与仿真改进分开记录。另核对公开 artifact README。",
+      "source_url": "https://adwaitjog.github.io/docs/pdf/yang_laegis_isca26.pdf",
+      "evidence_urls": [
+        "https://github.com/insight-cal-uva/laegis-isca26-artifact/blob/main/README.md",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "在可信 HBM 中维护 IV Bank，用 CPU 空闲时间预加密，解耦 UVM 迁移与加密同步。",
+      "problem": "统一虚拟内存的页故障批处理，在机密计算下叠加 CPU 加密与同步开销。",
+      "method": "先实测驱动关键路径，再在 GPGPU-Sim 上研究可乱序的预加密设计。",
+      "takeaway": "安全元数据的位置会改变迁移流水；保护与内存管理应协同设计。",
+      "limitations": "采用 HBM 可信假设，侧信道不在威胁模型内；加速结果是仿真，公开 artifact 暂缺方案核心代码。",
+      "tags": [
+        "GPU",
+        "机密计算",
+        "UVM",
+        "安全元数据"
+      ],
+      "id": "isca26-fbff2a3cfe47",
+      "session_id": "3c",
+      "session": "Session 3C: Security",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Towards Practical Interrupt Side-Channel Attacks on macOS for Apple Silicon",
+      "reading_depth": "abstract",
+      "reading_basis": "作者公开会议 PDF 摘要；官方 Session 3C 同标题，未核对全部案例和版本矩阵。",
+      "source_url": "https://www.comp.nus.edu.sg/~tcarlson/pdfs/zhang2026tpisaomfas.pdf",
+      "evidence_urls": [
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "TIDE 利用 macOS 的状态变化检测中断，并据此表征 Apple 的中断投递行为。",
+      "problem": "闭源平台缺少中断统计接口，已有侧信道分析难以精确检测中断。",
+      "method": "构建无需架构计时器的观测原语，以指纹识别与抗噪实验验证行为模型。",
+      "takeaway": "安全分析需要联合看 OS 防护行为和硬件事件分配，限制计时器并不消除事件泄漏。",
+      "limitations": "阅读边界：结果依赖研究中的 macOS 行为与设备；摘要中的识别率不能外推为当前任意版本风险。",
+      "tags": [
+        "Apple Silicon",
+        "macOS",
+        "中断",
+        "侧信道"
+      ],
+      "id": "isca26-951c876daebf",
+      "session_id": "3c",
+      "session": "Session 3C: Security",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Transpiler-Architecture Co-Design to Curb Clifford Costs in Fault-Tolerant Quantum Computing",
+      "reading_depth": "fulltext",
+      "reading_basis": "arXiv v2：摘要、§IV、§VI-C/D 与 artifact 附录重点核对；读取资源表和 magic-state 吞吐敏感性。",
+      "source_url": "https://arxiv.org/html/2412.15434v2",
+      "evidence_urls": [
+        "https://arxiv.org/abs/2412.15434v2",
+        "https://github.com/pnnl/nwqec",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "TACO 消减 Clifford 开销并保留门级并行，再利用变换后的局部性设计量子架构。",
+      "problem": "把 Clifford 门改写成 Pauli 测量虽能减门，却可能牺牲并行度。",
+      "method": "针对旋转合成、Toffoli 分解作变换，划分计算与存储区并联动 magic-state 资源。",
+      "takeaway": "门数不是充分指标；需同时测执行时间、物理比特和比特周期体积。",
+      "limitations": "结果来自编译和建模；增加 magic-state 供给会换取更短时间，收益依赖资源预算与路由支持。",
+      "tags": [
+        "量子计算",
+        "FTQC",
+        "编译器",
+        "资源权衡"
+      ],
+      "id": "isca26-32069d91f23f",
+      "session_id": "4d",
+      "session": "Session 4D: Quantum 1",
+      "track": "main",
+      "venue_verified": true
+    },
+    {
+      "title": "Rearchitecting the Datacenter Lifecycle for AI",
+      "reading_depth": "abstract",
+      "reading_basis": "Microsoft Research 的会议论文摘要与作者预印本摘要；官方 Session 2C 同标题，未逐项核对成本模型。",
+      "source_url": "https://www.microsoft.com/en-us/research/publication/rearchitecting-datacenter-lifecycle-for-ai-a-tco-driven-framework/",
+      "evidence_urls": [
+        "https://arxiv.org/abs/2509.26534",
+        "https://www.microsoft.com/en-us/research/wp-content/uploads/2026/03/AI-DC-Lifecycle-Compass.pdf",
+        "https://www.iscaconf.org/isca2026/program/"
+      ],
+      "summary": "跨建设、硬件更新和运行三个阶段优化 AI 数据中心总拥有成本。",
+      "problem": "GPU 迭代、供电冷却与工作负载增长，使传统固定更新策略难以适应 AI。",
+      "method": "联合建模基础设施选择、硬件更新与软件调度，显式考虑负载与硬件演进。",
+      "takeaway": "局部算子加速之外，系统价值还取决于生命周期成本和更新时机。",
+      "limitations": "阅读边界：只核对摘要；作者报告的最高 40% TCO 降幅依赖模型情景，不能视为任意云部署的承诺。",
+      "tags": [
+        "数据中心",
+        "TCO",
+        "生命周期",
+        "可持续性"
+      ],
+      "id": "isca26-7f557303825b",
+      "session_id": "2c",
+      "session": "Session 2C: Sustainability",
+      "track": "main",
+      "venue_verified": true
+    }
+  ],
+  "trends": [
+    {
+      "title": "数据搬运成为可直接优化的对象",
+      "summary": "本次代表稿分别从 MoE 路由预测、长上下文容量与带宽、权重熵解码切入。共同线索是改变数据出现的位置和时间，随后验证整条执行路径。",
+      "paper_titles": [
+        "Patterns Behind Chaos: Forecasting Data Movement for Efficient Large-Scale MoE LLM Inference",
+        "Combating the Memory Walls: Optimization Pathways for Long-Context Agentic LLM Inference",
+        "Approaching Shannon Bound with Lossless LLM Weight Compression"
+      ]
+    },
+    {
+      "title": "调度粒度需要匹配阶段与共享资源",
+      "summary": "Tetris 调整请求内分块的并行度，COSM 利用 CPU 访存空闲窗口，专家放置利用 prefill 观测。归纳上，固定分配容易错过阶段差异，并发收益还要检查邻居任务。",
+      "paper_titles": [
+        "Tetris: Efﬁcient Long-context LLM Serving with Chunkwise Dynamic Sequence Parallelism",
+        "COSM: A Cooperative Scheduling Framework for Concurrent PIM and CPU Execution on Mobile Devices",
+        "Patterns Behind Chaos: Forecasting Data Movement for Efficient Large-Scale MoE LLM Inference"
+      ]
+    },
+    {
+      "title": "算法与编译变换决定架构如何兑现收益",
+      "summary": "P3-LLM 联动数值格式与 PIM 单元，CODO 联动数据流修正与资源调度，TACO 联动电路变换与局部布局。可验证的共同点是优化上层表示后，重新设计资源使用方式。",
+      "paper_titles": [
+        "P3-LLM: An Integrated NPU-PIM Accelerator for Edge LLM Inference Using Hybrid Numerical Formats",
+        "CODO: An Automated Compiler for Comprehensive Dataflow Optimization",
+        "Transpiler-Architecture Co-Design to Curb Clifford Costs in Fault-Tolerant Quantum Computing"
+      ]
+    },
+    {
+      "title": "保护成本与物理假设要进入性能模型",
+      "summary": "Cerberus 检查 ECC 层间交互，PuDGhost 检查真实 DRAM 干扰，LÆGIS 检查加密与页迁移耦合。这些论文提醒设计者说明故障或威胁模型，并把保护路径代价计入评估。",
+      "paper_titles": [
+        "Cerberus: Cross-Layer ECC Co-Design for Robust and Efficient Memory Protection",
+        "PuDGhost: Experimental Analysis of Computation Result Corruption in Processing-using-DRAM Operations on Real DRAM Chips and Implications for Future Systems",
+        "LÆGIS: Pinpointing and Addressing Performance Overheads of GPU-based Confidential Computing"
+      ]
+    },
+    {
+      "title": "测量与自动化扩大可研究的硬件范围",
+      "summary": "SSBench 与 TIDE 从真实行为建立平台模型；CODO 与 KernelEvolve 自动生成执行方案。这里的归纳是：在实现细节或编程栈复杂时，可复核测量和反馈比单一理想模型更关键。",
+      "paper_titles": [
+        "SSBench: Automated Characterization of Memory Dependence Predictors on Modern CPUs",
+        "Towards Practical Interrupt Side-Channel Attacks on macOS for Apple Silicon",
+        "CODO: An Automated Compiler for Comprehensive Dataflow Optimization",
+        "KernelEvolve: Scaling Agentic Kernel Coding for Heterogeneous AI Accelerators at Meta"
+      ]
+    },
+    {
+      "title": "系统效率走向容量利用与生命周期",
+      "summary": "Vistara 把退役 DIMM、页分层和生产工作负载一起设计，生命周期研究把建设、更新与运行一起建模。归纳上，吞吐之外还需要资源闲置、机器数和长期成本指标。",
+      "paper_titles": [
+        "Vistara: Making CXL Real—Full Path from ASIC Design and OS Support to Hyperscale Deployment",
+        "Rearchitecting the Datacenter Lifecycle for AI"
+      ]
+    }
+  ],
+  "recommendations": [
+    {
+      "title": "做有延迟约束的压缩与专家放置联合实验",
+      "priority": "可先软件复现",
+      "question": "压缩腾出的容量用于扩大 batch 或复制热门专家时，在哪些负载下仍满足在线延迟约束？",
+      "experiment": "从开源服务栈与路由轨迹起步，分别开启压缩、prefill 放置与两者组合；扫描输入长度和请求率，报告吞吐、TTFT、TPOT、P99 与迁移流量。",
+      "paper_titles": [
+        "Approaching Shannon Bound with Lossless LLM Weight Compression",
+        "Patterns Behind Chaos: Forecasting Data Movement for Efficient Large-Scale MoE LLM Inference",
+        "Tetris: Efﬁcient Long-context LLM Serving with Chunkwise Dynamic Sequence Parallelism"
+      ]
+    },
+    {
+      "title": "把并发干扰作为 PIM 与分层内存的评估主轴",
+      "priority": "系统研究",
+      "question": "当 CPU 应用、LLM 和邻居容器竞争内存时，吞吐提升是否以其他任务尾延迟为代价？",
+      "experiment": "在模拟器或可用 CXL/PIM 平台上控制热点比例与突发负载，比较独立调度、空闲感知和公平份额策略；同时记录双方性能及带宽利用。",
+      "paper_titles": [
+        "COSM: A Cooperative Scheduling Framework for Concurrent PIM and CPU Execution on Mobile Devices",
+        "Vistara: Making CXL Real—Full Path from ASIC Design and OS Support to Hyperscale Deployment"
+      ]
+    },
+    {
+      "title": "给加速器补上可解释的错误传播实验",
+      "priority": "可靠性研究",
+      "question": "在真实干扰与多层纠错共存时，单层正确性假设在哪些条件下失效？",
+      "experiment": "建立带位置和相关性的故障注入集，分别测原始错误、纠错后错误与最终静默损坏；再统计筛选、隔离行和联合纠错的容量、延迟代价。",
+      "paper_titles": [
+        "PuDGhost: Experimental Analysis of Computation Result Corruption in Processing-using-DRAM Operations on Real DRAM Chips and Implications for Future Systems",
+        "Cerberus: Cross-Layer ECC Co-Design for Robust and Efficient Memory Protection"
+      ]
+    },
+    {
+      "title": "以可复核成本评估自动内核生成",
+      "priority": "工具与方法研究",
+      "question": "自动生成的内核在未见形状与另一代硬件上是否正确，并且值得投入搜索时间？",
+      "experiment": "固定搜索预算，拆分生成成本与运行收益；用训练外形状、精度边界和重复运行检查正确性及稳定性，并与人工或确定性编译方案比较。",
+      "paper_titles": [
+        "KernelEvolve: Scaling Agentic Kernel Coding for Heterogeneous AI Accelerators at Meta",
+        "CODO: An Automated Compiler for Comprehensive Dataflow Optimization"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+@import url('./survey.css');
+
+.isca-breadcrumb { display:flex;gap:11px;align-items:center;font-size:12px;color:var(--sq-muted);margin:0 0 7px }
+.isca-hero-art { background:linear-gradient(140deg,#f4f8ff,#e8effd) }
+.isca-chip { position:relative;display:grid;place-items:center;width:148px;height:130px;margin:20px 0 24px }
+.isca-chip-core { position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;justify-content:center;width:108px;height:108px;border:1px solid #adc1e1;border-radius:19px;background:linear-gradient(145deg,#fff,#e7effc);box-shadow:0 8px 24px #416ca822,inset 0 0 0 7px #f7faff;color:#315689;font-size:29px;font-weight:700;letter-spacing:.04em }
+.isca-chip-core span { font-size:15px;font-weight:400;letter-spacing:.22em;margin-top:3px }
+.isca-chip i { position:absolute;width:148px;height:62px;background:repeating-linear-gradient(0deg,transparent 0 9px,#97b0d5 9px 12px,transparent 12px 15px) }
+.isca-chip i:nth-of-type(2) { transform:rotate(90deg) }
+.isca-chip i:nth-of-type(n+3) { display:none }
+.isca-filters { grid-template-columns:repeat(3,minmax(0,1fr)) }
+.isca-filters .survey-search { grid-column:1/-1 }
+.isca-landscape-table th:first-child { width:27% }
+.isca-landscape-table th:nth-child(2) { width:15% }
+.isca-landscape-table th:nth-child(3) { width:58% }
+.isca-session-link { display:inline-block;margin:0 12px 5px 0;font-size:11px }
+.isca-observations { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px }
+.isca-observation { background:#fff;border:1px solid var(--sq-line);border-radius:10px;padding:19px;min-width:0 }
+.isca-observation h3 { font-size:14px;line-height:1.65;margin:11px 0 9px }
+.isca-observation p { font-size:12px;line-height:1.9;color:var(--sq-muted) }
+.isca-reading-basis { color:var(--sq-muted)!important;font-size:10px!important;line-height:1.8;margin-top:8px!important }
+.isca-note-grid { display:grid;gap:10px;margin:16px 0 4px }
+.isca-note-grid dt { color:#46699d;font-size:11px;font-weight:700 }
+.isca-note-grid dd { margin:3px 0 0;font-size:12px;line-height:1.9;color:#5e7088 }
+.isca-paper-meta { color:var(--sq-muted)!important;font-size:11px!important;margin-bottom:8px!important }
+.isca-paper-authors { overflow-wrap:anywhere }
+.isca-survey .survey-taxonomy-card-top>span:first-child { font-size:13px;font-weight:650;line-height:1.6 }
+.isca-paper-title { overflow-wrap:anywhere }
+.isca-jump-link { overflow-wrap:anywhere }
+.isca-evidence-links { display:flex;flex-wrap:wrap;gap:7px 15px }
+.isca-survey .survey-paper-top { flex-wrap:wrap }
+.isca-survey .survey-paper:focus { outline:3px solid #9ebcf2;outline-offset:3px }
+.isca-survey .survey-paper-links { flex-wrap:wrap }
+.isca-survey .survey-landscape-evidence { margin-top:13px }
+.isca-survey .survey-landscape-evidence li { overflow-wrap:anywhere }
+.isca-survey .survey-landscape-table { min-width:560px }
+@media(max-width:760px) {
+  .isca-observations { grid-template-columns:1fr }
+  .isca-filters { grid-template-columns:repeat(2,minmax(0,1fr)) }
+  .isca-filters .survey-select:last-of-type { grid-column:1/-1 }
+  .isca-hero-art { min-height:260px }
+  .isca-chip { margin:20px 0;height:130px }
+  .isca-survey .survey-hero-meta { flex-wrap:wrap }
+  .isca-survey .survey-section-heading { flex-wrap:wrap;align-items:flex-start }
+}

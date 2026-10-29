@@ -14,7 +14,7 @@ minimal: false
 navigation:
   - {title: "Home", file: "index.html"}
   - {title: "Writing", file: "writing.html"}
-  - {title: "Research", file: "iclr-2027-quantization.html"}
+  - {title: "Research", file: "research.html", section: "research"}
   - {title: "About", file: "ABOUTME.md"}
 external:
   - {title: Mail, icon: envelope, url: "mailto:zqyu21@m.fudan.edu.cn"}
@@ -37,3 +37,4 @@ exclude:
   - iclr-2027-six-official-papers.zip:Zone.Identifier
   - assets/data/iclr-2027-reading-notes.json
   - assets/data/iclr-2027-mirror-exclusions.json
+  - assets/data/isca-2026-source.html

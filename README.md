@@ -1,6 +1,6 @@
 # Galen Yu · Personal website
 
-A Jekyll personal website for research interests, writing, and an ICLR 2027 model quantization submission survey.
+A Jekyll personal website for research interests, writing, and conference research notebooks covering ICLR 2027 model quantization and ISCA 2026 computer architecture.
 
 ## Local preview
 
@@ -17,6 +17,12 @@ Open http://localhost:4000. For a production build, run `bundle exec jekyll buil
 
 - `index.html`: homepage; `ABOUTME.md`: personal introduction.
 - `_posts/`: dated writing; `/writing/`: article index.
+- `research.html`: `/research/` conference notebook hub, with ICLR and ISCA child entries.
+- `isca-2026.html`: `/isca-2026/` Chinese conference overview, direction counts, research synthesis, and searchable paper readings.
+- `assets/data/isca-2026-program.json`: 172 identifiable papers in 37 official sessions (161 research-track and 11 industry-track papers); one empty program slot is explicitly excluded.
+- `assets/data/isca-2026-notes.json`: sourced representative readings, trends, and experiment suggestions, matched to official titles. Reading depth and source version are stated per paper.
+- `scripts/sync_isca2026.py`: standard-library parser for the saved or live official ISCA technical program; raw HTML stays in the repository and is excluded from the published site.
+- `docs/isca-2026-survey.md`: ISCA sources, scope, classification, and update instructions.
 - `iclr-2027-quantization.html`: Chinese submission survey with search, research direction filters, and source status.
 - `assets/data/iclr-2027-quantization.json`: auditable official-source snapshot.
 - `assets/data/iclr-2027-landscape.json`: reproducible direction and term counts for all 994 candidates, with official ID lists and snapshot hashes.
@@ -41,6 +47,20 @@ python3 scripts/build_iclr2027_landscape.py
 python3 -m unittest discover -s scripts -p 'test_build_iclr2027_landscape.py' -v
 node scripts/test_openreview_export.cjs
 ```
+
+Rebuild the ISCA index from its saved official HTML without changing the acquisition time:
+
+```bash
+python3 scripts/sync_isca2026.py --input-html assets/data/isca-2026-source.html
+```
+
+After building the site, verify its conference navigation and ISCA search, filters, deep links, responsive layout, and data-failure behavior with Playwright:
+
+```bash
+node scripts/test_isca2026.cjs _site
+```
+
+The browser check requires the `playwright` package and Chromium. Set `PLAYWRIGHT_MODULE` to its installed module path or `PLAYWRIGHT_CHANNEL` to a browser channel when using a bundled runtime.
 
 ## Design and attribution
 
