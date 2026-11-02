@@ -11,7 +11,7 @@ stylesheet: /assets/css/home.css
     <div class="home-intro">
       <p class="home-eyebrow"><span aria-hidden="true"></span> AI · Systems · Deployment</p>
       <h1 id="profile-heading">Hi, I'm <strong>Galen Yu.</strong></h1>
-      <p class="home-headline">AI beyond<br>the cloud.</p>
+      <p class="home-headline">AI beyond<br><span>the cloud.</span></p>
       <p class="home-description">I explore how AI can work in the real world — through efficient models, edge deployment, and a more connected AIoT ecosystem.</p>
       <div class="home-actions">
         <a class="button button-primary" href="{{ '/aboutme/' | relative_url }}">More about me <span aria-hidden="true">↗</span></a>
@@ -22,16 +22,10 @@ stylesheet: /assets/css/home.css
       </div>
     </div>
     <div class="home-visual" aria-hidden="true">
-      <div class="home-visual-grid"></div>
-      <div class="home-orbit home-orbit-outer"></div>
-      <div class="home-orbit home-orbit-middle"></div>
-      <div class="home-orbit home-orbit-inner"></div>
-      <div class="home-monogram"><span>GY</span><i></i></div>
-      <div class="home-orbit-node home-node-one"><i></i><span>Efficiency</span></div>
-      <div class="home-orbit-node home-node-two"><i></i><span>Edge AI</span></div>
-      <div class="home-orbit-node home-node-three"><i></i><span>AIoT</span></div>
-      <div class="home-visual-caption"><span class="home-visual-index">01 / EXPLORATION</span><p>Ideas meet<br>the real world.</p></div>
-      <span class="home-corner home-corner-top"></span><span class="home-corner home-corner-bottom"></span>
+      <img class="home-hero-image" src="{{ '/assets/images/ai-systems-hero-v2.webp' | relative_url }}" alt="" width="1254" height="1254" fetchpriority="high" decoding="async">
+      <span class="home-art-label home-art-label-model"><svg viewBox="0 0 24 24" fill="none"><path d="m12 3 9 5-9 5-9-5 9-5Zm-9 9 9 5 9-5M3 16l9 5 9-5"/></svg>Model efficiency</span>
+      <span class="home-art-label home-art-label-edge"><svg viewBox="0 0 24 24" fill="none"><rect x="6" y="3" width="12" height="18" rx="3"/><path d="M10 17h4m-4-7 2-3 2 3m-2-3v7"/></svg>Edge AI</span>
+      <div class="home-visual-caption"><span></span>Ideas meet the real world.</div>
     </div>
   </section>
 
@@ -62,19 +56,21 @@ stylesheet: /assets/css/home.css
   <section class="home-feature" aria-labelledby="survey-heading">
     <div class="home-feature-copy">
       <p class="home-eyebrow">Research notebooks</p>
-      <h2 id="survey-heading">Research<br>论文调研与阅读笔记</h2>
+      <span class="home-feature-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 5v15M3 4h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5v15h-5a4 4 0 0 0-4 2 4 4 0 0 0-4-2H3V4Z"/></svg></span>
+      <h2 id="survey-heading">Research<span lang="zh-CN">论文调研与阅读笔记</span></h2>
       <p lang="zh-CN">按会议整理研究方向、论文方法与阅读笔记。从模型量化到计算机体系结构，连接算法效率与硬件系统，保留可追溯的原始来源。</p>
       <a class="button button-primary" href="{{ '/research/' | relative_url }}" lang="zh-CN">浏览全部调研 <span aria-hidden="true">↗</span></a>
     </div>
-    <div class="home-feature-outline" aria-hidden="true">
+    <div class="home-feature-outline">
       <span class="home-feature-label">CONFERENCE / NOTEBOOKS</span>
-      <div class="home-feature-row"><span>01</span><p>ICLR 2027<small>模型量化 · 公开投稿调研</small></p><span>↗</span></div>
-      <div class="home-feature-row"><span>02</span><p>ISCA · MICRO · HPCA 2026<small>计算机体系结构 · 论文综述</small></p><span>↗</span></div>
-      <div class="home-feature-row"><span>03</span><p>ASPLOS 2026<small>架构、语言与系统 · 跨层研究</small></p><span>↗</span></div>
+      <a class="home-feature-row" href="{{ '/iclr-2027-quantization/' | relative_url }}"><span aria-hidden="true">01</span><p>ICLR 2027<small>模型量化 · 公开投稿调研</small></p><span aria-hidden="true">↗</span></a>
+      <a class="home-feature-row" href="{{ '/research/#collections' | relative_url }}"><span aria-hidden="true">02</span><p>ISCA · MICRO · HPCA 2026<small>计算机体系结构 · 论文综述</small></p><span aria-hidden="true">↗</span></a>
+      <a class="home-feature-row" href="{{ '/asplos-2026/' | relative_url }}"><span aria-hidden="true">03</span><p>ASPLOS 2026<small>架构、语言与系统 · 跨层研究</small></p><span aria-hidden="true">↗</span></a>
       <p class="home-feature-note"><span></span>每份调研附原始来源与阅读依据</p>
     </div>
   </section>
 
+  <div class="home-bottom-grid">
   <section class="home-writing" aria-labelledby="writing-heading">
     <div class="home-section-heading">
       <div><p class="home-eyebrow">Notes &amp; reflections</p><h2 id="writing-heading">From the notebook</h2></div>
@@ -96,7 +92,9 @@ stylesheet: /assets/css/home.css
   </section>
 
   <section class="home-connect" aria-labelledby="connect-heading">
+    <svg class="home-connect-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5H4l-1 1v-8.5A8.5 8.5 0 1 1 21 11.5Z"/><path d="M8 9h8m-8 4h5"/></svg>
     <div><p class="home-eyebrow">Let's connect</p><h2 id="connect-heading">Different ideas. New perspectives.</h2><p>I'm always happy to exchange ideas about AI, technology, and life.</p></div>
     <a class="home-contact" href="mailto:zqyu21@m.fudan.edu.cn">Say hello <span aria-hidden="true">↗</span></a>
   </section>
+  </div>
 </div>

@@ -6,10 +6,11 @@
   <title>{% if page.title and page.title != 'Home' %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
   <meta name="description" content="{{ page.description | default: site.description | strip_html | escape }}">
   <meta name="author" content="{{ page.author | default: site.author | escape }}">
-  <meta name="theme-color" content="#f6f7fb">
+  <meta name="theme-color" content="#f7f8fd">
   <link rel="canonical" href="{{ page.url | absolute_url }}">
   <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
   {% if page.stylesheet %}<link rel="stylesheet" href="{{ page.stylesheet | relative_url }}">{% endif %}
+  {% if page.nav_section == 'research' %}<link rel="stylesheet" href="{{ '/assets/css/reading.css' | relative_url }}">{% endif %}
   {% if site.plugins contains 'jekyll-feed' %}<link rel="alternate" href="{{ site.feed.path | default: '/feed.xml' | relative_url }}" type="application/atom+xml" title="{{ site.title | escape }}">{% endif %}
   {% if page.mathjax or site.mathjax %}
   <link rel="stylesheet" href="{{ '/assets/katex/katex.min.css' | relative_url }}">
@@ -23,13 +24,16 @@
   <header class="site-header">
     <div class="site-container header-inner">
       <a class="site-brand" href="{{ '/' | relative_url }}" aria-label="Galen Yu home"><span class="brand-mark" aria-hidden="true">G.</span><span>Galen Yu<span class="brand-caption">Research &amp; notes</span></span></a>
-      <nav class="site-nav" aria-label="Main navigation">
-        {% for item in site.navigation %}
-          {% assign node = site.pages | where: 'name', item.file | first %}
-          {% assign url = item.url | default: node.url %}
-          <a href="{{ url | relative_url }}"{% if url == page.url %} class="is-active" aria-current="page"{% elsif item.section and item.section == page.nav_section %} class="is-active" aria-current="true"{% endif %}>{{ item.title | default: node.title | escape }}</a>
-        {% endfor %}
-      </nav>
+      <div class="header-actions">
+        <nav class="site-nav" aria-label="Main navigation">
+          {% for item in site.navigation %}
+            {% assign node = site.pages | where: 'name', item.file | first %}
+            {% assign url = item.url | default: node.url %}
+            <a href="{{ url | relative_url }}"{% if url == page.url %} class="is-active" aria-current="page"{% elsif item.section and item.section == page.nav_section %} class="is-active" aria-current="true"{% endif %}>{{ item.title | default: node.title | escape }}</a>
+          {% endfor %}
+        </nav>
+        <a class="header-github" href="https://github.com/galenyu" aria-label="Galen Yu on GitHub"><svg viewBox="0 0 496 512" aria-hidden="true"><use href="{{ '/assets/fontawesome/icons.svg' | relative_url }}#github"></use></svg></a>
+      </div>
     </div>
   </header>
   <main id="main-content" tabindex="-1">{{ content }}</main>
